@@ -6,8 +6,20 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "TiProxy.h"
+#import <Opentok/OTSession.h>
 
-@interface ComTokboxTiOpentokSessionProxy : NSObject
+@interface ComTokboxTiOpentokSessionProxy : TiProxy <OTSessionDelegate> {
+
+@private
+    OTSession *_session;
+}
+
+// Properties
+@property (nonatomic, readwrite, assign) NSString *sessionId;
+
+
+// Methods
+- (void)connect:(id)args;
 
 @end
