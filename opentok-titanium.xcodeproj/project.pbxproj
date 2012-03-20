@@ -26,6 +26,8 @@
 		24DD6CFA1134B3F500162E58 /* ComTokboxTiOpentokModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* ComTokboxTiOpentokModule.m */; };
 		24DE9E1111C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DE9E0F11C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.h */; };
 		24DE9E1211C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.m */; };
+		92446CC81518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 92446CC61518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.h */; };
+		92446CC91518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 92446CC71518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.m */; };
 		92AFE90F150FD76E00DBD40C /* Opentok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AFE90E150FD76E00DBD40C /* Opentok.framework */; };
 		92AFE912150FD7D800DBD40C /* Opentok in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AFE911150FD7D800DBD40C /* Opentok */; };
 		AA747D9F0F9514B9006C5449 /* ComTokboxTiOpentok_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ComTokboxTiOpentok_Prefix.pch */; };
@@ -48,6 +50,8 @@
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
 		24DE9E0F11C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokModuleAssets.h; path = Classes/ComTokboxTiOpentokModuleAssets.h; sourceTree = "<group>"; };
 		24DE9E1011C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokModuleAssets.m; path = Classes/ComTokboxTiOpentokModuleAssets.m; sourceTree = "<group>"; };
+		92446CC61518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokSessionProxy.h; path = Classes/ComTokboxTiOpentokSessionProxy.h; sourceTree = "<group>"; };
+		92446CC71518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokSessionProxy.m; path = Classes/ComTokboxTiOpentokSessionProxy.m; sourceTree = "<group>"; };
 		92AFE90E150FD76E00DBD40C /* Opentok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Opentok.framework; sourceTree = "<group>"; };
 		92AFE911150FD7D800DBD40C /* Opentok */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Opentok; path = Opentok.framework/Versions/A/Opentok; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* ComTokboxTiOpentok_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComTokboxTiOpentok_Prefix.pch; sourceTree = SOURCE_ROOT; };
@@ -105,6 +109,8 @@
 				24DE9E1011C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.m */,
 				24DD6CF71134B3F500162E58 /* ComTokboxTiOpentokModule.h */,
 				24DD6CF81134B3F500162E58 /* ComTokboxTiOpentokModule.m */,
+				92446CC61518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.h */,
+				92446CC71518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -128,6 +134,7 @@
 				AA747D9F0F9514B9006C5449 /* ComTokboxTiOpentok_Prefix.pch in Headers */,
 				24DD6CF91134B3F500162E58 /* ComTokboxTiOpentokModule.h in Headers */,
 				24DE9E1111C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.h in Headers */,
+				92446CC81518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +221,7 @@
 			files = (
 				24DD6CFA1134B3F500162E58 /* ComTokboxTiOpentokModule.m in Sources */,
 				24DE9E1211C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.m in Sources */,
+				92446CC91518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
