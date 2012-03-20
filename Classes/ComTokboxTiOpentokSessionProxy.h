@@ -17,6 +17,7 @@
 
 // Properties
 @property (nonatomic, readwrite, assign) NSString *sessionId;
+@property (nonatomic, readonly, assign) NSArray *streams;
 
 
 // Methods

@@ -8,6 +8,7 @@
 
 #import "ComTokboxTiOpentokSessionProxy.h"
 #import "TiUtils.h"
+#import <Opentok/OTError.h>
 
 @implementation ComTokboxTiOpentokSessionProxy
 
@@ -23,6 +24,34 @@
 
 - (void)requireSessionInitializationWithLocation:(NSString *)codeLocation {
     [self requireSessionInitializationWithLocation:codeLocation andMessage:@"This session was not properly initialized"];
+}
+
+// TODO: Localization
++ (NSDictionary *)dictionaryForOTError:(OTError *)error {
+    NSString *message;
+    switch ([error code]) {
+        case OTAuthorizationFailure:
+            message = @"An invalid API key or token was provided";
+            break;
+            
+        case OTInvalidSessionId:
+            message = @"An invalid session ID was provided";
+            break;
+        
+        case OTConnectionFailed:
+            message = @"There was an error connecting to OpenTok services";
+            break;
+            
+        case OTNoMessagingServer:
+            message = @"No messaging server is available for this session";
+            break;
+        
+        default:
+            message = @"An unknown error occurred";
+            break;
+    }
+    
+    return [NSDictionary dictionaryWithObject:message forKey:@"message"];
 }
 
 #pragma mark - Initialization
@@ -75,6 +104,10 @@
     return [self valueForKey:@"sessionId"];
 }
 
+- (NSArray *)streams {
+    return [NSArray array];
+}
+
 #pragma mark - Public Methods
 
 - (void)connect:(id)args {
@@ -114,11 +147,11 @@
 - (void)session:(OTSession*)session didFailWithError:(OTError*)error {
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
-    // TODO: convert OTError into a dictonary that can be passed as event parameter
-    // Can this map to some known error object in the javascript world?
+    NSDictionary *errorObject = [ComTokboxTiOpentokSessionProxy dictionaryForOTError:error];
+    NSDictionary *eventParameters = [NSDictionary dictionaryWithObject:errorObject forKey:@"error"];
     
     if ([self _hasListeners:@"sessionFailed"]) {
-        [self fireEvent:@"sessionFailed" withObject:nil];
+        [self fireEvent:@"sessionFailed" withObject:eventParameters];
     }
 }
 
