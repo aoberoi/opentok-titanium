@@ -1,4 +1,8 @@
 * assets placement
 * Opentok.framework placement
 * armv6 removal from build script
-* only works on device, so `titanium run` is pretty useles. use example project in separate repo <provided>
+* only works on device, so `titanium run` is pretty useless. use example project in separate repo <provided>
+* documentation is a TODO, but code should is commented really well
+* support disclaimer
+* open source contributions welcome
+* API is a mix of web API, iOS specifics, and Titanium conventions. subject to change, suggestions welcome.
