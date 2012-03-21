@@ -28,7 +28,7 @@
 
 #pragma mark - Initialization
 
-
+// This is NOT meant to be called from javascript land, only for native code use.
 - (id)initWithStream:(OTStream *)existingStream {
     self = [super init];
     if (self) {
@@ -36,6 +36,11 @@
         _stream = [existingStream retain];
     }
     return self;
+}
+
+// Overriding designated initializer in order to prevent instantiation from javascript land (hopefully)
+- (id)init {
+    return nil;
 }
 
 #pragma mark - Deallocation
