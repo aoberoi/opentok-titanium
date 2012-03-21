@@ -7,6 +7,7 @@
 //
 
 #import "ComTokboxTiOpentokSessionProxy.h"
+#import "ComTokboxTiOpentokStreamProxy.h"
 #import "TiUtils.h"
 #import <Opentok/OTError.h>
 
@@ -105,7 +106,20 @@
 }
 
 - (NSArray *)streams {
-    return [NSArray array];
+    // Create a new mutable array to hold the stream proxy objects
+    NSMutableArray *streamsArray = [[NSMutableArray alloc] initWithCapacity:[_session.streams count]];
+    
+    // Create a stream proxy object for every OTStream object
+    [_session.streams enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        ComTokboxTiOpentokStreamProxy *newStreamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:obj];
+        [streamsArray addObject:newStreamProxy];
+        [newStreamProxy release];
+    }];
+    
+    // TODO: Consider using dynprops to cache the array that is returned. In that case, instead of regenerating
+    //       the array on each call, we can check for the cached version and avoid creating all these objects
+    
+    return [streamsArray autorelease];
 }
 
 #pragma mark - Public Methods
