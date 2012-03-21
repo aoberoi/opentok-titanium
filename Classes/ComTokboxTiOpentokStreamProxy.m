@@ -30,11 +30,18 @@
 
 // This is NOT meant to be called from javascript land, only for native code use.
 - (id)initWithStream:(OTStream *)existingStream {
+    NSLog(@"Thread: %@", [[NSThread currentThread] name]);
+    NSLog(@"Stream Proxy is about to call super init.");
+    
     self = [super init];
     if (self) {
         // Initializations
         _stream = [existingStream retain];
     }
+    
+    NSLog(@"Thread: %@", [[NSThread currentThread] name]);
+    NSLog(@"Stream Proxy created: %@", self.streamId);
+    
     return self;
 }
 

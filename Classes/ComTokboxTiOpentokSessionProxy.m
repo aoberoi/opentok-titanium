@@ -106,18 +106,26 @@
 }
 
 - (NSArray *)streams {
+    NSLog(@"Thread: %@", [[NSThread currentThread] name]);
+    NSLog(@"streams property of Session Proxy was accessed.");
+    
     // Create a new mutable array to hold the stream proxy objects
     NSMutableArray *streamsArray = [[NSMutableArray alloc] initWithCapacity:[_session.streams count]];
     
     // Create a stream proxy object for every OTStream object
-    [_session.streams enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        ComTokboxTiOpentokStreamProxy *newStreamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:obj];
+    NSEnumerator *streamEnumerator = [streamsArray objectEnumerator];
+    id streamObj;
+    while ((streamObj = [streamEnumerator nextObject])) {
+        ComTokboxTiOpentokStreamProxy *newStreamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:streamObj];
         [streamsArray addObject:newStreamProxy];
         [newStreamProxy release];
-    }];
+    }
     
     // TODO: Consider using dynprops to cache the array that is returned. In that case, instead of regenerating
     //       the array on each call, we can check for the cached version and avoid creating all these objects
+    
+    NSLog(@"Thread: %@", [[NSThread currentThread] name]);
+    NSLog(@"streamsArray is about to be returned with count %d", [streamsArray count]);
     
     return [streamsArray autorelease];
 }
@@ -173,10 +181,16 @@
 - (void)session:(OTSession*)session didReceiveStream:(OTStream*)stream {
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
-    // TODO: create a stream proxy object, initialze an instance here, use it
-    NSDictionary *eventParameters = [NSDictionary dictionaryWithObject:nil forKey:@"stream"];
-    
     if ([self _hasListeners:@"streamCreated"]) {
+    
+        // create a stream proxy object
+        ComTokboxTiOpentokStreamProxy *streamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:stream];
+        
+        // put the stream proxy object in the event parameters
+        NSDictionary *eventParameters = [NSDictionary dictionaryWithObject:streamProxy forKey:@"stream"];
+        [streamProxy release];
+        
+        // fire event
         [self fireEvent:@"streamCreated" withObject:eventParameters];
     }
 }
@@ -185,10 +199,16 @@
 - (void)session:(OTSession*)session didDropStream:(OTStream*)stream {
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
-    // TODO: create a stream proxy object, initialze an instance here, use it
-    NSDictionary *eventParameters = [NSDictionary dictionaryWithObject:nil forKey:@"stream"];
-    
     if ([self _hasListeners:@"streamDestroyed"]) {
+    
+        // create a stream proxy object
+        ComTokboxTiOpentokStreamProxy *streamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:stream];
+        
+        // put the stream proxy object in the event parameters
+        NSDictionary *eventParameters = [NSDictionary dictionaryWithObject:nil forKey:@"stream"];
+        [streamProxy release];
+        
+        // fire event
         [self fireEvent:@"streamDestroyed" withObject:eventParameters];
     }
 }
