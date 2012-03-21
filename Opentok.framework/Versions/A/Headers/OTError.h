@@ -14,7 +14,8 @@ typedef enum {
     OTAuthorizationFailure,       /* An invalid API key or token was provided */
     OTInvalidSessionId,           /* An invalid session ID was provided */
     OTConnectionFailed,           /* There was an error connecting to OpenTok services */
-    OTNoMessagingServer           /* No messaging server is available for this session */
+    OTNoMessagingServer,          /* No messaging server is available for this session */
+    OTSDKUpdateRequired           /* A new version of the OpenTok SDK is available and required to connect to this session */
 } OTSessionErrorCode;
 
 typedef enum {
@@ -50,6 +51,7 @@ typedef enum {
  * - `OTInvalidSessionId` -- An invalid session ID was provided.
  * - `OTConnectionFailed` -- There was an error connecting to OpenTok services.
  * - `OTNoMessagingServer` -- No messaging server is available for this session.
+ * - `OTSDKUpdateRequired` -- A new version of the OpenTok SDK is available and required to connect to this session.
  * 
  *  The `OTSubscriberErrorCode` enum defines values for the `code` property of the OTError object for errors
  * related to methods of the OTSubscriber class:

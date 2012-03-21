@@ -6,11 +6,12 @@
 //  Copyright (c) 2011 Tokbox, Inc. All rights reserved.
 //
 
-@class OTPublisher, OTSession, OTSubscriber, OTConnection, OTStream;
+@class OTPublisher, OTSession, OTSubscriber, OTConnection, OTStream, OTError;
 
 #import "OTPublisher.h"
 #import "OTSession.h"
 #import "OTSubscriber.h"
 #import "OTStream.h"
 #import "OTConnection.h"
+#import "OTError.h"
 

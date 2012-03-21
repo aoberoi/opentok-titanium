@@ -14,6 +14,24 @@
 @protocol OTSessionDelegate;
 
 /**
+ * @enum OTSessionEnvironment
+ *
+ * @abstract
+ * The environment you wish to deploy your application to. This default environment is set to staging.
+ * See <[OTSession initWithSessionId: delegate: environment:]> and <OTSession.environment>.
+ *
+ * @constant   OTSessionEnvironmentProduction
+ * The session will connect to our production environment. Point your OpenTok server-side library to api.opentok.com.
+ * @constant   OTSessionEnvironmentStaging
+ * The session will connect to our staging environment. Point your OpenTok server-side library to staging.tokbox.com.
+ */
+typedef enum {     
+    OTSessionEnvironmentProduction,
+    OTSessionEnvironmentStaging,
+} OTSessionEnvironment;
+
+
+/**
  * @enum OTSessionConnectionStatus
  *
  * @abstract
@@ -57,7 +75,7 @@ typedef enum {
  * - `OTSessionConnectionStatusDisconnected` - The session is not connected.
  * - `OTSessionConnectionStatusFailed` - The attempt to connect to the session failed.
  *
- * On instantiation, expect the `sessionConnectionStatus` to have the value `kSessionConnectionStatus_Disconnected`.
+ * On instantiation, expect the `sessionConnectionStatus` to have the value `OTSessionConnectionStatusDisconnected`.
  *
  * You can use a key-value observer to monitor this property. However, the <[OTSessionDelegate sessionDidConnect:]>
  * and <[OTSessionDelegate sessionDidDisconnect:]> messages are sent to the session's delegate when the session 
@@ -78,9 +96,9 @@ typedef enum {
 @property(readonly) int connectionCount;
 
 /**
- * The streams that are a part of this session.
+ * The streams that are a part of this session, keyed by streamId. 
  */
-@property(readonly, retain) NSMutableDictionary* streams;
+@property(readonly, retain) NSDictionary* streams;
 
 /**
  * The <OTConnection> object for this session. The connection property is only available
@@ -95,12 +113,38 @@ typedef enum {
  */
 @property(nonatomic, weak) id<OTSessionDelegate> delegate;
 
+/**
+ * The active environment for this session. The environment determines whether your app will connect to
+ * the OpenTok staging or production media server (see
+ * [Testing and production](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/production.html)).
+ *
+ * Values for this property are defined in the OTSessionEnvironment enum:
+ *
+ * - `OTSessionEnvironmentProduction` -- The session will connect to the OpenTok production environment. Point your
+ * OpenTok server-side library to api.opentok.com.
+ * - `OTSessionEnvironmentStaging` -- The session will connect to the OpenTok staging environment. Point your
+ * OpenTok server-side library to staging.tokbox.com.
+ *
+ * Once connected, this value is immutable; subsequent calls to `setEnvironment` will silently fail.
+ *
+ * You can set the environment when you initialize an OTSession object by sending the
+ * <[OTSession initWithSessionId:delegate:environment:]> message.
+ *
+ * Alternatively, you can send the <[OTSession initWithSessionId:delegate:]> message and set the
+ * <[OTSession environment]> property before you connect to the session.
+ * 
+ * Send the <[OTSession connectWithApiKey:token:]> message to connect to the session.
+ */
+@property(nonatomic) OTSessionEnvironment environment;
+
 /** @name Initializing and connecting to a session */
 
 /**
  * Initialize this session with a given [session ID](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/session%5Fcreation.html)
  * and delegate before connecting to OpenTok. Send the <[OTSession connectWithApiKey:token:]> message
  * to connect to the session.
+ *
+ * See <[OTSession initWithSessionId:delegate:environment:]>.
  *
  * @param sessionId The session ID of this instance.
  * @param delegate The delegate (OTSessionDelegate) that handles messages on behalf of this session.
@@ -109,6 +153,36 @@ typedef enum {
  */
 - (id)initWithSessionId:(NSString*)sessionId
                delegate:(id<OTSessionDelegate>)delegate;
+
+
+/**
+ * Initialize this session with a given [session ID](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/session%5Fcreation.html), 
+ * delegate, and environment, before connecting to OpenTok. The environment determines whether your app will
+ * connect to the OpenTok staging or production media server (see
+ * [Testing and production](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/production.html)).
+ *
+ * Alternatively, you can send the <[OTSession initWithSessionId:delegate:]> message and set the
+ * <[OTSession environment]> property before you connect to the session.
+ *
+ * Send the <[OTSession connectWithApiKey:token:]> message to connect to the session.
+ *
+ * @param sessionId The session ID of this instance.
+ * @param delegate The delegate (OTSessionDelegate) that handles messages on behalf of this session.
+ * @param environment The environment that this session will attempt to connect to. Set this parameter to a value in
+ * the OTSessionEnvironment enum:
+ *
+ * - `OTSessionEnvironmentProduction` -- The session will connect to the OpenTok production environment. Point your
+ * OpenTok server-side library to api.opentok.com.
+ * - `OTSessionEnvironmentStaging` -- The session will connect to the OpenTok staging environment. Point your
+ * OpenTok server-side library to staging.tokbox.com.
+ *
+ * See <[OTSession initWithSessionId:delegate:]> and <[OTSession environment]>.
+ *
+ * @return The OTSession object, or nil if initialization fails.
+ */
+- (id)initWithSessionId:(NSString*)sessionId
+               delegate:(id<OTSessionDelegate>)delegate
+            environment:(OTSessionEnvironment)environment;
 
 /**
  * Once your application has a valid [token](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/token%5Fcreation.html),
