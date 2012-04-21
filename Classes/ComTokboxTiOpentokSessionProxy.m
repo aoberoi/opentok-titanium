@@ -109,16 +109,17 @@
     NSLog(@"Thread: %@", [[NSThread currentThread] name]);
     NSLog(@"streams property of Session Proxy was accessed.");
     
-    // Create a new mutable array to hold the stream proxy objects
+    // Create an empty mutable array to hold the stream proxy objects
     NSMutableArray *streamsArray = [[NSMutableArray alloc] initWithCapacity:[_session.streams count]];
     
-    // Create a stream proxy object for every OTStream object
-    NSEnumerator *streamEnumerator = [streamsArray objectEnumerator];
-    id streamObj;
-    while ((streamObj = [streamEnumerator nextObject])) {
-        ComTokboxTiOpentokStreamProxy *newStreamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:streamObj];
-        [streamsArray addObject:newStreamProxy];
-        [newStreamProxy release];
+    // Iterate through streams in the _session.streams dictionary while creating a new stream proxy for each
+    NSArray *allValues = [_session.streams allValues];
+    for( id streamObj in allValues ) {
+        NSLog(@"creating new proxy object... not");
+//        ComTokboxTiOpentokStreamProxy *newStreamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:streamObj];
+//        [streamsArray addObject:newStreamProxy];
+//        [newStreamProxy release];
+//        NSLog(@"finished creating new proxy object");
     }
     
     // TODO: Consider using dynprops to cache the array that is returned. In that case, instead of regenerating
