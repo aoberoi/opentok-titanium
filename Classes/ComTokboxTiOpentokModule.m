@@ -9,7 +9,12 @@
 #import "TiHost.h"
 #import "TiUtils.h"
 
+
+static ComTokboxTiOpentokModule *_sharedModule;
+
 @implementation ComTokboxTiOpentokModule
+
+@synthesize session;
 
 #pragma mark Internal
 
@@ -25,6 +30,21 @@
 	return @"com.tokbox.ti.opentok";
 }
 
+// return the singleton of this module object
++(ComTokboxTiOpentokModule *)sharedModule {
+    return _sharedModule;
+}
+
+// don't let session be assigned more than once
+-(void)setSession:(OTSession *)newSession
+{
+    if (_session == nil) {
+        _session = [newSession retain];
+    } else {
+        NSLog(@"Cannot set session because one already exists");
+    }
+}
+
 #pragma mark Lifecycle
 
 -(void)startup
@@ -33,6 +53,9 @@
 	// you *must* call the superclass
 	[super startup];
 	
+    _sharedModule = self;
+    _session = nil;
+    
 	NSLog(@"[INFO] %@ loaded",self);
 }
 
@@ -51,6 +74,9 @@
 -(void)dealloc
 {
 	// release any resources that have been retained by the module
+    [_session release];
+    _sharedModule = nil;
+    
 	[super dealloc];
 }
 

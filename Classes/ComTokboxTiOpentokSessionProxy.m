@@ -8,14 +8,26 @@
 
 #import "ComTokboxTiOpentokSessionProxy.h"
 #import "ComTokboxTiOpentokStreamProxy.h"
+#import "ComTokboxTiOpentokConnectionProxy.h"
+#import "ComTokboxTiOpentokPublisherProxy.h"
+#import "ComTokboxTiOpentokModule.h"
 #import "TiUtils.h"
 #import <Opentok/OTError.h>
+
+NSString * const kSessionStatusConnected = @"connected";
+NSString * const kSessionStatusConnecting = @"connecting";
+NSString * const kSessionStatusDisconnected = @"disconnected";
+NSString * const kSessionStatusFailed = @"failed";
+
+NSString * const kSessionEnvironmentStaging = @"staging";
+NSString * const kSessionEnvironmentProduction = @"production";
 
 @implementation ComTokboxTiOpentokSessionProxy
 
 #pragma mark - Helpers
 
-- (void)requireSessionInitializationWithLocation:(NSString *)codeLocation andMessage:(NSString *)message {
+- (void)requireSessionInitializationWithLocation:(NSString *)codeLocation andMessage:(NSString *)message
+{
     if (_session == nil) {
         [self throwException:TiExceptionInternalInconsistency 
                    subreason:message
@@ -23,12 +35,32 @@
     }
 }
 
-- (void)requireSessionInitializationWithLocation:(NSString *)codeLocation {
+- (void)requireSessionInitializationWithLocation:(NSString *)codeLocation
+{
     [self requireSessionInitializationWithLocation:codeLocation andMessage:@"This session was not properly initialized"];
 }
 
++ (BOOL)validBool:(id)object fallback:(BOOL)fallback
+{
+    if (![object isKindOfClass:[NSNumber class]]) {
+        return fallback;
+    } else {
+        return [(NSNumber *)object boolValue];
+    }
+}
+
++ (NSString *)validString:(id)object
+{
+    if (![object isKindOfClass:[NSNumber class]]) {
+        return nil;
+    } else {
+        return (NSString *)object;
+    }
+}
+
 // TODO: Localization
-+ (NSDictionary *)dictionaryForOTError:(OTError *)error {
++ (NSDictionary *)dictionaryForOTError:(OTError *)error
+{
     NSString *message;
     switch ([error code]) {
         case OTAuthorizationFailure:
@@ -58,38 +90,51 @@
 #pragma mark - Initialization
 
 
-- (id)init {
+- (id)init
+{
     self = [super init];
     if (self) {
         // Initializations
+        // TODO: is this even called or is there some other designated initializer from the super class?
+        NSLog(@"init called on session proxy");
         
         // We would normally alloc/init the backing session here, but since we can't yet access its
         // sessionId we will delay initialization of _session until that property is set.
         _session = nil;
+        _streamProxies = nil;
+        _connectionProxy = nil;
+        _publisherProxy = nil;
     }
     return self;
 }
 
 #pragma mark - Deallocation
 
-- (void)dealloc {
+- (void)dealloc
+{
     [_session release];
+    [_streamProxies release];
+    [_connectionProxy release];
+    [_publisherProxy release];
     
     [super dealloc];
 }
 
 #pragma mark - Public Properties
 
-- (void)setSessionId:(NSString *)sessionId {
+- (void)setSessionId:(id)value
+{
     // We cannot change the session id once a session has been created, go allocate a new one if needed
     if (_session == nil) {
-        NSString *stringSessionId = [TiUtils stringValue:sessionId];
+        NSString *stringSessionId = [TiUtils stringValue:value];
         
         // Lazy initialization of backing session
         _session = [[OTSession alloc] initWithSessionId:stringSessionId delegate:self];
         
-        // Manage dynprops for Titanium
-        [self replaceValue:stringSessionId forKey:@"sessionId" notification:NO];
+        //[[ComTokboxTiOpentokModule sharedModule] setSession:_session];
+        
+        // Manage dynprops for Titanium (only need to do this for setters)
+        //[self replaceValue:stringSessionId forKey:@"sessionId" notification:NO];
     } else {
         // Throw error
         // TODO: no idea if this actually works, exception handling isn't documented well for titanium.
@@ -101,34 +146,88 @@
     }
 }
 
-- (NSString *)sessionId {
-    return [self valueForKey:@"sessionId"];
+- (NSString *)sessionId
+{
+    return _session.sessionId;
 }
 
-- (NSArray *)streams {
-    NSLog(@"Thread: %@", [[NSThread currentThread] name]);
-    NSLog(@"streams property of Session Proxy was accessed.");
-    
-    // Create an empty mutable array to hold the stream proxy objects
-    NSMutableArray *streamsArray = [[NSMutableArray alloc] initWithCapacity:[_session.streams count]];
-    
-    // Iterate through streams in the _session.streams dictionary while creating a new stream proxy for each
-    NSArray *allValues = [_session.streams allValues];
-    for( id streamObj in allValues ) {
-        NSLog(@"creating new proxy object... not");
-//        ComTokboxTiOpentokStreamProxy *newStreamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:streamObj];
-//        [streamsArray addObject:newStreamProxy];
-//        [newStreamProxy release];
-//        NSLog(@"finished creating new proxy object");
+- (NSArray *)streams
+{
+    // Lazily instantiate _streamProxies if it doesn't already exist
+    if (_streamProxies == nil) {
+        _streamProxies = [[NSMutableDictionary alloc] initWithCapacity:5];
     }
     
-    // TODO: Consider using dynprops to cache the array that is returned. In that case, instead of regenerating
-    //       the array on each call, we can check for the cached version and avoid creating all these objects
+    // Add a stream proxy for any streams who don't already have one in _streamProxies dictionary
+    [_session.streams enumerateKeysAndObjectsUsingBlock:^(id streamId, id stream, BOOL *stop) {
+        ComTokboxTiOpentokStreamProxy *streamProxy = [_streamProxies objectForKey:streamId];
+        if(streamProxy == nil) {
+            streamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:(OTStream *)stream sessionProxy:self];
+            [_streamProxies setObject:streamProxy forKey:streamId];
+            [streamProxy release];
+        }
+    }];
     
-    NSLog(@"Thread: %@", [[NSThread currentThread] name]);
-    NSLog(@"streamsArray is about to be returned with count %d", [streamsArray count]);
+    // Return an array of just the stream proxies
+    return [_streamProxies allValues];
+}
+
+- (NSString *)sessionConnectionStatus
+{
+    switch (_session.sessionConnectionStatus) {
+        case OTSessionConnectionStatusConnected:
+            return kSessionStatusConnected;
+            break;
+        case OTSessionConnectionStatusConnecting:
+            return kSessionStatusConnecting;
+            break;
+        case OTSessionConnectionStatusDisconnected:
+            return kSessionStatusDisconnected;
+            break;
+        case OTSessionConnectionStatusFailed:
+            return kSessionStatusFailed;
+            break;
+    }
+}
+
+-(NSNumber *)connectionCount
+{
+    return NUMINT(_session.connectionCount);
+}
+
+-(ComTokboxTiOpentokConnectionProxy *)connection
+{
+    if (_connectionProxy == nil) {
+        _connectionProxy = [[ComTokboxTiOpentokConnectionProxy alloc] initWithConnection:_session.connection];
+    }
     
-    return [streamsArray autorelease];
+    return _connectionProxy;
+}
+
+-(NSString *)environment
+{
+    switch (_session.environment) {
+        case OTSessionEnvironmentStaging:
+            return kSessionEnvironmentStaging;
+            break;
+        case OTSessionEnvironmentProduction:
+            return kSessionEnvironmentProduction;
+            break;
+    }
+}
+
+-(void)setEnvironment:(id)value
+{
+    if ([[self sessionConnectionStatus] isEqualToString:kSessionStatusDisconnected]) {
+        NSString *environment = [TiUtils stringValue:value];
+        if ([environment isEqualToString:kSessionEnvironmentStaging]) {
+            _session.environment = OTSessionEnvironmentStaging;
+        } else if ([environment isEqualToString:kSessionEnvironmentProduction]) {
+            _session.environment = OTSessionEnvironmentProduction;
+        } else {
+            NSLog(@"Session environment cannot be set to %@", environment);
+        }
+    }
 }
 
 #pragma mark - Public Methods
@@ -147,9 +246,56 @@
     
 }
 
+- (void)disconnect:(id)args
+{
+    [self requireSessionInitializationWithLocation:CODELOCATION];
+    
+    [_session disconnect];
+}
+
+// takes one argument which is a dictionary of options
+- (id)publish:(id)args
+{
+    NSString *name = nil;
+    BOOL publishAudio, publishVideo;
+    
+    if (_publisherProxy != nil) {
+        NSLog(@"Publisher already exists, cannot create more than one publisher");
+        // TODO: not sure if returning the existing publisher proxy is a good idea
+    } else {
+        // parse options
+        id firstArg = [args objectAtIndex:0];
+        if ([firstArg isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *options = (NSDictionary *)[args objectAtIndex:0];
+            name = [ComTokboxTiOpentokSessionProxy validString:[options objectForKey:@"name"]];
+            publishAudio = [ComTokboxTiOpentokSessionProxy validBool:[options objectForKey:@"publishAudio"] fallback:YES];
+            publishVideo = [ComTokboxTiOpentokSessionProxy validBool:[options objectForKey:@"publishVideo"] fallback:YES];
+        }
+        
+        // Create a publisher from the backing session
+        _publisherProxy = [[ComTokboxTiOpentokPublisherProxy alloc] initWithSessionProxy:self name:name audio:publishAudio video:publishVideo];
+        
+        // Begin publishing
+        [_session publish:_publisherProxy.publisher];
+    }
+    return _publisherProxy;
+}
+
+-(void)unpublish:(id)args
+{
+    if (_publisherProxy != nil) {
+        [_session unpublish:_publisherProxy.publisher];
+        [_publisherProxy release];
+        _publisherProxy = nil;
+    } else {
+        NSLog(@"There is no publisher to unpublish");
+    }
+}
+
 #pragma mark - Session Delegate Protocol
 
-- (void)sessionDidConnect:(OTSession*)session {
+- (void)sessionDidConnect:(OTSession*)session
+{
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
     if ([self _hasListeners:@"sessionConnected"]) {
@@ -158,7 +304,8 @@
 }
 
 
-- (void)sessionDidDisconnect:(OTSession*)session {
+- (void)sessionDidDisconnect:(OTSession*)session
+{
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
     if ([self _hasListeners:@"sessionDisconnected"]) {
@@ -167,7 +314,8 @@
 }
 
 
-- (void)session:(OTSession*)session didFailWithError:(OTError*)error {
+- (void)session:(OTSession*)session didFailWithError:(OTError*)error
+{
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
     NSDictionary *errorObject = [ComTokboxTiOpentokSessionProxy dictionaryForOTError:error];
@@ -179,38 +327,52 @@
 }
 
 
-- (void)session:(OTSession*)session didReceiveStream:(OTStream*)stream {
+- (void)session:(OTSession*)session didReceiveStream:(OTStream*)stream
+{
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
     if ([self _hasListeners:@"streamCreated"]) {
-    
-        // create a stream proxy object
-        ComTokboxTiOpentokStreamProxy *streamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:stream];
         
-        // put the stream proxy object in the event parameters
-        NSDictionary *eventParameters = [NSDictionary dictionaryWithObject:streamProxy forKey:@"stream"];
+        // Create a stream proxy object
+        ComTokboxTiOpentokStreamProxy *streamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:stream sessionProxy:self];
+        
+        // Manage the _streamProxies dictionary
+        [_streamProxies setObject:streamProxy forKey:streamProxy.streamId];
+        
+        // Put the stream proxy object in the event parameters
+        NSDictionary *eventProperties = [NSDictionary dictionaryWithObject:streamProxy forKey:@"stream"];
+        
+        // Clean up
         [streamProxy release];
         
         // fire event
-        [self fireEvent:@"streamCreated" withObject:eventParameters];
+        [self fireEvent:@"streamCreated" withObject:eventProperties];
     }
 }
 
 
-- (void)session:(OTSession*)session didDropStream:(OTStream*)stream {
+- (void)session:(OTSession*)session didDropStream:(OTStream*)stream
+{
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
     if ([self _hasListeners:@"streamDestroyed"]) {
-    
-        // create a stream proxy object
-        ComTokboxTiOpentokStreamProxy *streamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:stream];
+        
+        // Find the stream proxy in _streamProxies
+        ComTokboxTiOpentokStreamProxy *deadStreamProxy = [_streamProxies objectForKey:stream.streamId];
+        
+        // If the stream proxy is not found, create an autoreleased one for the event properties
+        // else we need to remove it from _streamProxies
+        if (deadStreamProxy == nil) {
+            deadStreamProxy = [[[ComTokboxTiOpentokStreamProxy alloc] initWithStream:stream sessionProxy:self] autorelease];
+        } else {
+            [_streamProxies removeObjectForKey:deadStreamProxy];
+        }
         
         // put the stream proxy object in the event parameters
-        NSDictionary *eventParameters = [NSDictionary dictionaryWithObject:nil forKey:@"stream"];
-        [streamProxy release];
+        NSDictionary *eventProperties = [NSDictionary dictionaryWithObject:deadStreamProxy forKey:@"stream"];
         
         // fire event
-        [self fireEvent:@"streamDestroyed" withObject:eventParameters];
+        [self fireEvent:@"streamDestroyed" withObject:eventProperties];
     }
 }
 

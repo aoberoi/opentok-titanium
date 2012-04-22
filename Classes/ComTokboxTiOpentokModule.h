@@ -5,9 +5,15 @@
  * and licensed under the Apache Public License (version 2)
  */
 #import "TiModule.h"
+#import <Opentok/OTSession.h>
 
 @interface ComTokboxTiOpentokModule : TiModule 
 {
+    OTSession *_session;
 }
+
++(ComTokboxTiOpentokModule *)sharedModule;
+
+@property (nonatomic, retain) OTSession *session;
 
 @end

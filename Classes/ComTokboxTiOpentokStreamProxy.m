@@ -8,6 +8,8 @@
 
 #import "TiUtils.h"
 #import "ComTokboxTiOpentokStreamProxy.h"
+#import "ComTokboxTiOpentokSessionProxy.h"
+#import "ComTokboxTiOpentokConnectionProxy.h"
 #import <Opentok/OTStream.h>
 
 @implementation ComTokboxTiOpentokStreamProxy
@@ -29,18 +31,16 @@
 #pragma mark - Initialization
 
 // This is NOT meant to be called from javascript land, only for native code use.
-- (id)initWithStream:(OTStream *)existingStream {
-    NSLog(@"Thread: %@", [[NSThread currentThread] name]);
-    NSLog(@"Stream Proxy is about to call super init.");
+- (id)initWithStream:(OTStream *)existingStream sessionProxy:(ComTokboxTiOpentokSessionProxy *)sessionProxy{
     
     self = [super init];
     if (self) {
         // Initializations
         _stream = [existingStream retain];
+        
+        // Not retained, weak reference, be careful
+        _sessionProxy = sessionProxy;
     }
-    
-    NSLog(@"Thread: %@", [[NSThread currentThread] name]);
-    NSLog(@"Stream Proxy created: %@", self.streamId);
     
     return self;
 }
@@ -60,16 +60,18 @@
 
 #pragma mark - Properties
 
-// TODO: implement this with another proxy object
-//@property (nonatomic, readonly, assign)  *connection;
+- (ComTokboxTiOpentokConnectionProxy *)connection
+{
+    return _sessionProxy.connection;
+}
 
-- (NSDate *)creationTime {
+- (id)creationTime {
     [self requireStreamInitializationWithLocation:CODELOCATION];
     
     return _stream.creationTime;
 }
 
-- (NSNumber *)hasAudio {
+- (id)hasAudio {
     [self requireStreamInitializationWithLocation:CODELOCATION];
     
     return NUMBOOL(_stream.hasAudio);
@@ -88,11 +90,8 @@
 }
 
 - (ComTokboxTiOpentokSessionProxy *)session {
-    [self requireStreamInitializationWithLocation:CODELOCATION];
-    
-    // TODO: any idea how to get a reference to the existing proxy object?
-    // possibly need to do some caching of object when they are initialized, perform a look up
-    return nil;
+    // TODO: debug this, could be returning a dangling pointer if the session proxy can go away.
+    return _sessionProxy;
 }
 
 - (NSString *)streamId {
