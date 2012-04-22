@@ -52,8 +52,7 @@
 @property(nonatomic, weak) id<OTSubscriberDelegate> delegate;
 
 /**
- * Whether to subscribe to the stream's audio. Setting this property only has an affect if you do so immediately
- * after initializing the OTSubscriber object.
+ * Whether to subscribe to the stream's audio.
  *
  * The default value is YES.
  *
@@ -77,9 +76,16 @@
  * Initializes an OTSubscriber and binds it to an <OTStream> instance.
  * Once initialized, the instance is permanently bound to the stream.
  *
+ * The OpenTok iOS SDK supports a limited number of simultaneous audio-video streams in an app:
+ *
+ * - On iPad 2 and iPad 3, the limit is four streams. An app can have up to four simultaneous subscribers,
+ * or one publisher and up to three subscribers.
+ * - On all other supported iOS devices, the limit is two streams. An app can have up to two subscribers,
+ * or one publisher and one subscriber.
+ * 
  * Initializing an OTSubscriber causes it to start streaming data from the OpenTok server, regardless of whether
  * the view of the OTSubscriber object is added to a superview.
- * 
+ *
  * You can stream audio only (without subscribing to the video stream) by setting the
  * <[OTSubscriber subscribeToVideo]> property to NO immediately after initializing the OTSubscriber object.
  * You can stream video only (without subscribing to the audio stream) by setting the

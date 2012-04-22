@@ -199,6 +199,11 @@ typedef enum {
  *
  * Note that sessions automatically disconnect when the app is suspended. 
  *
+ * Be sure to set up a delegate method for the [OTSessionDelegate session: didFailWithError:] message. See the 
+ * OTSessionErrorCode emum defined in OTError.h. It defines code values for the error. An error with code
+ * OTSDKUpdateRequired indicates that the OpenTok iOS SDK used to compile the app is not longer compatible
+ * with the OpenTok infrastructure.
+ *
  * @param apiKey Your OpenTok API key.
  * @param token The token generated for this connection.
  */

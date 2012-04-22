@@ -96,6 +96,16 @@
  */
 @property(atomic) BOOL publishVideo;
 
+/** @name Setting publisher device configuration */
+
+/**
+ * The preferred camera position. When setting this property, if the change is possible, the publisher
+ * will use the camera with the specified position. If the publisher has begun publishing, getting
+ * this property returns the current camera position; if the publisher has not yet begun publishing,
+ * getting this property returns the preferred camera position.
+ */
+@property(atomic) AVCaptureDevicePosition cameraPosition;
+
 @end
 
 
