@@ -58,6 +58,11 @@
     [super dealloc];
 }
 
+-(OTStream *)stream
+{
+    return _stream;
+}
+
 #pragma mark - Properties
 
 - (ComTokboxTiOpentokConnectionProxy *)connection

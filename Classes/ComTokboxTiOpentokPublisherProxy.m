@@ -9,11 +9,14 @@
 #import "ComTokboxTiOpentokSessionProxy.h"
 #import <Opentok/OTPublisher.h>
 
+NSString * const kPublisherCameraPositionFront = @"cameraFront";
+NSString * const kPublisherCameraPositionBack = @"cameraBack";
+
 @implementation ComTokboxTiOpentokPublisherProxy
 
 @synthesize publisher = _publisher;
 
-#pragma mark - Error Handling
+#pragma mark - Helpers
 
 // TODO: Localization
 + (NSDictionary *)dictionaryForOTError:(OTError *)error
@@ -42,6 +45,18 @@
     }
     
     return [NSDictionary dictionaryWithObject:message forKey:@"message"];
+}
+
++ (NSString *)captureDevicePositionToString:(AVCaptureDevicePosition)position
+{
+    switch (position) {
+        case AVCaptureDevicePositionBack:
+            return kPublisherCameraPositionBack;
+            break;
+        case AVCaptureDevicePositionFront:
+            return kPublisherCameraPositionFront;
+            break;
+    }
 }
 
 #pragma mark - Initialization
@@ -97,9 +112,23 @@
     return _publisher.name;
 }
 
+-(id)session
+{
+    return _sessionProxy;
+}
+
 -(id)cameraPosition
 {
-    
+    return [ComTokboxTiOpentokPublisherProxy captureDevicePositionToString:_publisher.cameraPosition];
+}
+
+-(void)setCameraPosition:(NSString *)cameraPosition
+{
+    if ([cameraPosition isEqualToString:kPublisherCameraPositionBack]) {
+        _publisher.cameraPosition = AVCaptureDevicePositionBack;
+    } else if ([cameraPosition isEqualToString:kPublisherCameraPositionFront]) {
+        _publisher.cameraPosition = AVCaptureDevicePositionFront;
+    }
 }
 
 #pragma mark - Methods
@@ -114,7 +143,7 @@
         NSDictionary *errorObject = [ComTokboxTiOpentokPublisherProxy dictionaryForOTError:error];
         NSDictionary *eventParameters = [NSDictionary dictionaryWithObject:errorObject forKey:@"error"];
         
-        [self fireEvent:@"publisherFailed"];
+        [self fireEvent:@"publisherFailed" withObject:eventParameters];
     }
 }
 

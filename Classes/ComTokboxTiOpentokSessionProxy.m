@@ -10,6 +10,7 @@
 #import "ComTokboxTiOpentokStreamProxy.h"
 #import "ComTokboxTiOpentokConnectionProxy.h"
 #import "ComTokboxTiOpentokPublisherProxy.h"
+#import "ComTokboxTiOpentokSubscriberProxy.h"
 #import "ComTokboxTiOpentokModule.h"
 #import "TiUtils.h"
 #import <Opentok/OTError.h>
@@ -104,6 +105,7 @@ NSString * const kSessionEnvironmentProduction = @"production";
         _streamProxies = nil;
         _connectionProxy = nil;
         _publisherProxy = nil;
+        _subscriberProxies = nil;
     }
     return self;
 }
@@ -116,8 +118,16 @@ NSString * const kSessionEnvironmentProduction = @"production";
     [_streamProxies release];
     [_connectionProxy release];
     [_publisherProxy release];
+    [_subscriberProxies release];
     
     [super dealloc];
+}
+
+#pragma mark - Objective-C only Methods
+
+-(void)removeSubscriber:(ComTokboxTiOpentokSubscriberProxy *)subscriber
+{
+    [_subscriberProxies removeObject:subscriber];
 }
 
 #pragma mark - Public Properties
@@ -257,7 +267,7 @@ NSString * const kSessionEnvironmentProduction = @"production";
 - (id)publish:(id)args
 {
     NSString *name = nil;
-    BOOL publishAudio, publishVideo;
+    BOOL publishAudio = YES, publishVideo = YES;
     
     if (_publisherProxy != nil) {
         NSLog(@"Publisher already exists, cannot create more than one publisher");
@@ -265,15 +275,18 @@ NSString * const kSessionEnvironmentProduction = @"production";
     } else {
         // parse options
         id firstArg = [args objectAtIndex:0];
-        if ([firstArg isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *options = (NSDictionary *)[args objectAtIndex:0];
+        if (firstArg != nil && [firstArg isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *options = (NSDictionary *)firstArg;
             name = [ComTokboxTiOpentokSessionProxy validString:[options objectForKey:@"name"]];
             publishAudio = [ComTokboxTiOpentokSessionProxy validBool:[options objectForKey:@"publishAudio"] fallback:YES];
             publishVideo = [ComTokboxTiOpentokSessionProxy validBool:[options objectForKey:@"publishVideo"] fallback:YES];
         }
         
-        // Create a publisher from the backing session
-        _publisherProxy = [[ComTokboxTiOpentokPublisherProxy alloc] initWithSessionProxy:self name:name audio:publishAudio video:publishVideo];
+        // Create a publisher proxy from the backing session
+        _publisherProxy = [[ComTokboxTiOpentokPublisherProxy alloc] initWithSessionProxy:self 
+                                                                                    name:name 
+                                                                                   audio:publishAudio 
+                                                                                   video:publishVideo];
         
         // Begin publishing
         [_session publish:_publisherProxy.publisher];
@@ -290,6 +303,39 @@ NSString * const kSessionEnvironmentProduction = @"production";
     } else {
         NSLog(@"There is no publisher to unpublish");
     }
+}
+
+- (id)subscribe:(id)args
+{
+    BOOL subscribeToAudio = YES, subscribeToVideo = YES;
+    // TODO: can we do more than one subscriber for the same stream? probably.
+    
+    // parse args
+    id firstArg = [args objectAtIndex:0];
+    if (![firstArg isKindOfClass:[ComTokboxTiOpentokStreamProxy class]]) {
+        NSLog(@"Invalid stream proxy given");
+        return nil;
+    }
+    ComTokboxTiOpentokStreamProxy *stream = (ComTokboxTiOpentokStreamProxy *)firstArg;
+    
+    id secondArg = [args objectAtIndex:1];
+    if (secondArg != nil && [secondArg isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *options = (NSDictionary *)secondArg;
+        subscribeToAudio = [ComTokboxTiOpentokSessionProxy validBool:[options objectForKey:@"subscribeToAudio"] fallback:YES];
+        subscribeToVideo = [ComTokboxTiOpentokSessionProxy validBool:[options objectForKey:@"subscribeToVideo"] fallback:YES];
+    }
+    
+    // create subscriber proxy
+    if (_subscriberProxies == nil) {
+        _subscriberProxies = [[NSMutableArray alloc] initWithCapacity:4];
+    }
+    ComTokboxTiOpentokSubscriberProxy *subscriber = [[ComTokboxTiOpentokSubscriberProxy alloc] initWithSessionProxy:self 
+                                                                                                             stream:stream
+                                                                                                              audio:subscribeToAudio 
+                                                                                                              video:subscribeToVideo];
+    [_subscriberProxies addObject:subscriber];
+    
+    return [subscriber autorelease];
 }
 
 #pragma mark - Session Delegate Protocol

@@ -7,6 +7,9 @@
 #import "TiProxy.h"
 #import <Opentok/OTPublisher.h>
 
+extern NSString * const kPublisherCameraPositionFront;
+extern NSString * const kPublisherCameraPositionBack;
+
 @class ComTokboxTiOpentokSessionProxy;
 
 @interface ComTokboxTiOpentokPublisherProxy : TiProxy <OTPublisherDelegate> {
@@ -28,6 +31,9 @@
 @property (readonly) NSNumber *publishAudio;
 @property (readonly) NSNumber *publishVideo;
 @property (readonly) NSString *name;
-@property (nonatomic) NSString *cameraPosition;
+@property (readonly) ComTokboxTiOpentokSessionProxy *session;
+@property (nonatomic, assign) NSString *cameraPosition;
+// TODO:
+//@property (nonatomic, readonly) ViewProxy *view;
 
 @end

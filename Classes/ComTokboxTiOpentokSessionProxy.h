@@ -7,8 +7,6 @@
 //
 
 #import "TiProxy.h"
-#import "ComTokboxTiOpentokConnectionProxy.h"
-#import "ComTokboxTiOpentokPublisherProxy.h"
 #import <Opentok/OTSession.h>
 
 extern NSString * const kSessionStatusConnected;
@@ -19,6 +17,10 @@ extern NSString * const kSessionStatusFailed;
 extern NSString * const kSessionEnvironmentStaging;
 extern NSString * const kSessionEnvironmentProduction;
 
+@class ComTokboxTiOpentokConnectionProxy, 
+       ComTokboxTiOpentokPublisherProxy, 
+       ComTokboxTiOpentokSubscriberProxy;
+
 @interface ComTokboxTiOpentokSessionProxy : TiProxy <OTSessionDelegate> {
 
 @private
@@ -26,7 +28,12 @@ extern NSString * const kSessionEnvironmentProduction;
     NSMutableDictionary *_streamProxies;
     ComTokboxTiOpentokConnectionProxy *_connectionProxy;
     ComTokboxTiOpentokPublisherProxy *_publisherProxy;
+    NSMutableArray *_subscriberProxies;
+    
 }
+
+// Objective-C only Method
+-(void)removeSubscriber:(ComTokboxTiOpentokSubscriberProxy *)subscriber;
 
 // Properties
 @property (nonatomic, readwrite, assign) NSString *sessionId;
@@ -40,6 +47,7 @@ extern NSString * const kSessionEnvironmentProduction;
 - (void)connect:(id)args;
 - (void)disconnect:(id)args;
 - (id)publish:(id)args;
+- (id)subscribe:(id)args;
 
 
 @end
