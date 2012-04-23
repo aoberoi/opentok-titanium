@@ -274,7 +274,7 @@ NSString * const kSessionEnvironmentProduction = @"production";
         // TODO: not sure if returning the existing publisher proxy is a good idea
     } else {
         // parse options
-        id firstArg = [args objectAtIndex:0];
+        id firstArg = [args count] > 0 ? [args objectAtIndex:0] : nil;
         if (firstArg != nil && [firstArg isKindOfClass:[NSDictionary class]]) {
             NSDictionary *options = (NSDictionary *)firstArg;
             name = [ComTokboxTiOpentokSessionProxy validString:[options objectForKey:@"name"]];
@@ -310,6 +310,10 @@ NSString * const kSessionEnvironmentProduction = @"production";
     BOOL subscribeToAudio = YES, subscribeToVideo = YES;
     // TODO: can we do more than one subscriber for the same stream? probably.
     
+    if ([args count] < 1) {
+        return nil;
+    }
+    
     // parse args
     id firstArg = [args objectAtIndex:0];
     if (![firstArg isKindOfClass:[ComTokboxTiOpentokStreamProxy class]]) {
@@ -318,7 +322,7 @@ NSString * const kSessionEnvironmentProduction = @"production";
     }
     ComTokboxTiOpentokStreamProxy *stream = (ComTokboxTiOpentokStreamProxy *)firstArg;
     
-    id secondArg = [args objectAtIndex:1];
+    id secondArg = [args count] > 1 ? [args objectAtIndex:1] : nil;
     if (secondArg != nil && [secondArg isKindOfClass:[NSDictionary class]]) {
         NSDictionary *options = (NSDictionary *)secondArg;
         subscribeToAudio = [ComTokboxTiOpentokSessionProxy validBool:[options objectForKey:@"subscribeToAudio"] fallback:YES];
@@ -403,19 +407,19 @@ NSString * const kSessionEnvironmentProduction = @"production";
     
     if ([self _hasListeners:@"streamDestroyed"]) {
         
-        // Find the stream proxy in _streamProxies
-        ComTokboxTiOpentokStreamProxy *deadStreamProxy = [_streamProxies objectForKey:stream.streamId];
+        // Find and remove the stream proxy in _streamProxies
+        ComTokboxTiOpentokStreamProxy *deadStreamProxy = [[_streamProxies objectForKey:stream.streamId] retain];
+        [_streamProxies removeObjectForKey:deadStreamProxy.streamId];
         
-        // If the stream proxy is not found, create an autoreleased one for the event properties
-        // else we need to remove it from _streamProxies
+        // If the stream proxy is not found, create one for the event properties
         if (deadStreamProxy == nil) {
-            deadStreamProxy = [[[ComTokboxTiOpentokStreamProxy alloc] initWithStream:stream sessionProxy:self] autorelease];
-        } else {
-            [_streamProxies removeObjectForKey:deadStreamProxy];
+            NSLog(@"Could not find stream proxy during drop, initializing new one here")
+            deadStreamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:stream sessionProxy:self];
         }
         
         // put the stream proxy object in the event parameters
         NSDictionary *eventProperties = [NSDictionary dictionaryWithObject:deadStreamProxy forKey:@"stream"];
+        [deadStreamProxy release];
         
         // fire event
         [self fireEvent:@"streamDestroyed" withObject:eventProperties];

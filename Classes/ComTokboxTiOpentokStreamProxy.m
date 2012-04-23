@@ -37,6 +37,7 @@
     if (self) {
         // Initializations
         _stream = [existingStream retain];
+        _connectionProxy = nil;
         
         // Not retained, weak reference, be careful
         _sessionProxy = sessionProxy;
@@ -54,6 +55,7 @@
 
 - (void)dealloc {
     [_stream release];
+    [_connectionProxy release];
     
     [super dealloc];
 }
@@ -67,7 +69,10 @@
 
 - (ComTokboxTiOpentokConnectionProxy *)connection
 {
-    return _sessionProxy.connection;
+    if (_connectionProxy == nil) {
+        _connectionProxy = [[ComTokboxTiOpentokConnectionProxy alloc] initWithConnection:_stream.connection];
+    }
+    return _connectionProxy;
 }
 
 - (id)creationTime {

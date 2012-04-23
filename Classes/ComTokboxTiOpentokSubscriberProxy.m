@@ -100,7 +100,7 @@
 
 #pragma mark - Methods
 
--(void)close
+-(void)close:(id)args
 {
     [_subscriber close];
     [_sessionProxy removeSubscriber:self];

@@ -17,6 +17,7 @@
 @private
     OTStream *_stream;
     ComTokboxTiOpentokSessionProxy *_sessionProxy;
+    ComTokboxTiOpentokConnectionProxy *_connectionProxy;
 }
 
 - (id)initWithStream:(OTStream *)existingStream sessionProxy:(ComTokboxTiOpentokSessionProxy *)sessionProxy;

@@ -29,6 +29,6 @@
 @property (readonly) NSNumber *subscribeToVideo;
 
 // Methods
--(void)close;
+-(void)close:(id)args;
 
 @end

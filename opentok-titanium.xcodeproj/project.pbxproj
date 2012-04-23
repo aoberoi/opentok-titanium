@@ -105,6 +105,7 @@
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				AA747D9E0F9514B9006C5449 /* ComTokboxTiOpentok_Prefix.pch */,
 			);
 			name = "opentok-titanium";
 			sourceTree = "<group>";
@@ -139,7 +140,6 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				AA747D9E0F9514B9006C5449 /* ComTokboxTiOpentok_Prefix.pch */,
 				24DD6D1B1134B66800162E58 /* titanium.xcconfig */,
 			);
 			name = "Other Sources";
