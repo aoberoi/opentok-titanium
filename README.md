@@ -36,8 +36,10 @@ Notes
 
 TODO
 ----
-*  currently stuck on initializing the Stream proxy object for use as a return value on the Session proxy object's
-   streams method
+*  publishing
+
+*  view proxies and view classes
 
 *  assets placement
 
+*  make Opentok.framework a git submodule
