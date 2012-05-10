@@ -52,7 +52,7 @@ NSString * const kSessionEnvironmentProduction = @"production";
 
 + (NSString *)validString:(id)object
 {
-    if (![object isKindOfClass:[NSNumber class]]) {
+    if (![object isKindOfClass:[NSString class]]) {
         return nil;
     } else {
         return (NSString *)object;
