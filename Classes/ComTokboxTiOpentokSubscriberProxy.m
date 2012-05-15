@@ -72,10 +72,16 @@
 
 - (void)dealloc {
     [_subscriber release];
-    [_subscriberViewProxy invalidate];
+    [_subscriberViewProxy _invalidate];
     [_subscriberViewProxy release];
     
     [super dealloc];
+}
+
+#pragma mark - Obj-C only Methods
+- (OTSubscriber *)_subscriber
+{
+    return _subscriber;
 }
 
 #pragma mark - Properties

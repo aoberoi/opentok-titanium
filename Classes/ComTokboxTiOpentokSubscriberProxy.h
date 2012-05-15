@@ -26,6 +26,9 @@
                      audio:(BOOL)subscribeToAudio 
                      video:(BOOL)subscribeToVideo;
 
+// Obj-C only Methods
+- (OTSubscriber *)_subscriber;
+
 // Properties
 @property (readonly, assign) ComTokboxTiOpentokSessionProxy *session;
 @property (readonly, assign) ComTokboxTiOpentokStreamProxy *stream;

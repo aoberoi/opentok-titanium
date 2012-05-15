@@ -10,19 +10,21 @@
 
 @implementation ComTokboxTiOpentokSubscriberViewProxy
 
+@synthesize subscriberProxy = _subscriberProxy;
+
 - (id)initWithSubscriberProxy:(ComTokboxTiOpentokSubscriberProxy *)proxy
 {
     self = [super init];
     if (self) {
-        _proxy = proxy;
+        _subscriberProxy = proxy;
     }
     return self;
 }
 
-- (void)invalidate
+- (void)_invalidate
 {
     ComTokboxTiOpentokSubscriberView *subscriberView = (ComTokboxTiOpentokSubscriberView *)self.view;
-    [subscriberView invalidateSubscriberProxy];
+    [subscriberView _invalidateSubscriberProxy];
 }
 
 

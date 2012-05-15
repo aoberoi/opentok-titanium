@@ -9,9 +9,9 @@
 
 @interface ComTokboxTiOpentokSubscriberView : TiUIView {
     UIView *_subscriberView;
-    OTSubscriber *_subscriber;
 }
 
-- (void)invalidateSubscriberProxy;
+// Obj-C only Methods
+- (void)_invalidateSubscriberProxy;
 
 @end

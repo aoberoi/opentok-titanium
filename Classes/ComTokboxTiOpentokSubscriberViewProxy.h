@@ -10,10 +10,13 @@
 @class ComTokboxTiOpentokSubscriberProxy;
 
 @interface ComTokboxTiOpentokSubscriberViewProxy : TiViewProxy {
-    ComTokboxTiOpentokSubscriberProxy *_proxy;
+    ComTokboxTiOpentokSubscriberProxy *_subscriberProxy;
 }
 
 - (id)initWithSubscriberProxy:(ComTokboxTiOpentokSubscriberProxy *)proxy;
-- (void)invalidate;
+
+// Obj-C only Methods
+- (ComTokboxTiOpentokSubscriberProxy *)_subscriberProxy;
+- (void)_invalidate;
 
 @end

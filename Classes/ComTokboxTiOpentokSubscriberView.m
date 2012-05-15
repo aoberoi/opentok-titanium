@@ -6,14 +6,16 @@
  */
 
 #import "ComTokboxTiOpentokSubscriberView.h"
+#import "ComTokboxTiOpentokSubscriberViewProxy.h"
+#import "ComTokboxTiOpentokSubscriberProxy.h"
 
 @implementation ComTokboxTiOpentokSubscriberView
 
 // need to get a message from the SubscriberProxy when it is about to die so that the
-// subscriberView and subscriber can be invalidated (set to nil).
-- (void)invalidateSubscriberProxy
+// subscriberView can be invalidated (set to nil).
+- (void)_invalidateSubscriberProxy
 {
-    _subscriber = nil;
+    [_subscriberView release];
     _subscriberView = nil;
 }
 
@@ -26,13 +28,9 @@
 - (UIView *)subscriberView
 {
     if (_subscriberView == nil) {
-        if (_subscriber == nil) {
-            NSLog(@"Subscriber View cannot be initialized without valid Subscriber object");
-            return nil;
-        }
-        
+        ComTokboxTiOpentokSubscriberViewProxy *proxy = (ComTokboxTiOpentokSubscriberViewProxy *)self.proxy;
         // TODO: check if there are any memory management issues here with cycles
-        _subscriberView = [_subscriber.view retain];
+        _subscriberView = [[[proxy _subscriberProxy] _subscriber].view retain];
     }
     
     return _subscriberView;

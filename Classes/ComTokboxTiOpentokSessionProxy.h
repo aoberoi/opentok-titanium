@@ -32,7 +32,7 @@ extern NSString * const kSessionEnvironmentProduction;
     
 }
 
-// Objective-C only Method
+// Obj-C only Methods
 -(void)removeSubscriber:(ComTokboxTiOpentokSubscriberProxy *)subscriber;
 
 // Properties
