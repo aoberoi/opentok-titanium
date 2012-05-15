@@ -10,15 +10,21 @@
 
 @implementation ComTokboxTiOpentokSubscriberViewProxy
 
-@synthesize subscriberProxy = _subscriberProxy;
 
-- (id)initWithSubscriberProxy:(ComTokboxTiOpentokSubscriberProxy *)proxy
+- (id)initWithSubscriberProxy:(ComTokboxTiOpentokSubscriberProxy *)proxy 
+                andProperties:(NSDictionary *)props
 {
     self = [super init];
     if (self) {
+        [self _initWithProperties:props];
         _subscriberProxy = proxy;
     }
     return self;
+}
+
+- (ComTokboxTiOpentokSubscriberProxy *)_subscriberProxy
+{
+    return _subscriberProxy;
 }
 
 - (void)_invalidate

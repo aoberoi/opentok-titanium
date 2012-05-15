@@ -13,7 +13,8 @@
     ComTokboxTiOpentokSubscriberProxy *_subscriberProxy;
 }
 
-- (id)initWithSubscriberProxy:(ComTokboxTiOpentokSubscriberProxy *)proxy;
+- (id)initWithSubscriberProxy:(ComTokboxTiOpentokSubscriberProxy *)proxy 
+                andProperties:(NSDictionary *)props;
 
 // Obj-C only Methods
 - (ComTokboxTiOpentokSubscriberProxy *)_subscriberProxy;

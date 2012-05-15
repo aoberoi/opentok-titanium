@@ -63,6 +63,8 @@
         _subscriber.subscribeToAudio = subscribeToAudio;
         _subscriber.subscribeToVideo = subscribeToVideo;
         
+        _subscriberViewProxy = nil;
+        
     }
     
     return self;
@@ -126,8 +128,10 @@
 {
     if (!_subscriberViewProxy) {
         // TODO: How do I pass args onto the View Proxy???
-        _subscriberViewProxy = [[ComTokboxTiOpentokSubscriberViewProxy alloc] initWithSubscriberProxy:self];
+        ENSURE_SINGLE_ARG(args, NSDictionary);
+        _subscriberViewProxy = [[ComTokboxTiOpentokSubscriberViewProxy alloc] initWithSubscriberProxy:self andProperties:args];
     }
+    // TODO: assign properties to existing subscriberViewProxy
     return _subscriberViewProxy;
 }
 
