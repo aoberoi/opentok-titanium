@@ -72,6 +72,8 @@
 
 - (void)dealloc {
     [_subscriber release];
+    [_subscriberViewProxy invalidate];
+    [_subscriberViewProxy release];
     
     [super dealloc];
 }
@@ -86,6 +88,14 @@
 -(id)stream
 {
     return _streamProxy;
+}
+
+-(ComTokboxTiOpentokSubscriberViewProxy *)view
+{
+    // TODO: Probably not the best way to return a view, should somehow indicate that createView should
+    //       be called first
+    if (_subscriberViewProxy) return _subscriberViewProxy;
+    return nil;
 }
 
 -(id)subscribeToAudio
@@ -104,6 +114,15 @@
 {
     [_subscriber close];
     [_sessionProxy removeSubscriber:self];
+}
+
+-(ComTokboxTiOpentokSubscriberViewProxy *)createView:(id)args
+{
+    if (!_subscriberViewProxy) {
+        // TODO: How do I pass args onto the View Proxy???
+        _subscriberViewProxy = [[ComTokboxTiOpentokSubscriberViewProxy alloc] initWithSubscriberProxy:self];
+    }
+    return _subscriberViewProxy;
 }
 
 #pragma mark - Subscriber Delegate

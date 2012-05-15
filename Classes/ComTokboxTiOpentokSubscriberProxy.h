@@ -6,13 +6,17 @@
  */
 #import "TiProxy.h"
 #import <Opentok/OTSubscriber.h>
+#import "ComTokboxTiOpentokSubscriberViewProxy.h"
 
 @class ComTokboxTiOpentokSessionProxy, ComTokboxTiOpentokStreamProxy;
 
 @interface ComTokboxTiOpentokSubscriberProxy : TiProxy <OTSubscriberDelegate> {
 
 @private
+    // Owned
     OTSubscriber *_subscriber;
+    ComTokboxTiOpentokSubscriberViewProxy *_subscriberViewProxy;
+    // Unsafe unretained
     ComTokboxTiOpentokSessionProxy *_sessionProxy;
     ComTokboxTiOpentokStreamProxy *_streamProxy;
 }
@@ -30,5 +34,6 @@
 
 // Methods
 -(void)close:(id)args;
+-(ComTokboxTiOpentokSubscriberViewProxy *)createView:(id)args;
 
 @end
