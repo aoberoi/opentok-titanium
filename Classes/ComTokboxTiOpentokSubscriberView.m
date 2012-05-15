@@ -13,7 +13,7 @@
 
 // need to get a message from the SubscriberProxy when it is about to die so that the
 // subscriberView can be invalidated (set to nil).
-- (void)_invalidateSubscriberProxy
+- (void)_invalidateSubscriber
 {
     [_subscriberView release];
     _subscriberView = nil;
@@ -40,10 +40,11 @@
 
 - (void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
 {
-    if (_subscriberView != nil) {
-        NSLog(@"[INFO] laying out subscriber view");
-        [TiUtils setView:_subscriberView positionRect:bounds];
+    if (_subscriberView == nil) {
+        [self subscriberView];
     }
+    NSLog(@"[INFO] laying out subscriber view");
+    [TiUtils setView:_subscriberView positionRect:bounds];
 }
 
 @end

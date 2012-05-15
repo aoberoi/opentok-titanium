@@ -6,17 +6,17 @@
  */
 #import "TiViewProxy.h"
 
-@class ComTokboxTiOpentokSubscriberProxy;
+@class ComTokboxTiOpentokPublisherProxy;
 
-@interface ComTokboxTiOpentokSubscriberViewProxy : TiViewProxy {
-    ComTokboxTiOpentokSubscriberProxy *_subscriberProxy;
+@interface ComTokboxTiOpentokPublisherViewProxy : TiViewProxy {
+    ComTokboxTiOpentokPublisherProxy *_publisherProxy;
 }
 
-- (id)initWithSubscriberProxy:(ComTokboxTiOpentokSubscriberProxy *)proxy 
+- (id)initWithPublisherProxy:(ComTokboxTiOpentokPublisherProxy *)proxy 
                 andProperties:(NSDictionary *)props;
 
 // Obj-C only Methods
-- (ComTokboxTiOpentokSubscriberProxy *)_subscriberProxy;
+- (ComTokboxTiOpentokPublisherProxy *)_publisherProxy;
 - (void)_invalidate;
 
 @end

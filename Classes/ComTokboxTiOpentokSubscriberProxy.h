@@ -34,6 +34,7 @@
 @property (readonly, assign) ComTokboxTiOpentokStreamProxy *stream;
 @property (readonly) NSNumber *subscribeToAudio;
 @property (readonly) NSNumber *subscribeToVideo;
+@property (readonly) ComTokboxTiOpentokSubscriberViewProxy *view;
 
 // Methods
 -(void)close:(id)args;

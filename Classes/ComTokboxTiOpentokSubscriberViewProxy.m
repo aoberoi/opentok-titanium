@@ -6,6 +6,7 @@
  */
 
 #import "ComTokboxTiOpentokSubscriberViewProxy.h"
+#import "ComTokboxTiOpentokSubscriberView.h"
 #import "TiUtils.h"
 
 @implementation ComTokboxTiOpentokSubscriberViewProxy
@@ -14,7 +15,7 @@
 - (id)initWithSubscriberProxy:(ComTokboxTiOpentokSubscriberProxy *)proxy 
                 andProperties:(NSDictionary *)props
 {
-    // HELP: For some reason this is getting forwarded to the ComTokboxTiOpentokSubscriberView and not ComTokboxTiOpentokSubscriberViewProxy??
+    // HELP: For some reason this object is a ComTokboxTiOpentokSubscriberView and not a ComTokboxTiOpentokSubscriberViewProxy??
     NSLog(@"[INFO] initializing subscriber view proxy beginning: %@", self.description);
     self = [super init];
     if (self) {
@@ -33,7 +34,7 @@
 - (void)_invalidate
 {
     ComTokboxTiOpentokSubscriberView *subscriberView = (ComTokboxTiOpentokSubscriberView *)self.view;
-    [subscriberView _invalidateSubscriberProxy];
+    [subscriberView _invalidateSubscriber];
 }
 
 

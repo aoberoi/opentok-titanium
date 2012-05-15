@@ -6,6 +6,7 @@
  */
 #import "TiProxy.h"
 #import <Opentok/OTPublisher.h>
+#import "ComTokboxTiOpentokPublisherViewProxy.h"
 
 extern NSString * const kPublisherCameraPositionFront;
 extern NSString * const kPublisherCameraPositionBack;
@@ -15,7 +16,10 @@ extern NSString * const kPublisherCameraPositionBack;
 @interface ComTokboxTiOpentokPublisherProxy : TiProxy <OTPublisherDelegate> {
 
 @private
+    // Owned
     OTPublisher *_publisher;
+    ComTokboxTiOpentokPublisherViewProxy *_publisherViewProxy;
+    // Unsafe unretained
     ComTokboxTiOpentokSessionProxy *_sessionProxy;
 }
 
@@ -33,7 +37,9 @@ extern NSString * const kPublisherCameraPositionBack;
 @property (readonly) NSString *name;
 @property (readonly) ComTokboxTiOpentokSessionProxy *session;
 @property (nonatomic, assign) NSString *cameraPosition;
-// TODO:
-//@property (nonatomic, readonly) ViewProxy *view;
+@property (readonly) ComTokboxTiOpentokPublisherViewProxy *view;
+
+// Methods
+-(ComTokboxTiOpentokPublisherViewProxy *)createView:(id)args;
 
 @end
