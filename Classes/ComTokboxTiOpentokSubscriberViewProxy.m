@@ -14,11 +14,14 @@
 - (id)initWithSubscriberProxy:(ComTokboxTiOpentokSubscriberProxy *)proxy 
                 andProperties:(NSDictionary *)props
 {
+    // HELP: For some reason this is getting forwarded to the ComTokboxTiOpentokSubscriberView and not ComTokboxTiOpentokSubscriberViewProxy??
+    NSLog(@"[INFO] initializing subscriber view proxy beginning: %@", self.description);
     self = [super init];
     if (self) {
         [self _initWithProperties:props];
         _subscriberProxy = proxy;
     }
+    NSLog(@"[INFO] initializing subscriber view proxy complete: %@", self.description);
     return self;
 }
 

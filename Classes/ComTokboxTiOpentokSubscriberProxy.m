@@ -124,12 +124,16 @@
     [_sessionProxy removeSubscriber:self];
 }
 
+// TODO: this needs to run on a UI thread?
+//       ENSURE_UI_THREAD_1(arg) would not work because the method returns non-void
 -(ComTokboxTiOpentokSubscriberViewProxy *)createView:(id)args
 {
+    NSLog(@"[INFO] creating a subscriber view proxy");
     if (!_subscriberViewProxy) {
         // TODO: How do I pass args onto the View Proxy???
         ENSURE_SINGLE_ARG(args, NSDictionary);
         _subscriberViewProxy = [[ComTokboxTiOpentokSubscriberViewProxy alloc] initWithSubscriberProxy:self andProperties:args];
+        NSLog(@"[INFO] subscriber view proxy instance created: %@", _subscriberViewProxy.description);
     }
     // TODO: assign properties to existing subscriberViewProxy
     return _subscriberViewProxy;
