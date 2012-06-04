@@ -130,7 +130,6 @@
 {
     NSLog(@"[INFO] creating a subscriber view proxy");
     if (!_subscriberViewProxy) {
-        // TODO: How do I pass args onto the View Proxy???
         ENSURE_SINGLE_ARG(args, NSDictionary);
         _subscriberViewProxy = [[ComTokboxTiOpentokSubscriberViewProxy alloc] initWithSubscriberProxy:self andProperties:args];
         NSLog(@"[INFO] subscriber view proxy instance created: %@", _subscriberViewProxy.description);
