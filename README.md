@@ -1,4 +1,4 @@
-Opentok-Titanium
+opentok-titanium-mobile
 ================
 A module for the Titanium Mobile platform that uses the Opentok iOS SDK for video streaming capabilities
 
@@ -36,10 +36,15 @@ Notes
 
 TODO
 ----
-*  publishing
 
 *  view proxies and view classes
 
 *  assets placement
 
 *  make Opentok.framework a git submodule
+
+
+License
+-------
+
+
