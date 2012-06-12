@@ -34,6 +34,8 @@
 		9231900B1543E99F00C7E3D5 /* ComTokboxTiOpentokPublisherProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 923190091543E99F00C7E3D5 /* ComTokboxTiOpentokPublisherProxy.m */; };
 		92446CC81518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 92446CC61518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.h */; };
 		92446CC91518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 92446CC71518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.m */; };
+		9281B0D2157D791100B0D505 /* ComTokboxTiOpentokVanillaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9281B0D0157D791100B0D505 /* ComTokboxTiOpentokVanillaView.h */; };
+		9281B0D3157D791100B0D505 /* ComTokboxTiOpentokVanillaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9281B0D1157D791100B0D505 /* ComTokboxTiOpentokVanillaView.m */; };
 		9281E0F71561ED630045E16D /* ComTokboxTiOpentokSubscriberView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9281E0F51561ED630045E16D /* ComTokboxTiOpentokSubscriberView.h */; };
 		9281E0F81561ED630045E16D /* ComTokboxTiOpentokSubscriberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9281E0F61561ED630045E16D /* ComTokboxTiOpentokSubscriberView.m */; };
 		9281E0FB1561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 9281E0F91561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.h */; };
@@ -42,6 +44,8 @@
 		929FFAC11544B07700198A3A /* ComTokboxTiOpentokSubscriberProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 929FFABF1544B07700198A3A /* ComTokboxTiOpentokSubscriberProxy.m */; };
 		92AFE90F150FD76E00DBD40C /* Opentok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AFE90E150FD76E00DBD40C /* Opentok.framework */; };
 		92AFE912150FD7D800DBD40C /* Opentok in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AFE911150FD7D800DBD40C /* Opentok */; };
+		92BFF7EB157D6A2F005B5ECF /* ComTokboxTiOpentokVanillaViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 92BFF7E9157D6A2F005B5ECF /* ComTokboxTiOpentokVanillaViewProxy.h */; };
+		92BFF7EC157D6A2F005B5ECF /* ComTokboxTiOpentokVanillaViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BFF7EA157D6A2F005B5ECF /* ComTokboxTiOpentokVanillaViewProxy.m */; };
 		92C707DD1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C707DB1562A28E0042B4FB /* ComTokboxTiOpentokPublisherView.h */; };
 		92C707DE1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C707DC1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.m */; };
 		92C707E11562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C707DF1562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.h */; };
@@ -74,6 +78,8 @@
 		923190091543E99F00C7E3D5 /* ComTokboxTiOpentokPublisherProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokPublisherProxy.m; path = Classes/ComTokboxTiOpentokPublisherProxy.m; sourceTree = "<group>"; };
 		92446CC61518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokSessionProxy.h; path = Classes/ComTokboxTiOpentokSessionProxy.h; sourceTree = "<group>"; };
 		92446CC71518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokSessionProxy.m; path = Classes/ComTokboxTiOpentokSessionProxy.m; sourceTree = "<group>"; };
+		9281B0D0157D791100B0D505 /* ComTokboxTiOpentokVanillaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokVanillaView.h; path = Classes/ComTokboxTiOpentokVanillaView.h; sourceTree = "<group>"; };
+		9281B0D1157D791100B0D505 /* ComTokboxTiOpentokVanillaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokVanillaView.m; path = Classes/ComTokboxTiOpentokVanillaView.m; sourceTree = "<group>"; };
 		9281E0F51561ED630045E16D /* ComTokboxTiOpentokSubscriberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokSubscriberView.h; path = Classes/ComTokboxTiOpentokSubscriberView.h; sourceTree = "<group>"; };
 		9281E0F61561ED630045E16D /* ComTokboxTiOpentokSubscriberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokSubscriberView.m; path = Classes/ComTokboxTiOpentokSubscriberView.m; sourceTree = "<group>"; };
 		9281E0F91561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokSubscriberViewProxy.h; path = Classes/ComTokboxTiOpentokSubscriberViewProxy.h; sourceTree = "<group>"; };
@@ -82,6 +88,8 @@
 		929FFABF1544B07700198A3A /* ComTokboxTiOpentokSubscriberProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokSubscriberProxy.m; path = Classes/ComTokboxTiOpentokSubscriberProxy.m; sourceTree = "<group>"; };
 		92AFE90E150FD76E00DBD40C /* Opentok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Opentok.framework; sourceTree = "<group>"; };
 		92AFE911150FD7D800DBD40C /* Opentok */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Opentok; path = Opentok.framework/Versions/A/Opentok; sourceTree = "<group>"; };
+		92BFF7E9157D6A2F005B5ECF /* ComTokboxTiOpentokVanillaViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokVanillaViewProxy.h; path = Classes/ComTokboxTiOpentokVanillaViewProxy.h; sourceTree = "<group>"; };
+		92BFF7EA157D6A2F005B5ECF /* ComTokboxTiOpentokVanillaViewProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokVanillaViewProxy.m; path = Classes/ComTokboxTiOpentokVanillaViewProxy.m; sourceTree = "<group>"; };
 		92C707DB1562A28E0042B4FB /* ComTokboxTiOpentokPublisherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokPublisherView.h; path = Classes/ComTokboxTiOpentokPublisherView.h; sourceTree = "<group>"; };
 		92C707DC1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokPublisherView.m; path = Classes/ComTokboxTiOpentokPublisherView.m; sourceTree = "<group>"; };
 		92C707DF1562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokPublisherViewProxy.h; path = Classes/ComTokboxTiOpentokPublisherViewProxy.h; sourceTree = "<group>"; };
@@ -184,6 +192,10 @@
 				92C707DC1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.m */,
 				92C707DF1562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.h */,
 				92C707E01562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.m */,
+				92BFF7E9157D6A2F005B5ECF /* ComTokboxTiOpentokVanillaViewProxy.h */,
+				92BFF7EA157D6A2F005B5ECF /* ComTokboxTiOpentokVanillaViewProxy.m */,
+				9281B0D0157D791100B0D505 /* ComTokboxTiOpentokVanillaView.h */,
+				9281B0D1157D791100B0D505 /* ComTokboxTiOpentokVanillaView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -207,6 +219,8 @@
 				9281E0FB1561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.h in Headers */,
 				92C707DD1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.h in Headers */,
 				92C707E11562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.h in Headers */,
+				92BFF7EB157D6A2F005B5ECF /* ComTokboxTiOpentokVanillaViewProxy.h in Headers */,
+				9281B0D2157D791100B0D505 /* ComTokboxTiOpentokVanillaView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +317,8 @@
 				9281E0FC1561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.m in Sources */,
 				92C707DE1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.m in Sources */,
 				92C707E21562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.m in Sources */,
+				92BFF7EC157D6A2F005B5ECF /* ComTokboxTiOpentokVanillaViewProxy.m in Sources */,
+				9281B0D3157D791100B0D505 /* ComTokboxTiOpentokVanillaView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,14 +337,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					armv7,
-				);
-				"ARCHS[sdk=iphoneos*]" = (
-					armv6,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				"ARCHS[sdk=iphonesimulator*]" = i386;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -376,14 +386,8 @@
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
-				"ARCHS[sdk=iphoneos*]" = (
-					armv6,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				"ARCHS[sdk=iphonesimulator*]" = i386;
 				DSTROOT = /tmp/ComTokboxTiOpentok.dst;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -424,14 +428,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					armv7,
-				);
-				"ARCHS[sdk=iphoneos*]" = (
-					armv6,
-					armv7,
-				);
+				ARCHS = armv7;
+				"ARCHS[sdk=iphoneos*]" = armv7;
 				"ARCHS[sdk=iphonesimulator*]" = i386;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -471,14 +469,8 @@
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
-				"ARCHS[sdk=iphoneos*]" = (
-					armv6,
-					armv7,
-				);
+				ARCHS = armv7;
+				"ARCHS[sdk=iphoneos*]" = armv7;
 				"ARCHS[sdk=iphonesimulator*]" = i386;
 				DSTROOT = /tmp/ComTokboxTiOpentok.dst;
 				GCC_C_LANGUAGE_STANDARD = c99;
