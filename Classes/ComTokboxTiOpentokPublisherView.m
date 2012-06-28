@@ -32,6 +32,7 @@
         ComTokboxTiOpentokPublisherViewProxy *proxy = (ComTokboxTiOpentokPublisherViewProxy *)self.proxy;
         // TODO: check if there are any memory management issues here with cycles
         _publisherView = [[[proxy _publisherProxy] publisher].view retain];
+        [self addSubview:_publisherView];
         NSLog(@"[INFO] publisher view instance created: %@", _publisherView.description);
     }
     

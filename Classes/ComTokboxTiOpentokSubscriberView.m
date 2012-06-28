@@ -32,6 +32,7 @@
         ComTokboxTiOpentokSubscriberViewProxy *proxy = (ComTokboxTiOpentokSubscriberViewProxy *)self.proxy;
         // TODO: check if there are any memory management issues here with cycles
         _subscriberView = [[[proxy _subscriberProxy] _subscriber].view retain];
+        [self addSubview:_subscriberView];
         NSLog(@"[INFO] subscriber view instance created: %@", _subscriberView.description);
     }
     
