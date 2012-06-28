@@ -15,14 +15,14 @@ typedef enum {
     OTInvalidSessionId,           /* An invalid session ID was provided */
     OTConnectionFailed,           /* There was an error connecting to OpenTok services */
     OTNoMessagingServer,          /* No messaging server is available for this session */
-    OTSDKUpdateRequired           /* A new version of the OpenTok SDK is available and required to connect to this session */
+    OTSDKUpdateRequired,          /* A new version of the OpenTok SDK is available and required to connect to this session */
+    OTP2PSessionUnsupported       /* iOS does not currently support Peer-to-Peer OpenTok sessions */
 } OTSessionErrorCode;
 
 typedef enum {
     OTNoMediaPublished,           /* Attempting to publish a stream with no audio or video */
     OTUserDeniedCameraAccess,     /* The user denied access to the camera during publishing */
-    OTAlreadyPublishing,          /* Already publishing */
-    OTSessionDisconnected         /* Attempting to publish to a disconnected session */
+    OTSessionDisconnected,        /* Attempting to publish to a disconnected session */
 } OTPublisherErrorCode;
 
 typedef enum {
@@ -41,7 +41,6 @@ typedef enum {
  *
  * - `OTNoMediaPublished` -- Attempting to publish a stream with no audio or video.
  * - `OTUserDeniedCameraAccess` -- The user denied access to the camera during publishing.
- * - `OTAlreadyPublishing` -- Already publishing.
  * - `OTSessionDisconnected` -- Attempting to publish to a disconnected session.
  *
  * The `OTSessionErrorCode` enum defines values for the `code` property of the OTError object for errors
@@ -52,6 +51,7 @@ typedef enum {
  * - `OTConnectionFailed` -- There was an error connecting to OpenTok services.
  * - `OTNoMessagingServer` -- No messaging server is available for this session.
  * - `OTSDKUpdateRequired` -- A new version of the OpenTok SDK is available and required to connect to this session.
+ * - `OTP2PSessionUnsupported` -- iOS does not currently support Peer-to-Peer OpenTok sessions.
  * 
  *  The `OTSubscriberErrorCode` enum defines values for the `code` property of the OTError object for errors
  * related to methods of the OTSubscriber class:

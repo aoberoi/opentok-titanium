@@ -81,13 +81,13 @@ typedef enum {
  * and <[OTSessionDelegate sessionDidDisconnect:]> messages are sent to the session's delegate when the session 
  * connects and disconnects.
  */
-@property(atomic, readonly) OTSessionConnectionStatus sessionConnectionStatus;
+@property(readonly) OTSessionConnectionStatus sessionConnectionStatus;
 
 /**
  * The [session ID](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/session%5Fcreation.html)
  * of this instance. Once initialized, this is an immutable value.
  */
-@property(nonatomic, readonly) NSString* sessionId;
+@property(nonatomic, copy) NSString* sessionId;
 
 /**
  * The number of discrete clients connected to this session. Individual iOS clients
@@ -98,14 +98,14 @@ typedef enum {
 /**
  * The streams that are a part of this session, keyed by streamId. 
  */
-@property(readonly, retain) NSDictionary* streams;
+@property(readonly) NSDictionary* streams;
 
 /**
  * The <OTConnection> object for this session. The connection property is only available
  * once the <[OTSessionDelegate sessionDidConnect:]> message is sent. If the session fails to connect,
  * this property shall remain nil.
  */
-@property(nonatomic, readonly) OTConnection* connection;
+@property(readonly) OTConnection* connection;
 
 /**
  * The <OTSessionDelegate> object that serves as a delegate object for this OTSession object,

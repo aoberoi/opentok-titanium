@@ -26,17 +26,17 @@
  * You can compare this to to the <[OTSession connection]> property to see if the stream
  * is being published by the local device.
  */
-@property(nonatomic, readonly) OTConnection* connection;
+@property(readonly) OTConnection* connection;
 
 /**
  * The session (an <OTSession> object) the stream is bound to.
  */
-@property(nonatomic, readonly) OTSession* session;
+@property(readonly) OTSession* session;
 
 /**
  * The unique ID of the stream.
  */
-@property(nonatomic, readonly) NSString* streamId;
+@property(readonly) NSString* streamId;
 
 /**
  * The type of the stream. This value can be `"basic"`, `"multiplexed"`, or `"archive"`.
@@ -44,18 +44,18 @@
  * The value `"multiplexed"` identifies a multiplexed stream, created by the OpenTok server.
  * The value `"archive"` identifies an archive stream (from an archive being played back).
  */
-@property(nonatomic, readonly) NSString* type;
+@property(readonly) NSString* type;
 
 /**
  * The timestamp for the creation of the stream on the OpenTok media server.
  */
-@property(nonatomic, readonly) NSDate *creationTime;
+@property(readonly) NSDate *creationTime;
 
 /**
  * The name of the stream. In the OpenTok iOS SDK, you can specify a published stream's name
  * when you send the <[OTPublisher initWithDelegate:name:]> message.
  */
-@property(strong, nonatomic, readonly) NSString* name;
+@property(readonly) NSString* name;
 
 /** @name Getting audio and video information */
 
@@ -63,12 +63,12 @@
  * Whether the stream is publishing audio (YES) or not (NO).
  * See <[OTPublisher publishAudio]> and <[OTSubscriber subscribeToAudio]>.
  */
-@property(nonatomic, readonly) BOOL hasAudio;
+@property(readonly) BOOL hasAudio;
 
 /**
  * Whether the stream is publishing video (YES) or not (NO).
  * See <[OTPublisher publishVideo]> and <[OTSubscriber subscribeToVideo]>.
  */
-@property(nonatomic, readonly) BOOL hasVideo;
+@property(readonly) BOOL hasVideo;
 
 @end
