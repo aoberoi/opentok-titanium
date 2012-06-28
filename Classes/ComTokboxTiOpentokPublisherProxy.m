@@ -31,10 +31,6 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
             message = @"The user denied access to the camera during publishing";
             break;
             
-        case OTAlreadyPublishing:
-            message = @"Already publishing";
-            break;
-            
         case OTSessionDisconnected:
             message = @"Attempting to publish to a disconnected session";
             break;
