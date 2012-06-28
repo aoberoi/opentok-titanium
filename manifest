@@ -6,8 +6,8 @@ version: 0.1
 apiversion: 2
 description: Opentok is a two-way live video API allowing the use of publishing and subscribing to streams. (www.tokbox.com)
 author: Ankur Oberoi
-license: whatevs
-copyright: Copyright (c) 2012 by Ankur Oberoi
+license: MIT-style. See LICENSE
+copyright: Copyright (c) 2012 TokBox, Inc.
 
 
 # these should not be edited
