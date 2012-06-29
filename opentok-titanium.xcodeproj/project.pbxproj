@@ -26,6 +26,7 @@
 		24DD6CFA1134B3F500162E58 /* ComTokboxTiOpentokModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* ComTokboxTiOpentokModule.m */; };
 		24DE9E1111C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DE9E0F11C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.h */; };
 		24DE9E1211C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.m */; };
+		92269AC8159D2BA500485A60 /* opentok.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92269AC7159D2BA500485A60 /* opentok.bundle */; };
 		92318FDE1543593F00C7E3D5 /* ComTokboxTiOpentokStreamProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 92318FDC1543593F00C7E3D5 /* ComTokboxTiOpentokStreamProxy.h */; };
 		92318FDF1543593F00C7E3D5 /* ComTokboxTiOpentokStreamProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 92318FDD1543593F00C7E3D5 /* ComTokboxTiOpentokStreamProxy.m */; };
 		923190061543D32F00C7E3D5 /* ComTokboxTiOpentokConnectionProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 923190041543D32F00C7E3D5 /* ComTokboxTiOpentokConnectionProxy.h */; };
@@ -60,12 +61,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		92269AC6159D2B3000485A60 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "${SOURCE_ROOT}/assets";
+			dstSubfolderSpec = 0;
+			files = (
+				92269AC8159D2BA500485A60 /* opentok.bundle in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		24DD6CF71134B3F500162E58 /* ComTokboxTiOpentokModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokModule.h; path = Classes/ComTokboxTiOpentokModule.h; sourceTree = "<group>"; };
 		24DD6CF81134B3F500162E58 /* ComTokboxTiOpentokModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokModule.m; path = Classes/ComTokboxTiOpentokModule.m; sourceTree = "<group>"; };
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
 		24DE9E0F11C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokModuleAssets.h; path = Classes/ComTokboxTiOpentokModuleAssets.h; sourceTree = "<group>"; };
 		24DE9E1011C5FE74003F90F6 /* ComTokboxTiOpentokModuleAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokModuleAssets.m; path = Classes/ComTokboxTiOpentokModuleAssets.m; sourceTree = "<group>"; };
+		92269AC7159D2BA500485A60 /* opentok.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = opentok.bundle; path = Opentok.framework/Versions/A/Resources/opentok.bundle; sourceTree = "<group>"; };
 		92318FDC1543593F00C7E3D5 /* ComTokboxTiOpentokStreamProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokStreamProxy.h; path = Classes/ComTokboxTiOpentokStreamProxy.h; sourceTree = "<group>"; };
 		92318FDD1543593F00C7E3D5 /* ComTokboxTiOpentokStreamProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokStreamProxy.m; path = Classes/ComTokboxTiOpentokStreamProxy.m; sourceTree = "<group>"; };
 		923190041543D32F00C7E3D5 /* ComTokboxTiOpentokConnectionProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokConnectionProxy.h; path = Classes/ComTokboxTiOpentokConnectionProxy.h; sourceTree = "<group>"; };
@@ -157,6 +172,7 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				92269AC7159D2BA500485A60 /* opentok.bundle */,
 				24DD6D1B1134B66800162E58 /* titanium.xcconfig */,
 			);
 			name = "Other Sources";
@@ -218,6 +234,7 @@
 			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "opentok-titanium" */;
 			buildPhases = (
 				D2AAC07A0554694100DB518D /* Headers */,
+				92269AC6159D2B3000485A60 /* CopyFiles */,
 				D2AAC07B0554694100DB518D /* Sources */,
 				D2AAC07C0554694100DB518D /* Frameworks */,
 				92AFE913150FD80900DBD40C /* ShellScript */,
