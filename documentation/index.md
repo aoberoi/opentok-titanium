@@ -16,7 +16,7 @@ The opentok variable is a reference to the Module object.
 
 ### Module
 
-#### opentok.createSession(props)
+#### _opentok.createSession(props)_
 
 Create a Session object. A Session is a collection of streams that the user can interact with. Only one Session at a time is supported.
 
