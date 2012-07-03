@@ -26,7 +26,6 @@
 @property (readonly) OTStream *stream;
 
 // Properties
-// TODO: connection implementation is wrong, the stream has its own connection, not that of the session
 @property (readonly) ComTokboxTiOpentokConnectionProxy *connection;
 @property (readonly) NSDate *creationTime;
 @property (readonly) NSNumber *hasAudio;

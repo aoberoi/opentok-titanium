@@ -11,18 +11,5 @@
 // These are required to build the module for Titanium users who are integrating the module into their project
 OTHER_LDFLAGS=$(inherited) -framework CoreTelephony -framework MobileCoreServices -framework CFNetwork -framework SystemConfiguration -framework CoreMedia -framework Security -framework AudioToolbox -framework CoreAudio -framework CoreVideo -framework OpenGLES -lz -lstdc++ -framework QuartzCore -framework AVFoundation -framework UIKit -framework Foundation -framework CoreGraphics 
 
+// Trying to remove support for armv6
 VALID_ARCHS=armv7 i386
-//
-// Adding a framework for a specific version(s) of iPhone:
-//
-// OTHER_LDFLAGS[sdk=iphoneos4*]=$(inherited) -framework Foo
-// OTHER_LDFLAGS[sdk=iphonesimulator4*]=$(inherited) -framework Foo
-//
-//
-// How to add a compiler define:
-//
-// OTHER_CFLAGS=$(inherited) -DFOO=1
-//
-//
-// IMPORTANT NOTE: always use $(inherited) in your overrides
-// 

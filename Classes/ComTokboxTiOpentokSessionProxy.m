@@ -96,7 +96,6 @@ NSString * const kSessionEnvironmentProduction = @"production";
     self = [super init];
     if (self) {
         // Initializations
-        // TODO: is this even called or is there some other designated initializer from the super class?
         NSLog(@"init called on session proxy");
         
         // We would normally alloc/init the backing session here, but since we can't yet access its

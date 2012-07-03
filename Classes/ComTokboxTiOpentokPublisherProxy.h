@@ -37,7 +37,7 @@ extern NSString * const kPublisherCameraPositionBack;
 @property (readonly) NSString *name;
 @property (readonly) ComTokboxTiOpentokSessionProxy *session;
 @property (nonatomic, assign) NSString *cameraPosition;
-@property (readonly) ComTokboxTiOpentokPublisherViewProxy *view;
+@property (readonly) id view;
 
 // Methods
 -(ComTokboxTiOpentokPublisherViewProxy *)createView:(id)args;

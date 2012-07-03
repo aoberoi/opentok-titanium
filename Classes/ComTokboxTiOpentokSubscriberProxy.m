@@ -98,12 +98,12 @@
     return _streamProxy;
 }
 
--(ComTokboxTiOpentokSubscriberViewProxy *)view
+-(id)view
 {
     // TODO: Probably not the best way to return a view, should somehow indicate that createView should
     //       be called first
     if (_subscriberViewProxy) return _subscriberViewProxy;
-    return nil;
+    return [NSNull null];
 }
 
 -(id)subscribeToAudio
@@ -134,7 +134,7 @@
         _subscriberViewProxy = [[ComTokboxTiOpentokSubscriberViewProxy alloc] initWithSubscriberProxy:self andProperties:args];
         NSLog(@"[INFO] subscriber view proxy instance created: %@", _subscriberViewProxy.description);
     }
-    // TODO: assign properties to existing subscriberViewProxy
+    // TODO: assign properties to existing subscriberViewProxy?
     return _subscriberViewProxy;
 }
 

@@ -127,12 +127,12 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
     }
 }
 
--(ComTokboxTiOpentokPublisherViewProxy *)view
+-(id)view
 {
     // TODO: Probably not the best way to return a view, should somehow indicate that createView should
     //       be called first
     if (_publisherViewProxy) return _publisherViewProxy;
-    return nil;
+    return [NSNull null];
 }
 
 
@@ -144,12 +144,11 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
 {
     NSLog(@"[INFO] creating a publisher view proxy");
     if (!_publisherViewProxy) {
-        // TODO: How do I pass args onto the View Proxy???
         ENSURE_SINGLE_ARG(args, NSDictionary);
         _publisherViewProxy = [[ComTokboxTiOpentokPublisherViewProxy alloc] initWithPublisherProxy:self andProperties:args];
         NSLog(@"[INFO] publisher view proxy instance created: %@", _publisherViewProxy.description);
     }
-    // TODO: assign properties to existing subscriberViewProxy
+    // TODO: assign properties to existing subscriberViewProxy?
     return _publisherViewProxy;
 }
 
