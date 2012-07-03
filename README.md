@@ -44,7 +44,7 @@ var session = opentok.createSession({ sessionId: "..." });
 session.connect(CONFIG.apiKey, CONFIG.token);
 ```
 	
-4. For more details, see the [documentation directory](tree/master/documentation) and the [example directory](tree/master/example).
+4. For more details, see the [documentation directory](opentok-titanium-mobile/tree/master/documentation) and the [example directory](opentok-titanium-mobile/tree/master/example).
 
 Requirements
 ------------
@@ -62,7 +62,7 @@ Notes
 
 > [ERROR] clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
-   This can be because Titanium is trying to compile for armv6, which is unsupported. See the [Wiki Page](wiki/Removing-armv6-from-your-Titanium-Project) for two ways to solve this.
+   This can be because Titanium is trying to compile for armv6, which is unsupported. See the [Wiki Page](opentok-titanium-mobile/wiki/Removing-armv6-from-your-Titanium-Project) for two ways to solve this.
 
 *  Opentok.framework can be downloaded from the [official repo](https://github.com/opentok/opentok-ios-sdk)
 
