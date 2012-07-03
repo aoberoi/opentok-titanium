@@ -60,7 +60,7 @@ Notes
 -----
 *  If you are building for the device for the first time you may see the following error:
 
-> [ERROR] clang: error: linker command failed with exit code 1 (use -v to see invocation)
+   > [ERROR] clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
    This can be because Titanium is trying to compile for armv6, which is unsupported. See the [Wiki Page](opentok-titanium-mobile/wiki/Removing-armv6-from-your-Titanium-Project) for two ways to solve this.
 
