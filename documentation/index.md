@@ -129,11 +129,84 @@ This event is fired when a stream leaves a session. This can happen when a publi
 
 ### Stream
 
+#### Properties
+
+##### _stream.connection_
+
+(Connection) The Connection object that corresponds to the origin of this Stream. _Read Only_
+
+##### _stream.creationTime_
+
+(Date) The time when this Stream was created. _Read Only_
+
+##### _stream.hasAudio_
+
+(Boolean) Whether or not there is audio available in this stream. _Read Only_
+
+##### _stream.hasVideo_
+
+(Boolean) Whether or not there is video available in this stream. _Read Only_
+
+
+##### _stream.session_
+
+(Session) The Session object where this Stream is contained. _Read Only_
+
+##### _stream.streamId_
+
+(String) An identifier for this Stream. This is created automatically by OpenTok. _Read Only_
+
+##### _stream.type_
+
+(String) A stream can be one of three types: "basic", "multiplexed", and "archive". _Read Only_
+
 ### Connection
+
+#### Properties
+
+##### _connection.connectionId_
+
+(String) An identifier for this Connection. This is created automatically by OpenTok. It is useful for comparing a _stream.connection.connectionId_ to the _session.connection.connectionId_, if they are equal then the stream originates from this device. _Read Only_
+
+##### _connection.creationTime_
+
+(Date) The time the connection was created.
 
 ### Publisher
 
+#### Methods
+
+TODO
+
+#### Properties
+
+TODO
+
+#### Events
+
+TODO
+
 ### Subscriber
+
+#### Methods
+
+TODO
+
+#### Properties
+
+TODO
+
+#### Events
+
+TODO
+
+### PublisherView
+
+TODO
+
+### SubscriberView
+
+TODO
 
 ## Usage
 
