@@ -50,9 +50,26 @@ Begin publishing video data from the device's camera to the Session.
 *  Parameters:
     *  __props__ (Object):
         * __name__ (String) _optional_ - A name for the stream being created in the Session. The name is readable to others connected to the Session. Defaults to device name.
-        * __publishAudio__ (Boolean) _optional_ - Whether or not the publisher sends audio or not.
-        * __publishVideo__ (Boolean) _optional_ - Whether or not the publisher sends video or not.
+        * __publishAudio__ (Boolean) _optional_ - Whether or not the publisher sends audio. Defaults to true.
+        * __publishVideo__ (Boolean) _optional_ - Whether or not the publisher sends video. Defaults to true.
 *  Return - (Publisher)
+
+#### _session.unpublish()_
+
+Stop publishing to the session.
+
+*  Return - void
+
+#### _session.subscribe(stream, props)_
+
+Begin receiving video data from another device's camera who is publishing to the Session.
+
+*  Parameters:
+    *  __stream__ (Stream) _required_ - A Stream object that refers to the video data from another device.
+    *  __props__ (Object) _optional_:
+        * __subscribeToAudio__ (Boolean) _optional_ - Whether or not to subscribe to the audio data. Defaults to true.
+        * __subscribeToVideo__ (Boolean) _optional_ - Whether or not to subscribe to the video data. Defaults to true.
+*  Return - (Subscriber)
 
 ### Stream
 
