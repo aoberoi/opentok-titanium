@@ -77,23 +77,23 @@ Begin receiving video data from another device's camera who is publishing to the
 
 #### Properties
 
-##### _sessionId_
+##### _session.sessionId_
 
 (String) The Session ID for this Session object. This is only writable before _session.connect(apiKey, token)_ is called.
 
-##### _streams_
+##### _session.streams_
 
 (Array<Stream>) A collection of all the Streams currently in the Session. _Read Only_
 
-##### _sessionConnectionStatus_
+##### _session.sessionConnectionStatus_
 
 (String) The state of the session. Possible values: "connected", "connecting", "disconnected", "failed". _Read Only_
 
-##### _connectionCount_
+##### _session.connectionCount_
 
 (Number) The number of connections in the Session. _Read Only_
 
-##### _environment_
+##### _session.environment_
 
 (String) The OpenTok environment that the session will connect to. This is only writable when the _sessionConnectionStatus_ is "disconnected".
 
