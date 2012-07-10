@@ -27,22 +27,22 @@ The opentok variable is a reference to the Module object.
   </tr>
   <tr>
     <td></td>
-    <td>Publisher</td>
-    <td>SubscriberView</td>
+    <td><a href="publisher.md">Publisher</a></td>
+    <td><a href="subscriberview.md">SubscriberView</a></td>
   </tr>
   <tr>
     <td></td>
-    <td>Subscriber</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Stream</td>
+    <td><a href="subscriber.md">Subscriber</a></td>
     <td></td>
   </tr>
   <tr>
     <td></td>
-    <td>Connection</td>
+    <td><a href="stream.md">Stream</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><a href="connection.md">Connection</a></td>
     <td></td>
   </tr>
 </table>
