@@ -16,7 +16,7 @@ The opentok variable is a reference to the Module object.
 
 <table>
   <tr>
-    <th>Module<th>
+    <th>Module</th>
     <th>Proxy Objects</th>
     <th>Views</th>
   </tr>
