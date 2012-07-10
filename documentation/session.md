@@ -1,5 +1,24 @@
 # Session
 
+<nav>
+  <p>Methods:</p>
+  <ul>
+    <li><a href="#sessionconnectapikey-token">connect(apiKey, token)</a></li>
+    <li><a href="#sessiondisconnect">disconnect()</a></li>
+    <li><a href="#sessionpublishprops">publish(props)</a></li>
+    <li><a href="#sessionunpublish">unpublish()</a></li>
+    <li><a href="#sessionsubscribestream-props">subscribe(stream, props)</a></li>
+  </ul>
+  <p>Properties:</p>
+  <ul>
+    <li><a href="#sessionsessionid">sessionId</a></li>
+    <li><a href="#sessionstreams">streams</a></li>
+    <li><a href="#sessionsessionconnectionstatus">sessionConnectionStatus</a></li>
+    <li><a href="#sessionconnectioncount">connectionCount</a></li>
+    <li><a href="#sessionenvironment">environment</a></li>
+  </ul>
+</nav>
+
 ## Methods
 
 ### _session.connect(apiKey, token)_
