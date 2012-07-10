@@ -1,7 +1,8 @@
 # Session
 
-A Session object is a reference to an [OpenTok Session](http://www.tokbox.com/opentok/api/tools/js/documentation/api/Session.html). They can be thought of as a collection of streams on which you may operate (publish or subscribe), or more simply as "rooms". 
-You can construct this object using [opentok.createSession(props)](opentok.md#createsessionprops). A [sessionId can be dynamically created](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/session_creation.html) by your backend web service using createSession.
+A Session object can be thought of as a collection of streams on which you may operate (publish or subscribe), or more simply as a "room". 
+You can construct this object using [opentok.createSession(props)](opentok.md#createsessionprops). A [sessionId can be dynamically created](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/session_creation.html) by your backend web service.
+This object is analogous to the [JS API Session](http://www.tokbox.com/opentok/api/tools/js/documentation/api/Session.html) object.
 
 <nav>
   <table>
