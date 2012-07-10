@@ -10,7 +10,7 @@ To access this module from JavaScript, you would do the following:
 
 	var opentok = require("com.tokbox.ti.opentok");
 
-The opentok variable is a reference to the Module object.	
+The opentok variable is a reference to the Opentok object.	
 
 ## Reference
 
@@ -21,7 +21,7 @@ The opentok variable is a reference to the Module object.
     <th>Views</th>
   </tr>
   <tr>
-    <td><a href="module.md">opentok</a></td>
+    <td><a href="opentok.md">Opentok</a></td>
     <td><a href="session.md">Session</a></td>
     <td><a href="publisherview.md">PublisherView</a></td>
   </tr>
