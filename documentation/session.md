@@ -1,22 +1,38 @@
 # Session
 
 <nav>
-  <p>Methods:</p>
-  <ul>
-    <li><a href="#sessionconnectapikey-token">connect(apiKey, token)</a></li>
-    <li><a href="#sessiondisconnect">disconnect()</a></li>
-    <li><a href="#sessionpublishprops">publish(props)</a></li>
-    <li><a href="#sessionunpublish">unpublish()</a></li>
-    <li><a href="#sessionsubscribestream-props">subscribe(stream, props)</a></li>
-  </ul>
-  <p>Properties:</p>
-  <ul>
-    <li><a href="#sessionsessionid">sessionId</a></li>
-    <li><a href="#sessionstreams">streams</a></li>
-    <li><a href="#sessionsessionconnectionstatus">sessionConnectionStatus</a></li>
-    <li><a href="#sessionconnectioncount">connectionCount</a></li>
-    <li><a href="#sessionenvironment">environment</a></li>
-  </ul>
+  <table>
+    <tr>
+      <th>Methods</th>
+      <th>Properties</th>
+      <th>Events</th>
+    </tr>
+    <tr>
+      <td><a href="#sessionconnectapikey-token">connect(apiKey, token)</a></td>
+      <td><a href="#sessionsessionid">sessionId</a></td>
+      <td><a href="#sessionconnected">sessionConnected</a></td>
+    </tr>
+    <tr>
+      <td><a href="#sessiondisconnect">disconnect()</a></td>
+      <td><a href="#sessionstreams">streams</a></td>
+      <td><a href="#sessiondisconnected">sessionDisconnected</a></td>
+    </tr>
+    <tr>
+      <td><a href="#sessionpublishprops">publish(props)</a></td>
+      <td><a href="#sessionsessionconnectionstatus">sessionConnectionStatus</a></td>
+      <td><a href="#sessionfailed">sessionFailed</a></td>
+    </tr>
+    <tr>
+      <td><a href="#sessionunpublish">unpublish()</a></td>
+      <td><a href="#sessionconnectioncount">connectionCount</a></td>
+      <td><a href="#streamcreated">streamCreated</a></td>
+    </tr>
+    <tr>
+      <td><a href="#sessionsubscribestream-props">subscribe(stream, props)</a></td>
+      <td><a href="#sessionenvironment">environment</a></td>
+      <td><a href="#streamdestroyed">streamDestroyed</a></td>
+    </tr>
+  </table>
 </nav>
 
 ## Methods
