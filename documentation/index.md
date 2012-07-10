@@ -176,37 +176,119 @@ This event is fired when a stream leaves a session. This can happen when a publi
 
 #### Methods
 
-TODO
+##### _publisher.createView(props)_
+
+A publisher can stream data without being displayed in the UI. In order to display the video of the publisher, you must create a view from it. This method creates that view. It is a subtype of Ti.UI.View.
+
+*  Parameters:
+    *  __props__ (Object) _optional_ - Properties of Ti.UI.View that are inherited by the PublisherView (See <http://docs.appcelerator.com/titanium/2.1/index.html#!/api/Titanium.UI.View>)
+*  Return - (PublisherView)
 
 #### Properties
 
-TODO
+##### _publisher.publishAudio_
+
+(Boolean) Whether or not the publisher is publishing audio data to the session. _Read Only_
+
+##### _publisher.publishVideo_
+
+(Boolean) Whether or not the publisher is publishing video data to the session. _Read Only_
+
+##### _publisher.name_
+
+(String) The name that was assigned to the publisher when it was created. _Read Only_
+
+##### _publisher.session_
+
+(Session) The session that this publisher is streaming data to. _Read Only_
+
+##### _publisher.cameraPosition_
+
+(String) If the device contains more than one camera, this option lets you set which one the publisher should stream from. Possible values are "cameraFront" or "cameraBack".
+
+##### _publisher.view_
+
+(PublisherView) If _publisher.createView(props)_ has been called on the Publisher, this property will return a reference to that same view. Otherwise it returns null.
 
 #### Events
 
-TODO
+##### _publisherStarted_
+
+This event is fired when the publisher begins streaming data to the session. Note that the Session will also fire the "streamCreated" event for the resulting stream.
+
+##### _publisherStopped_
+
+This event is fired when the publisher stops streaming data to the session. Note that the Session will also fire the "streamDestroyed" event for the stream that is being removed from the Session.
+
+##### _publisherFailed_
+
+This event is fired when an error is encountered.
+
+*  Event Properties:
+    *  event.error (Error) - Use event.error.message to see the reason for the publisher failing.
 
 ### Subscriber
 
 #### Methods
 
-TODO
+##### _subscriber.createView(props)_
+
+A subscriber can subscribe to data without being displayed in the UI. In order to display the video of the subscriber, you must create a view from it. This method creates that view. It is a subtype of Ti.UI.View.
+
+*  Parameters:
+    *  __props__ (Object) _optional_ - Properties of Ti.UI.View that are inherited by the SubscriberView (See <http://docs.appcelerator.com/titanium/2.1/index.html#!/api/Titanium.UI.View>)
+*  Return - (SubscriberView)
+
+##### _subscriber.close()_
+
+Disconnects the Subscriber from the Session. The SubscriberViews associated with this Subscriber will now be invalid and should be removed from the UI.
 
 #### Properties
 
-TODO
+##### _subscriber.stream_
+
+(Stream) The stream that this subscriber is created from. _Read Only_
+
+##### _subscriber.subscribeToAudio_
+
+(Boolean) Whether or not the subscriber is subscribing to audio data in the stream. _Read Only_
+
+##### _subscriber.subscribeToVideo_
+
+(Boolean) Whether or not the subscriber is subscribing to video data in the stream. _Read Only_
+
+##### _subscriber.session_
+
+(Session) The session that this subscriber is streaming data from. _Read Only_
+
+##### _subscriber.view_
+
+(SubscriberView) If _subscriber.createView(props)_ has been called on this Subscriber, this property will return a reference to that same view. Otherwise it returns null.
 
 #### Events
 
-TODO
+##### _subscriberStarted_
+
+This event is fired when the first frame of video or audio data has been recieved and decoded.
+
+##### _subscriberConnected_
+
+This event is fired when the subscriber sucessfully connects to the stream.
+
+##### _subscriberFailed_
+
+This event is fired when an error is encountered.
+
+*  Event Properties:
+    *  event.error (Error) - Use event.error.message to see the reason for the subscriber failing.
 
 ### PublisherView
 
-TODO
+'PublisherView's are simply subtypes of 'Ti.UI.View's that have the same properties, methods, and events. They are constructed from the _publisher.createView(props)_ method.
 
 ### SubscriberView
 
-TODO
+'SubscriberView's are simply subtypes of 'Ti.UI.View's that have the same properties, methods, and events. They are constructed from the _subscriber.createView(props)_ method.
 
 ## Usage
 

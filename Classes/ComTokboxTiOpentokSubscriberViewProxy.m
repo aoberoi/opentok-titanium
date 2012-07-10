@@ -15,7 +15,6 @@
 - (id)initWithSubscriberProxy:(ComTokboxTiOpentokSubscriberProxy *)proxy 
                 andProperties:(NSDictionary *)props
 {
-    // HELP: For some reason this object is a ComTokboxTiOpentokSubscriberView and not a ComTokboxTiOpentokSubscriberViewProxy??
     NSLog(@"[INFO] initializing subscriber view proxy beginning: %@", self.description);
     self = [super init];
     if (self) {
