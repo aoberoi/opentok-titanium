@@ -21,9 +21,9 @@ The opentok variable is a reference to the Module object.
     <th>Views</th>
   </tr>
   <tr>
-    <td>opentok</td>
-    <td>Session</td>
-    <td>PublisherView</td>
+    <td><a href="module.md">opentok</a></td>
+    <td><a href="session.md">Session</a></td>
+    <td><a href="publisherview.md">PublisherView</a></td>
   </tr>
   <tr>
     <td></td>
