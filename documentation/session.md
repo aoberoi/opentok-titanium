@@ -129,13 +129,13 @@ This event is fired when a session is disconnected for any reason other than a c
 
 This event is fired when a new stream is available in the session. This happens when a connected device (this device or others) publishes.
 
-*  Event Properties:
-    *  _stream_ (Stream) - The stream that was just created.
+Event Properties:
+*   _stream_ (Stream) - The stream that was just created.
 
 ### "streamDestroyed"
 
 This event is fired when a stream leaves a session. This can happen when a publishing device (this one or others) unpublishes or disconnects.
 
-*  Event Properties:
-    *  _stream_ (Stream) - The stream that was just destroyed.
+Event Properties:
+*   _stream_ (Stream) - The stream that was just destroyed.
 
