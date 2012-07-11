@@ -80,7 +80,7 @@ Returns: (void)
 Begin receiving video data from another device's camera who is publishing to the Session.
 
 Parameters:
-*  _stream_ (Stream) _required_ - A Stream object that refers to the video data from another device.
+*  _stream_ (Stream) _required_ - A Stream object that refers to the video or audio data from a device.
 *  _props_ (Dictionary) _optional_:
    *  _subscribeToAudio_ (Boolean) _optional_ - Whether or not to subscribe to the audio data. Defaults to true.
    *  _subscribeToVideo_ (Boolean) _optional_ - Whether or not to subscribe to the video data. Defaults to true.
@@ -91,11 +91,11 @@ Returns: (Subscriber)
 
 ### sessionId
 
-(String) The Session ID for this Session object. This is only writable before _session.connect(apiKey, token)_ is called.
+(String) The Session ID for this Session object. This is only writable before [session.connect(_apiKey_, _token_)](#connectapikey-token) is called.
 
 ### streams
 
-(Array<Stream>) A collection of all the Streams currently in the Session. _Read Only_
+(Array < Stream >) A collection of all the Streams currently in the Session. _Read Only_
 
 ### sessionConnectionStatus
 
@@ -107,21 +107,21 @@ Returns: (Subscriber)
 
 ### environment
 
-(String) The OpenTok environment that the session will connect to. This is only writable when the _sessionConnectionStatus_ is "disconnected".
+(String) The OpenTok environment that the session will connect to. This is only writable when the [sessionConnectionStatus](#sessionconnectionstatus) is "disconnected".
 
 ## Events
 
 ### "sessionConnected"
 
-This event is fired when the _session.connect(props)_ call has resulted in a successful connection.
+This event is fired when the [session.connect(_apiKey_, _token_)](#connectapikey-token) call has resulted in a successful connection.
 
 ### "sessionDisconnected"
 
-This event is fired when the _session.disconnect(props)_ call has completed.
+This event is fired when the [session.disconnect()](#disconnect) call has completed.
 
 ### "sessionFailed"
 
-This event is fired when a session is disconnected for any reason other than a call to _session.disconnect(props)_
+This event is fired when a session is disconnected for any reason other than a call to [session.disconnect()](#disconnect).
 
 *  TODO: Describe how to read error description
 
@@ -130,12 +130,12 @@ This event is fired when a session is disconnected for any reason other than a c
 This event is fired when a new stream is available in the session. This happens when a connected device (this device or others) publishes.
 
 *  Event Properties:
-    *  event.stream (Stream) - The stream that was just created.
+    *  _stream_ (Stream) - The stream that was just created.
 
 ### "streamDestroyed"
 
 This event is fired when a stream leaves a session. This can happen when a publishing device (this one or others) unpublishes or disconnects.
 
 *  Event Properties:
-    *  event.stream (Stream) - The stream that was just destroyed.
+    *  _stream_ (Stream) - The stream that was just destroyed.
 
