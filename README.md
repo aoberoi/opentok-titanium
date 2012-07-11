@@ -56,6 +56,21 @@ Requirements
 
 *  Opentok.framework requires projects to be built for only i386 (simulator) and armv7 (device).
 
+Examples
+--------
+
+TODO
+
+Getting Help
+------------
+
+You can find help by posting your question to the [Github Issues](https://github.com/opentok/opentok-titanium-mobile/issues) page, posting on the [TokBox forums](http://www.tokbox.com/forums/), or asking in the [#opentok IRC channel](http://www.tokbox.com/support/officehours).
+
+Known Issues
+------------
+
+If you are experiencing any problems, please look at the [Github Issues](https://github.com/opentok/opentok-titanium-mobile/issues) page for known issues.
+
 Notes
 -----
 *  If you are building for the device for the first time you may see the following error:
