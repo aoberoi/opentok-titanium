@@ -1,31 +1,78 @@
 # Stream
 
+A Stream represents the audio/video data coming from a publisher on this device or on another device in the same OpenTok [Session](session.md#session).
+
+<nav>
+  <table>
+    <tr>
+      <th>Methods</th>
+      <th>Properties</th>
+      <th>Events</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>[connection](#connection)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>[creationTime](#creationtime)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>[hasAudio](#hasaudio)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>[hasVideo](#hasvideo)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>[session](#session)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>[streamId](#streamid)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>[type](#type)</td>
+      <td></td>
+    </tr>
+  </table>
+</nav>
+
 ## Properties
 
-### _stream.connection_
+### connection
 
 (Connection) The Connection object that corresponds to the origin of this Stream. _Read Only_
 
-### _stream.creationTime_
+### creationTime
 
 (Date) The time when this Stream was created. _Read Only_
 
-### _stream.hasAudio_
+### hasAudio
 
 (Boolean) Whether or not there is audio available in this stream. _Read Only_
 
-### _stream.hasVideo_
+### hasVideo
 
 (Boolean) Whether or not there is video available in this stream. _Read Only_
 
-### _stream.session_
+### session
 
 (Session) The Session object where this Stream is contained. _Read Only_
 
-### _stream.streamId_
+### streamId
 
 (String) An identifier for this Stream. This is created automatically by OpenTok. _Read Only_
 
-### _stream.type_
+### type
 
 (String) A stream can be one of three types: "basic", "multiplexed", and "archive". _Read Only_
