@@ -1,5 +1,10 @@
 # Subscriber
 
+You can use a Subscriber object to stream audio and video from a stream in OpenTok to this device. A Subscriber is constructed by calling
+[Session.publish(_props_)](session.md#publishprops). The Publisher only represents the control of streaming that data,
+not the UI. In order to present a view of this data, use a [PublisherView](publisherview.md#publisherview) which can
+be constructed using the [createView(_props_)](#createviewprops) method here.
+
 <nav>
   <table>
     <tr>
