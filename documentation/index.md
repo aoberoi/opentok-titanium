@@ -4,13 +4,78 @@
 
 Opentok is an API to stream live video to and from your App on mobile and on the web. [Find out more online](http://www.tokbox.com/opentok/api).
 
-## Accessing the opentok Module
+## Usage
+
+### Accessing the module
 
 To access this module from JavaScript, you would do the following:
 
-	var opentok = require("com.tokbox.ti.opentok");
+```javascript
+var opentok = require("com.tokbox.ti.opentok");
+```
 
-The opentok variable is a reference to the Opentok object.	
+The opentok variable is a reference to the Opentok module object.	
+
+### Connecting to a Session
+
+In order to connect to a session, we must first create a Session object and then use it to connect. In order to configure this we need an [API Key](http://www.tokbox.com/opentok/api/tools/js/apikey), a [Token](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/token_creation.html), and a [Session ID](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/session_creation.html).
+
+```javascript
+var CONFIG = {
+  apiKey    : '...',
+  token     : '...',
+  sessionId : '...'
+};
+
+var session = opentok.createSession(CONFIG.sessionId);
+
+session.connect(CONFIG.apiKey, CONFIG.token);
+```
+
+### Publishing video to the Session
+
+To start streaming video and audio to other users/devices in the session we must Publish. To start publishing we first create a Publisher. Then to see the video that we are publishing, we add a PublisherView to the current view. All of this can only be done once the session is connected, so we place it inside the connection handler.
+
+```javascript
+var publisher, publisherView;
+session.addEventListener("sessionConnected", function(event) {
+  publisher = session.publish();
+  publisherView = publisher.createView({ width : 320, height : 240, top : 20 });
+  // self is an instance of Ti.UI.View such as ApplicationView
+  self.add(publisherView);
+});
+```
+
+### Subscribing to video in a Session
+
+To start playing a video stream from another user/device in the session we must Subscribe. To start subscribing we first create a Subscriber from the Stream. Then to see the video from that Stream, we add a SubscriberView to the current view. All of this can only be done once a Stream is created (and after the session is connected), so we place it inside the stream creation handler.
+
+```javascript
+var subscriber, subscriberView;
+session.addEventListener("streamCreated", function(event) {
+  var stream = event.stream;
+  subscriber = session.subscriber(stream);
+  subscriberView = subscriber.createView({ width : 320, height : 240, top : 20 });
+  // self is an instance of Ti.UI.View such as ApplicationView
+  self.add(subscriberView);
+});
+```
+
+### Which Stream belongs to my device? Which Stream is coming from another device?
+
+If you follow the example above, you will first subscribe to your own stream. It would be very useful to know when this Stream is coming from another device or from your own device. To do this, we compare the Connections of each Stream by their connectionId property.
+
+```javascript
+var subscriber, subscriberView;
+session.addEventListener("streamCreated", function(event) {
+  var stream = event.stream;
+  // Filter out any stream that is coming from my own connection. I only want to subscribe to others
+  if (stream.connection.connectionId === session.connection.connectionId) { return; }
+  subscriber = session.subscriber(stream);
+  subscriberView = subscriber.createView({ width : 320, height : 240, top : 20 });
+  self.add(subscriberView);
+});
+```
 
 ## Reference
 
@@ -46,8 +111,6 @@ The opentok variable is a reference to the Opentok object.
     <td></td>
   </tr>
 </table>
-
-## Usage
 
 ## License
 
