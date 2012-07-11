@@ -10,7 +10,7 @@ The Opentok object is a top level container for the module itself. It is the res
       <th>Events</th>
     </tr>
     <tr>
-      <td>createSession(_props_)</td>
+      <td>[createSession(_props_)](#createsessionprops)</td>
       <td></td>
       <td></td>
     </tr>
@@ -21,7 +21,7 @@ The Opentok object is a top level container for the module itself. It is the res
 
 ### createSession(_props_)
 
-Create a [Session](session.md) object. Only one Session is supported at a time.
+Create a [Session](session.md#session) object. Only one Session is supported at a time.
 
 Parameters:
 *  _props_ (Dictionary):
