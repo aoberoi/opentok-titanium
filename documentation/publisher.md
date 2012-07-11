@@ -96,5 +96,5 @@ This event is fired when the publisher stops streaming data to the session. Note
 
 This event is fired when an error is encountered.
 
-*  Event Properties:
-    *  _error_ (Error) - Use _error_.message to see the reason for the publisher failing.
+Event Properties:
+*   _error_ (Error) - Use _error_.message to see the reason for the publisher failing.
