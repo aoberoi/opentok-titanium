@@ -2,7 +2,7 @@
 
 You can use a Publisher object to stream audio and video from a device to Opentok. A Publisher is constructed by calling
 [Session.publish(_props_)](session.md#publishprops). The Publisher only represents the control of streaming that data,
-not the UI. In order to present a view of this data, use a [PublisherView](publisherview.md#publsherview) which can
+not the UI. In order to present a view of this data, use a [PublisherView](publisherview.md#publisherview) which can
 be constructed using the [createView(_props_)](#createviewprops) method here.
 
 <nav>
@@ -51,9 +51,10 @@ be constructed using the [createView(_props_)](#createviewprops) method here.
 
 A publisher can stream data without being displayed in the UI. In order to display the video of the publisher, you must create a view from it. This method creates that view. It is a subtype of Ti.UI.View.
 
-*  Parameters:
-    *  __props__ (Object) _optional_ - Properties of Ti.UI.View that are inherited by the PublisherView (See <http://docs.appcelerator.com/titanium/2.1/index.html#!/api/Titanium.UI.View>)
-*  Return - (PublisherView)
+Parameters:
+*  _props_ (Dictionary) _optional_ - Properties of Ti.UI.View that are inherited by the PublisherView. (See [Appcelerator Docs](http://docs.appcelerator.com/titanium/2.1/index.html#!/api/Titanium.UI.View))
+
+Returns: (PublisherView)
 
 ## Properties
 
@@ -79,7 +80,7 @@ A publisher can stream data without being displayed in the UI. In order to displ
 
 ### view
 
-(PublisherView) If _publisher.createView(props)_ has been called on the Publisher, this property will return a reference to that same view. Otherwise it returns null.
+(PublisherView) If [createView(_props_)](#createviewprops) has been called on the Publisher, this property will return a reference to that same PublisherView. Otherwise it returns null.
 
 ## Events
 
@@ -96,4 +97,4 @@ This event is fired when the publisher stops streaming data to the session. Note
 This event is fired when an error is encountered.
 
 *  Event Properties:
-    *  event.error (Error) - Use event.error.message to see the reason for the publisher failing.
+    *  _error_ (Error) - Use _error_.message to see the reason for the publisher failing.
