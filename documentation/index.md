@@ -26,9 +26,7 @@ var CONFIG = {
   token     : '...',
   sessionId : '...'
 };
-
 var session = opentok.createSession(CONFIG.sessionId);
-
 session.connect(CONFIG.apiKey, CONFIG.token);
 ```
 
@@ -54,7 +52,7 @@ To start playing a video stream from another user/device in the session we must 
 var subscriber, subscriberView;
 session.addEventListener("streamCreated", function(event) {
   var stream = event.stream;
-  subscriber = session.subscriber(stream);
+  subscriber = session.subscribe(stream);
   subscriberView = subscriber.createView({ width : 320, height : 240, top : 20 });
   // self is an instance of Ti.UI.View such as ApplicationView
   self.add(subscriberView);
