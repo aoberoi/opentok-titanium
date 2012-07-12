@@ -14,7 +14,7 @@ Usage
 
     ```xml
     <modules>
-      <module version="0.1">com.tokbox.ti.opentok</module>
+      <module version="0.2.1">com.tokbox.ti.opentok</module>
     </modules>
     <ios>
       <plist>
