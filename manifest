@@ -15,4 +15,4 @@ name: opentok-titanium
 moduleid: com.tokbox.ti.opentok
 guid: aebd1afb-75f8-4b05-a50f-e5861cfb0b7e
 platform: iphone
-minsdk: 2.1.0
+minsdk: 2.0.0
