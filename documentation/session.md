@@ -59,7 +59,11 @@ Returns: (void)
 
 ### publish(_props_)
 
-Begin publishing video data from the device's camera to the Session.
+Begin publishing video data from the device's camera to the Session. When the publisher begins streaming data, the Session dispatches
+a ["streamCreated"](#streamcreated) event. You can compare the [connection.connectionId](connection.md#connectionid) property of the Session object with the stream.connection.connectionId
+property of the "streamCreated" event object. If they match, the stream is published from your own connection.
+
+Note that multiple publishers are not supported.
 
 Parameters:
 *  _props_ (Dictionary) _optional_:
