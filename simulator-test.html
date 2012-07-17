@@ -3,9 +3,38 @@
 <head>
   <meta charset="utf-8">
   <title>Simulator Test page</title>
+  <script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="https://raw.github.com/cowboy/jquery-bbq/v1.2.1/jquery.ba-bbq.min.js"></script>
 </head>
 <body>
   <h1>Simulator Test Page</h1>
   <p>This page is used to publish an OpenTok video so that you may subscribe to it via the iOS Simulator.</p>
+
+  <p id="connecting-message">Connecting...</p>
+  <div id="publisher-container"></div>
+
+  <script>
+    var hash = $.deparam.fragment();
+    var apiKey = hash.apiKey || null;
+    var sessionId = hash.sessionId || null;
+    var token = hash.token || null;
+    
+    function initialize() {
+      var session = TB.initSession(sessionId);
+      var publisher;
+      session.addEventListener('sessionConnected', function () {
+        $('#connecting-message').hide();
+        session.publish('publisher-container');
+      });
+      session.connect(apiKey, token);
+    }
+
+    $(function() {
+      if (apiKey !== null && sessionId !== null && token !== null) {
+        initialize();
+      }
+    });
+  </script>
 </body>
 </html>
