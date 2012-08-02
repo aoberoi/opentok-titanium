@@ -3,7 +3,8 @@
 //  opentok-titanium
 //
 //  Created by Ankur Oberoi on 3/21/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 TokBox, Inc.
+//  Please see the LICENSE included with this distribution for details.
 //
 
 #import "TiProxy.h"
