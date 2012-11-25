@@ -2,7 +2,7 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 0.2.1
+version: 0.2.2-alpha
 apiversion: 2
 description: Opentok is a two-way live video API allowing the use of publishing and subscribing to streams. (www.tokbox.com)
 author: Ankur Oberoi
@@ -15,4 +15,4 @@ name: opentok-titanium
 moduleid: com.tokbox.ti.opentok
 guid: aebd1afb-75f8-4b05-a50f-e5861cfb0b7e
 platform: iphone
-minsdk: 2.0.0
+minsdk: 2.1.0

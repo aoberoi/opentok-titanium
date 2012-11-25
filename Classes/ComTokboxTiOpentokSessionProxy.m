@@ -21,9 +21,6 @@ NSString * const kSessionStatusConnecting = @"connecting";
 NSString * const kSessionStatusDisconnected = @"disconnected";
 NSString * const kSessionStatusFailed = @"failed";
 
-NSString * const kSessionEnvironmentStaging = @"staging";
-NSString * const kSessionEnvironmentProduction = @"production";
-
 @implementation ComTokboxTiOpentokSessionProxy
 
 #pragma mark - Helpers
@@ -212,32 +209,6 @@ NSString * const kSessionEnvironmentProduction = @"production";
     }
     
     return _connectionProxy;
-}
-
--(NSString *)environment
-{
-    switch (_session.environment) {
-        case OTSessionEnvironmentStaging:
-            return kSessionEnvironmentStaging;
-            break;
-        case OTSessionEnvironmentProduction:
-            return kSessionEnvironmentProduction;
-            break;
-    }
-}
-
--(void)setEnvironment:(id)value
-{
-    if ([[self sessionConnectionStatus] isEqualToString:kSessionStatusDisconnected]) {
-        NSString *environment = [TiUtils stringValue:value];
-        if ([environment isEqualToString:kSessionEnvironmentStaging]) {
-            _session.environment = OTSessionEnvironmentStaging;
-        } else if ([environment isEqualToString:kSessionEnvironmentProduction]) {
-            _session.environment = OTSessionEnvironmentProduction;
-        } else {
-            NSLog(@"Session environment cannot be set to %@", environment);
-        }
-    }
 }
 
 #pragma mark - Public Methods

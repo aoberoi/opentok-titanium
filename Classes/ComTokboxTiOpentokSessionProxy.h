@@ -15,9 +15,6 @@ extern NSString * const kSessionStatusConnecting;
 extern NSString * const kSessionStatusDisconnected;
 extern NSString * const kSessionStatusFailed;
 
-extern NSString * const kSessionEnvironmentStaging;
-extern NSString * const kSessionEnvironmentProduction;
-
 @class ComTokboxTiOpentokConnectionProxy, 
        ComTokboxTiOpentokPublisherProxy, 
        ComTokboxTiOpentokSubscriberProxy;
@@ -42,7 +39,6 @@ extern NSString * const kSessionEnvironmentProduction;
 @property (readonly) NSString *sessionConnectionStatus;
 @property (readonly) NSNumber *connectionCount;
 @property (readonly) ComTokboxTiOpentokConnectionProxy *connection;
-@property (nonatomic, readwrite, assign) NSString *environment;
 
 // Methods
 - (void)connect:(id)args;
