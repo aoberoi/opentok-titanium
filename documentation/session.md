@@ -33,7 +33,6 @@ This object is analogous to the [JS API Session](http://www.tokbox.com/opentok/a
     </tr>
     <tr>
       <td><a href="#subscribestream-props">subscribe(stream, props)</a></td>
-      <td><a href="#environment">environment</a></td>
       <td><a href="#streamdestroyed">streamDestroyed</a></td>
     </tr>
   </table>
@@ -108,10 +107,6 @@ Returns: (Subscriber)
 ### connectionCount
 
 (Number) The number of connections in the Session. _Read Only_
-
-### environment
-
-(String) The OpenTok environment that the session will connect to. This is only writable when the [sessionConnectionStatus](#sessionconnectionstatus) is "disconnected".
 
 ## Events
 
