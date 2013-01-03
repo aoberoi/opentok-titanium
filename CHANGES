@@ -1,7 +1,15 @@
 v0.2.2
 ------
 
-* Upgrades Opentok.framework to Nov 12 2012 release
+*  Upgrades Opentok.framework to Nov 12 2012 release
+
+*  Updates documentation to remove session.environment property. All Opentok sessions are now
+   run in the production environment.
+
+*  Updates documentation to reference Dashboard <https://dashboard.tokbox.com> for API Key
+   creation.
+
+*  Resolves initial build linker errors by upgrading the Titanium SDK min version to 2.1.2.GA
 
 
 v0.2.1
