@@ -12,8 +12,6 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
 
 @implementation ComTokboxTiOpentokPublisherProxy
 
-@synthesize publisher = _publisher;
-
 #pragma mark - Helpers
 
 // TODO: Localization
@@ -76,6 +74,8 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
         
         _publisher.publishAudio = publishAudio;
         _publisher.publishVideo = publishVideo;
+        
+        _videoViewProxy = nil;
     }
     
     return self;
@@ -85,6 +85,8 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
 
 - (void)dealloc {
     [_publisher release];
+    [_videoViewProxy _invalidate];
+    [_videoViewProxy release];
     
     [super dealloc];
 }
@@ -108,6 +110,7 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
 
 -(id)session
 {
+    // TODO: this could return a dangling pointer
     return _sessionProxy;
 }
 
@@ -125,12 +128,12 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
     }
 }
 
--(id)view
+-(ComTokboxTiOpentokVideoViewProxy *)view
 {
     // TODO: Probably not the best way to return a view, should somehow indicate that createView should
     //       be called first
-    if (_publisherViewProxy) return _publisherViewProxy;
-    return [NSNull null];
+    if (_videoViewProxy) return _videoViewProxy;
+    return nil;
 }
 
 
@@ -138,16 +141,16 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
 
 // TODO: this needs to run on a UI thread?
 //       ENSURE_UI_THREAD_1(arg) would not work because the method returns non-void
--(ComTokboxTiOpentokPublisherViewProxy *)createView:(id)args
+-(ComTokboxTiOpentokVideoViewProxy *)createView:(id)args
 {
-    NSLog(@"[INFO] creating a publisher view proxy");
-    if (!_publisherViewProxy) {
+    NSLog(@"[INFO] creating a video view proxy");
+    if (!_videoViewProxy) {
         ENSURE_SINGLE_ARG(args, NSDictionary);
-        _publisherViewProxy = [[ComTokboxTiOpentokPublisherViewProxy alloc] initWithPublisherProxy:self andProperties:args];
-        NSLog(@"[INFO] publisher view proxy instance created: %@", _publisherViewProxy.description);
+        _videoViewProxy = [[ComTokboxTiOpentokVideoViewProxy alloc] initWithProxy:self andProperties:args];
+        NSLog(@"[INFO] video view proxy instance created: %@", _videoViewProxy.description);
     }
-    // TODO: assign properties to existing subscriberViewProxy?
-    return _publisherViewProxy;
+    // TODO: assign properties to existing videoViewProxy?
+    return _videoViewProxy;
 }
 
 #pragma mark - Publisher Delegate Protocol
@@ -175,6 +178,13 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
     if ([self _hasListeners:@"publisherStopped"]) {
         [self fireEvent:@"publisherStopped"];
     }
+}
+
+#pragma mark - Opentok Object Proxy
+
+- (id) backingOpentokObject
+{
+    return _publisher;
 }
 
 @end

@@ -142,6 +142,7 @@ NSString * const kSessionStatusFailed = @"failed";
         
         // Manage dynprops for Titanium (only need to do this for setters)
         //[self replaceValue:stringSessionId forKey:@"sessionId" notification:NO];
+        
     } else {
         // Throw error
         // TODO: no idea if this actually works, exception handling isn't documented well for titanium.
@@ -243,7 +244,11 @@ NSString * const kSessionStatusFailed = @"failed";
     if (_publisherProxy != nil) {
         NSLog(@"Publisher already exists, cannot create more than one publisher");
         // TODO: not sure if returning the existing publisher proxy is a good idea
+        // Maybe we should also verify that not only does it exist, but that it is publishing?
+        // unpublish looks like it does the right thing (makes _publisher = nil) but when a publisher fails
+        // or if a publisher stops streaming, _publisher probably still points to a valid object
     } else {
+        
         // parse options
         id firstArg = [args count] > 0 ? [args objectAtIndex:0] : nil;
         if (firstArg != nil && [firstArg isKindOfClass:[NSDictionary class]]) {
@@ -260,7 +265,7 @@ NSString * const kSessionStatusFailed = @"failed";
                                                                                    video:publishVideo];
         
         // Begin publishing
-        [_session publish:_publisherProxy.publisher];
+        [_session publish:[_publisherProxy backingOpentokObject]];
     }
     return _publisherProxy;
 }
@@ -268,7 +273,7 @@ NSString * const kSessionStatusFailed = @"failed";
 -(void)unpublish:(id)args
 {
     if (_publisherProxy != nil) {
-        [_session unpublish:_publisherProxy.publisher];
+        [_session unpublish:[_publisherProxy backingOpentokObject]];
         [_publisherProxy release];
         _publisherProxy = nil;
     } else {
@@ -309,16 +314,15 @@ NSString * const kSessionStatusFailed = @"failed";
                                                                                                               audio:subscribeToAudio 
                                                                                                               video:subscribeToVideo];
     [_subscriberProxies addObject:subscriber];
+    [subscriber release];
     
-    return [subscriber autorelease];
+    return subscriber;
 }
 
 #pragma mark - Session Delegate Protocol
 
 - (void)sessionDidConnect:(OTSession*)session
 {
-    [self requireSessionInitializationWithLocation:CODELOCATION];
-    
     if ([self _hasListeners:@"sessionConnected"]) {
         [self fireEvent:@"sessionConnected"];
     }
@@ -327,8 +331,6 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)sessionDidDisconnect:(OTSession*)session
 {
-    [self requireSessionInitializationWithLocation:CODELOCATION];
-    
     if ([self _hasListeners:@"sessionDisconnected"]) {
         [self fireEvent:@"sessionDisconnected"];
     }
@@ -337,8 +339,6 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)session:(OTSession*)session didFailWithError:(OTError*)error
 {
-    [self requireSessionInitializationWithLocation:CODELOCATION];
-    
     NSDictionary *errorObject = [ComTokboxTiOpentokSessionProxy dictionaryForOTError:error];
     NSDictionary *eventParameters = [NSDictionary dictionaryWithObject:errorObject forKey:@"error"];
     
@@ -350,8 +350,6 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)session:(OTSession*)session didReceiveStream:(OTStream*)stream
 {
-    [self requireSessionInitializationWithLocation:CODELOCATION];
-    
     if ([self _hasListeners:@"streamCreated"]) {
         
         // Create a stream proxy object
@@ -374,8 +372,6 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)session:(OTSession*)session didDropStream:(OTStream*)stream
 {
-    [self requireSessionInitializationWithLocation:CODELOCATION];
-    
     if ([self _hasListeners:@"streamDestroyed"]) {
         
         // Find and remove the stream proxy in _streamProxies
@@ -397,5 +393,11 @@ NSString * const kSessionStatusFailed = @"failed";
     }
 }
 
+#pragma mark - Opentok Object Proxy
+
+- (id) backingOpentokObject
+{
+    return _session;
+}
 
 @end

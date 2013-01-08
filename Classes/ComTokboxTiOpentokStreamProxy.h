@@ -8,12 +8,13 @@
 //
 
 #import "TiProxy.h"
+#import "OTObjectProxy.h"
 #import <Opentok/OTStream.h>
 
 @class ComTokboxTiOpentokSessionProxy;
 @class ComTokboxTiOpentokConnectionProxy;
 
-@interface ComTokboxTiOpentokStreamProxy : TiProxy {
+@interface ComTokboxTiOpentokStreamProxy : TiProxy <OTObjectProxy> {
     
 @private
     OTStream *_stream;
@@ -22,9 +23,6 @@
 }
 
 - (id)initWithStream:(OTStream *)existingStream sessionProxy:(ComTokboxTiOpentokSessionProxy *)sessionProxy;
-
-// Objective-C only Property
-@property (readonly) OTStream *stream;
 
 // Properties
 @property (readonly) ComTokboxTiOpentokConnectionProxy *connection;

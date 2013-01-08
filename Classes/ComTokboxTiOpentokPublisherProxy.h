@@ -3,20 +3,21 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #import "TiProxy.h"
+#import "OTObjectProxy.h"
 #import <Opentok/OTPublisher.h>
-#import "ComTokboxTiOpentokPublisherViewProxy.h"
+#import "ComTokboxTiOpentokVideoViewProxy.h"
 
 extern NSString * const kPublisherCameraPositionFront;
 extern NSString * const kPublisherCameraPositionBack;
 
 @class ComTokboxTiOpentokSessionProxy;
 
-@interface ComTokboxTiOpentokPublisherProxy : TiProxy <OTPublisherDelegate> {
+@interface ComTokboxTiOpentokPublisherProxy : TiProxy <OTPublisherDelegate, OTObjectProxy> {
 
 @private
     // Owned
     OTPublisher *_publisher;
-    ComTokboxTiOpentokPublisherViewProxy *_publisherViewProxy;
+    ComTokboxTiOpentokVideoViewProxy *_videoViewProxy;
     // Unsafe unretained
     ComTokboxTiOpentokSessionProxy *_sessionProxy;
 }
@@ -26,18 +27,15 @@ extern NSString * const kPublisherCameraPositionBack;
                      audio:(BOOL)publishAudio 
                      video:(BOOL)publishVideo;
 
-// Objective-C only Property
-@property (readonly) OTPublisher *publisher;
-
 // Properties
 @property (readonly) NSNumber *publishAudio;
 @property (readonly) NSNumber *publishVideo;
 @property (readonly) NSString *name;
 @property (readonly) ComTokboxTiOpentokSessionProxy *session;
 @property (nonatomic, assign) NSString *cameraPosition;
-@property (readonly) id view;
+@property (readonly) ComTokboxTiOpentokVideoViewProxy *view;
 
 // Methods
--(ComTokboxTiOpentokPublisherViewProxy *)createView:(id)args;
+-(ComTokboxTiOpentokVideoViewProxy *)createView:(id)args;
 
 @end

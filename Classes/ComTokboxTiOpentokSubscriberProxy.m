@@ -57,11 +57,11 @@
         _sessionProxy = sessionProxy;
         _streamProxy = streamProxy;
         
-        _subscriber = [[OTSubscriber alloc] initWithStream:streamProxy.stream delegate:self];
+        _subscriber = [[OTSubscriber alloc] initWithStream:[streamProxy backingOpentokObject] delegate:self];
         _subscriber.subscribeToAudio = subscribeToAudio;
         _subscriber.subscribeToVideo = subscribeToVideo;
         
-        _subscriberViewProxy = nil;
+        _videoViewProxy = nil;
         
     }
     
@@ -72,36 +72,32 @@
 
 - (void)dealloc {
     [_subscriber release];
-    [_subscriberViewProxy _invalidate];
-    [_subscriberViewProxy release];
+    [_videoViewProxy _invalidate];
+    [_videoViewProxy release];
     
     [super dealloc];
-}
-
-#pragma mark - Obj-C only Methods
-- (OTSubscriber *)_subscriber
-{
-    return _subscriber;
 }
 
 #pragma mark - Properties
 
 -(id)session
 {
+    // TODO: this could return a dangling pointer
     return _sessionProxy;
 }
 
 -(id)stream
 {
+    // TODO: this could return a dangling pointer
     return _streamProxy;
 }
 
--(id)view
+-(ComTokboxTiOpentokVideoViewProxy *)view
 {
     // TODO: Probably not the best way to return a view, should somehow indicate that createView should
     //       be called first
-    if (_subscriberViewProxy) return _subscriberViewProxy;
-    return [NSNull null];
+    if (_videoViewProxy) return _videoViewProxy;
+    return nil;
 }
 
 -(id)subscribeToAudio
@@ -122,18 +118,16 @@
     [_sessionProxy removeSubscriber:self];
 }
 
-// TODO: this needs to run on a UI thread?
-//       ENSURE_UI_THREAD_1(arg) would not work because the method returns non-void
--(ComTokboxTiOpentokSubscriberViewProxy *)createView:(id)args
+-(ComTokboxTiOpentokVideoViewProxy *)createView:(id)args
 {
-    NSLog(@"[INFO] creating a subscriber view proxy");
-    if (!_subscriberViewProxy) {
+    NSLog(@"[INFO] creating a video view proxy");
+    if (!_videoViewProxy) {
         ENSURE_SINGLE_ARG(args, NSDictionary);
-        _subscriberViewProxy = [[ComTokboxTiOpentokSubscriberViewProxy alloc] initWithSubscriberProxy:self andProperties:args];
-        NSLog(@"[INFO] subscriber view proxy instance created: %@", _subscriberViewProxy.description);
+        _videoViewProxy = [[ComTokboxTiOpentokVideoViewProxy alloc] initWithProxy:self andProperties:args];
+        NSLog(@"[INFO] video view proxy instance created: %@", _videoViewProxy.description);
     }
-    // TODO: assign properties to existing subscriberViewProxy?
-    return _subscriberViewProxy;
+    // TODO: assign properties to existing videoViewProxy?
+    return _videoViewProxy;
 }
 
 #pragma mark - Subscriber Delegate
@@ -163,6 +157,12 @@
     }
 }
 
+#pragma mark - Opentok Object Proxy
+
+- (id) backingOpentokObject
+{
+    return _subscriber;
+}
 
 
 @end

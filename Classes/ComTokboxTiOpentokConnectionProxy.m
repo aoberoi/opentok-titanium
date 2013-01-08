@@ -48,4 +48,11 @@
     return _connection.creationTime;
 }
 
+#pragma mark - Opentok Object Proxy
+
+- (id) backingOpentokObject
+{
+    return _connection;
+}
+
 @end

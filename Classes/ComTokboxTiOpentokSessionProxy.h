@@ -8,6 +8,7 @@
 //
 
 #import "TiProxy.h"
+#import "OTObjectProxy.h"
 #import <Opentok/OTSession.h>
 
 extern NSString * const kSessionStatusConnected;
@@ -19,8 +20,9 @@ extern NSString * const kSessionStatusFailed;
        ComTokboxTiOpentokPublisherProxy, 
        ComTokboxTiOpentokSubscriberProxy;
 
-@interface ComTokboxTiOpentokSessionProxy : TiProxy <OTSessionDelegate> {
+@interface ComTokboxTiOpentokSessionProxy : TiProxy <OTSessionDelegate, OTObjectProxy> {
 
+// Owning strong references
 @private
     OTSession *_session;
     NSMutableDictionary *_streamProxies;
@@ -44,6 +46,7 @@ extern NSString * const kSessionStatusFailed;
 - (void)connect:(id)args;
 - (void)disconnect:(id)args;
 - (id)publish:(id)args;
+- (void)unpublish:(id)args;
 - (id)subscribe:(id)args;
 
 

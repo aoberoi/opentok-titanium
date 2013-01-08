@@ -3,9 +3,10 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #import "TiProxy.h"
+#import "OTObjectProxy.h"
 #import <Opentok/OTConnection.h>
 
-@interface ComTokboxTiOpentokConnectionProxy : TiProxy {
+@interface ComTokboxTiOpentokConnectionProxy : TiProxy <OTObjectProxy> {
 
 @private
     OTConnection *_connection;    

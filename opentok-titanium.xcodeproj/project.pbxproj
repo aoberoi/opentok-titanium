@@ -35,18 +35,15 @@
 		9231900B1543E99F00C7E3D5 /* ComTokboxTiOpentokPublisherProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 923190091543E99F00C7E3D5 /* ComTokboxTiOpentokPublisherProxy.m */; };
 		92446CC81518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 92446CC61518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.h */; };
 		92446CC91518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 92446CC71518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.m */; };
-		9281E0F71561ED630045E16D /* ComTokboxTiOpentokSubscriberView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9281E0F51561ED630045E16D /* ComTokboxTiOpentokSubscriberView.h */; };
-		9281E0F81561ED630045E16D /* ComTokboxTiOpentokSubscriberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9281E0F61561ED630045E16D /* ComTokboxTiOpentokSubscriberView.m */; };
-		9281E0FB1561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 9281E0F91561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.h */; };
-		9281E0FC1561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9281E0FA1561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.m */; };
 		929FFAC01544B07700198A3A /* ComTokboxTiOpentokSubscriberProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 929FFABE1544B07700198A3A /* ComTokboxTiOpentokSubscriberProxy.h */; };
 		929FFAC11544B07700198A3A /* ComTokboxTiOpentokSubscriberProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 929FFABF1544B07700198A3A /* ComTokboxTiOpentokSubscriberProxy.m */; };
 		92AFE90F150FD76E00DBD40C /* Opentok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AFE90E150FD76E00DBD40C /* Opentok.framework */; };
 		92AFE912150FD7D800DBD40C /* Opentok in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AFE911150FD7D800DBD40C /* Opentok */; };
-		92C707DD1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C707DB1562A28E0042B4FB /* ComTokboxTiOpentokPublisherView.h */; };
-		92C707DE1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C707DC1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.m */; };
-		92C707E11562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C707DF1562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.h */; };
-		92C707E21562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C707E01562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.m */; };
+		92D6A872169B348B00C6661B /* ComTokboxTiOpentokVideoView.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D6A86E169B348B00C6661B /* ComTokboxTiOpentokVideoView.h */; };
+		92D6A873169B348B00C6661B /* ComTokboxTiOpentokVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D6A86F169B348B00C6661B /* ComTokboxTiOpentokVideoView.m */; };
+		92D6A874169B348B00C6661B /* ComTokboxTiOpentokVideoViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D6A870169B348B00C6661B /* ComTokboxTiOpentokVideoViewProxy.h */; };
+		92D6A875169B348B00C6661B /* ComTokboxTiOpentokVideoViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D6A871169B348B00C6661B /* ComTokboxTiOpentokVideoViewProxy.m */; };
+		92D6A87F169B60AE00C6661B /* OTObjectProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D6A87E169B60AE00C6661B /* OTObjectProxy.h */; };
 		AA747D9F0F9514B9006C5449 /* ComTokboxTiOpentok_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ComTokboxTiOpentok_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -89,18 +86,15 @@
 		923190091543E99F00C7E3D5 /* ComTokboxTiOpentokPublisherProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokPublisherProxy.m; path = Classes/ComTokboxTiOpentokPublisherProxy.m; sourceTree = "<group>"; };
 		92446CC61518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokSessionProxy.h; path = Classes/ComTokboxTiOpentokSessionProxy.h; sourceTree = "<group>"; };
 		92446CC71518194000D5FE1A /* ComTokboxTiOpentokSessionProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokSessionProxy.m; path = Classes/ComTokboxTiOpentokSessionProxy.m; sourceTree = "<group>"; };
-		9281E0F51561ED630045E16D /* ComTokboxTiOpentokSubscriberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokSubscriberView.h; path = Classes/ComTokboxTiOpentokSubscriberView.h; sourceTree = "<group>"; };
-		9281E0F61561ED630045E16D /* ComTokboxTiOpentokSubscriberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokSubscriberView.m; path = Classes/ComTokboxTiOpentokSubscriberView.m; sourceTree = "<group>"; };
-		9281E0F91561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokSubscriberViewProxy.h; path = Classes/ComTokboxTiOpentokSubscriberViewProxy.h; sourceTree = "<group>"; };
-		9281E0FA1561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokSubscriberViewProxy.m; path = Classes/ComTokboxTiOpentokSubscriberViewProxy.m; sourceTree = "<group>"; };
 		929FFABE1544B07700198A3A /* ComTokboxTiOpentokSubscriberProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokSubscriberProxy.h; path = Classes/ComTokboxTiOpentokSubscriberProxy.h; sourceTree = "<group>"; };
 		929FFABF1544B07700198A3A /* ComTokboxTiOpentokSubscriberProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokSubscriberProxy.m; path = Classes/ComTokboxTiOpentokSubscriberProxy.m; sourceTree = "<group>"; };
 		92AFE90E150FD76E00DBD40C /* Opentok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Opentok.framework; sourceTree = "<group>"; };
 		92AFE911150FD7D800DBD40C /* Opentok */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Opentok; path = Opentok.framework/Versions/A/Opentok; sourceTree = "<group>"; };
-		92C707DB1562A28E0042B4FB /* ComTokboxTiOpentokPublisherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokPublisherView.h; path = Classes/ComTokboxTiOpentokPublisherView.h; sourceTree = "<group>"; };
-		92C707DC1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokPublisherView.m; path = Classes/ComTokboxTiOpentokPublisherView.m; sourceTree = "<group>"; };
-		92C707DF1562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokPublisherViewProxy.h; path = Classes/ComTokboxTiOpentokPublisherViewProxy.h; sourceTree = "<group>"; };
-		92C707E01562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokPublisherViewProxy.m; path = Classes/ComTokboxTiOpentokPublisherViewProxy.m; sourceTree = "<group>"; };
+		92D6A86E169B348B00C6661B /* ComTokboxTiOpentokVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokVideoView.h; path = Classes/ComTokboxTiOpentokVideoView.h; sourceTree = "<group>"; };
+		92D6A86F169B348B00C6661B /* ComTokboxTiOpentokVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokVideoView.m; path = Classes/ComTokboxTiOpentokVideoView.m; sourceTree = "<group>"; };
+		92D6A870169B348B00C6661B /* ComTokboxTiOpentokVideoViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComTokboxTiOpentokVideoViewProxy.h; path = Classes/ComTokboxTiOpentokVideoViewProxy.h; sourceTree = "<group>"; };
+		92D6A871169B348B00C6661B /* ComTokboxTiOpentokVideoViewProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComTokboxTiOpentokVideoViewProxy.m; path = Classes/ComTokboxTiOpentokVideoViewProxy.m; sourceTree = "<group>"; };
+		92D6A87E169B60AE00C6661B /* OTObjectProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OTObjectProxy.h; path = Classes/OTObjectProxy.h; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* ComTokboxTiOpentok_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComTokboxTiOpentok_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libComTokboxTiOpentok.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libComTokboxTiOpentok.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +127,7 @@
 			children = (
 				92318FE5154376B200C7E3D5 /* Titanium Boilerplate */,
 				9281E0F31561E97D0045E16D /* Views */,
+				92D6A87B169B5C8A00C6661B /* Protocols */,
 				08FB77AEFE84172EC02AAC07 /* Proxies */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
@@ -192,16 +187,20 @@
 		9281E0F31561E97D0045E16D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9281E0F51561ED630045E16D /* ComTokboxTiOpentokSubscriberView.h */,
-				9281E0F61561ED630045E16D /* ComTokboxTiOpentokSubscriberView.m */,
-				9281E0F91561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.h */,
-				9281E0FA1561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.m */,
-				92C707DB1562A28E0042B4FB /* ComTokboxTiOpentokPublisherView.h */,
-				92C707DC1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.m */,
-				92C707DF1562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.h */,
-				92C707E01562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.m */,
+				92D6A86E169B348B00C6661B /* ComTokboxTiOpentokVideoView.h */,
+				92D6A86F169B348B00C6661B /* ComTokboxTiOpentokVideoView.m */,
+				92D6A870169B348B00C6661B /* ComTokboxTiOpentokVideoViewProxy.h */,
+				92D6A871169B348B00C6661B /* ComTokboxTiOpentokVideoViewProxy.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		92D6A87B169B5C8A00C6661B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				92D6A87E169B60AE00C6661B /* OTObjectProxy.h */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,10 +218,9 @@
 				923190061543D32F00C7E3D5 /* ComTokboxTiOpentokConnectionProxy.h in Headers */,
 				9231900A1543E99F00C7E3D5 /* ComTokboxTiOpentokPublisherProxy.h in Headers */,
 				929FFAC01544B07700198A3A /* ComTokboxTiOpentokSubscriberProxy.h in Headers */,
-				9281E0F71561ED630045E16D /* ComTokboxTiOpentokSubscriberView.h in Headers */,
-				9281E0FB1561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.h in Headers */,
-				92C707DD1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.h in Headers */,
-				92C707E11562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.h in Headers */,
+				92D6A872169B348B00C6661B /* ComTokboxTiOpentokVideoView.h in Headers */,
+				92D6A874169B348B00C6661B /* ComTokboxTiOpentokVideoViewProxy.h in Headers */,
+				92D6A87F169B60AE00C6661B /* OTObjectProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,10 +317,8 @@
 				923190071543D32F00C7E3D5 /* ComTokboxTiOpentokConnectionProxy.m in Sources */,
 				9231900B1543E99F00C7E3D5 /* ComTokboxTiOpentokPublisherProxy.m in Sources */,
 				929FFAC11544B07700198A3A /* ComTokboxTiOpentokSubscriberProxy.m in Sources */,
-				9281E0F81561ED630045E16D /* ComTokboxTiOpentokSubscriberView.m in Sources */,
-				9281E0FC1561F53E0045E16D /* ComTokboxTiOpentokSubscriberViewProxy.m in Sources */,
-				92C707DE1562A28F0042B4FB /* ComTokboxTiOpentokPublisherView.m in Sources */,
-				92C707E21562A2AF0042B4FB /* ComTokboxTiOpentokPublisherViewProxy.m in Sources */,
+				92D6A873169B348B00C6661B /* ComTokboxTiOpentokVideoView.m in Sources */,
+				92D6A875169B348B00C6661B /* ComTokboxTiOpentokVideoViewProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -61,11 +61,6 @@
     [super dealloc];
 }
 
--(OTStream *)stream
-{
-    return _stream;
-}
-
 #pragma mark - Properties
 
 - (ComTokboxTiOpentokConnectionProxy *)connection
@@ -115,6 +110,13 @@
     [self requireStreamInitializationWithLocation:CODELOCATION];
     
     return _stream.type;
+}
+
+#pragma mark - Opentok Object Proxy
+
+- (id) backingOpentokObject
+{
+    return _stream;
 }
 
 @end

@@ -3,13 +3,13 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #import "TiUIView.h"
-#import <Opentok/OTPublisher.h>
+#import <Opentok/OTVideoView.h>
 
-@interface ComTokboxTiOpentokPublisherView : TiUIView {
-    UIView *_publisherView;
+@interface ComTokboxTiOpentokVideoView : TiUIView {
+    OTVideoView *_videoView;
 }
 
 // Obj-C only Methods
-- (void)_invalidatePublisher;
+- (void)_invalidate;
 
 @end
