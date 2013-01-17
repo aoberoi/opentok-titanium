@@ -145,7 +145,7 @@ ignoreFiles = ['.DS_Store','.gitignore','libTitanium.a','titanium.jar','README',
 ignoreDirs = ['.DS_Store','.svn','.git','CVSROOT']
 
 def zip_dir(zf,dir,basepath,ignore=[]):
-	for root, dirs, files in os.walk(dir):
+	for root, dirs, files in os.walk(dir, followlinks=True):
 		for name in ignoreDirs:
 			if name in dirs:
 				dirs.remove(name)	# don't visit ignored directories			  
