@@ -14,6 +14,18 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
 
 #pragma mark - Helpers
 
+- (void)requirePublisherInitializationWithLocation:(NSString *)codeLocation andMessage:(NSString *)message {
+    if (_publisher == nil) {
+        [self throwException:TiExceptionInternalInconsistency
+                   subreason:message
+                    location:codeLocation];
+    }
+}
+
+- (void)requirePublisherInitializationWithLocation:(NSString *)codeLocation {
+    [self requirePublisherInitializationWithLocation:codeLocation andMessage:@"This publisher was not properly initialized"];
+}
+
 // TODO: Localization
 + (NSDictionary *)dictionaryForOTError:(OTError *)error
 {
@@ -91,36 +103,55 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
     [super dealloc];
 }
 
+#pragma mark - Obj-C only methods
+
+-(void)_invalidate
+{
+    [_publisher release];
+    _publisher = nil;
+    
+    [_videoViewProxy _invalidate];
+    [_videoViewProxy release];
+    _videoViewProxy = nil;
+}
+
 #pragma mark - Properties
 
 -(id)publishAudio
 {
+    [self requirePublisherInitializationWithLocation:CODELOCATION];
     return NUMBOOL(_publisher.publishAudio);
 }
 
 -(id)publishVideo
 {
+    [self requirePublisherInitializationWithLocation:CODELOCATION];
     return NUMBOOL(_publisher.publishVideo);
 }
 
 -(id)name
 {
+    [self requirePublisherInitializationWithLocation:CODELOCATION];
     return _publisher.name;
 }
 
 -(id)session
 {
+    [self requirePublisherInitializationWithLocation:CODELOCATION];
+    
     // TODO: this could return a dangling pointer
     return _sessionProxy;
 }
 
 -(id)cameraPosition
 {
+    [self requirePublisherInitializationWithLocation:CODELOCATION];
     return [ComTokboxTiOpentokPublisherProxy captureDevicePositionToString:_publisher.cameraPosition];
 }
 
 -(void)setCameraPosition:(NSString *)cameraPosition
 {
+    [self requirePublisherInitializationWithLocation:CODELOCATION];
     if ([cameraPosition isEqualToString:kPublisherCameraPositionBack]) {
         _publisher.cameraPosition = AVCaptureDevicePositionBack;
     } else if ([cameraPosition isEqualToString:kPublisherCameraPositionFront]) {
@@ -130,6 +161,8 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
 
 -(ComTokboxTiOpentokVideoViewProxy *)view
 {
+    [self requirePublisherInitializationWithLocation:CODELOCATION];
+    
     // TODO: Probably not the best way to return a view, should somehow indicate that createView should
     //       be called first
     if (_videoViewProxy) return _videoViewProxy;
@@ -139,10 +172,10 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
 
 #pragma mark - Methods
 
-// TODO: this needs to run on a UI thread?
-//       ENSURE_UI_THREAD_1(arg) would not work because the method returns non-void
 -(ComTokboxTiOpentokVideoViewProxy *)createView:(id)args
 {
+    [self requirePublisherInitializationWithLocation:CODELOCATION];
+    
     NSLog(@"[DEBUG] creating a video view proxy");
     if (!_videoViewProxy) {
         ENSURE_SINGLE_ARG(args, NSDictionary);

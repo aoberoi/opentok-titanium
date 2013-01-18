@@ -27,6 +27,9 @@ extern NSString * const kPublisherCameraPositionBack;
                      audio:(BOOL)publishAudio 
                      video:(BOOL)publishVideo;
 
+// Obj-C only Methods
+-(void)_invalidate;
+
 // Properties
 @property (readonly) NSNumber *publishAudio;
 @property (readonly) NSNumber *publishVideo;

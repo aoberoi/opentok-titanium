@@ -142,11 +142,6 @@ NSString * const kSessionStatusFailed = @"failed";
         
         NSLog(@"[DEBUG] session initialized with id: %@", stringSessionId);
         
-        //[[ComTokboxTiOpentokModule sharedModule] setSession:_session];
-        
-        // Manage dynprops for Titanium (only need to do this for setters)
-        //[self replaceValue:stringSessionId forKey:@"sessionId" notification:NO];
-        
     } else {
         // Throw error
         // TODO: no idea if this actually works, exception handling isn't documented well for titanium.
@@ -283,6 +278,7 @@ NSString * const kSessionStatusFailed = @"failed";
     if (_publisherProxy != nil) {
         [_session unpublish:[_publisherProxy backingOpentokObject]];
         NSLog(@"[DEBUG] session unpublishing");
+        [_publisherProxy _invalidate];
         [_publisherProxy release];
         _publisherProxy = nil;
     } else {
@@ -356,6 +352,7 @@ NSString * const kSessionStatusFailed = @"failed";
     NSDictionary *eventParameters = [NSDictionary dictionaryWithObject:errorObject forKey:@"error"];
     
     if ([self _hasListeners:@"sessionFailed"]) {
+        NSLog(@"[DEBUG] session failed event firing");
         [self fireEvent:@"sessionFailed" withObject:eventParameters];
     }
 }

@@ -8,6 +8,20 @@
 
 @implementation ComTokboxTiOpentokConnectionProxy
 
+#pragma mark - Helpers
+
+- (void)requireConnectionInitializationWithLocation:(NSString *)codeLocation andMessage:(NSString *)message {
+    if (_connection == nil) {
+        [self throwException:TiExceptionInternalInconsistency
+                   subreason:message
+                    location:codeLocation];
+    }
+}
+
+- (void)requireConnectionInitializationWithLocation:(NSString *)codeLocation {
+    [self requireConnectionInitializationWithLocation:codeLocation andMessage:@"This connection was not properly initialized"];
+}
+
 #pragma mark - Initialization
 
 // This is NOT meant to be called from javascript land, only for native code use.
@@ -40,11 +54,13 @@
 
 -(id)connectionId
 {
+    [self requireConnectionInitializationWithLocation:CODELOCATION];
     return _connection.connectionId;
 }
 
 -(id)creationTime
 {
+    [self requireConnectionInitializationWithLocation:CODELOCATION];
     return _connection.creationTime;
 }
 

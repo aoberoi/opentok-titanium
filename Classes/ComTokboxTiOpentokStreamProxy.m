@@ -96,6 +96,8 @@
 }
 
 - (ComTokboxTiOpentokSessionProxy *)session {
+    [self requireStreamInitializationWithLocation:CODELOCATION];
+    
     // TODO: debug this, could be returning a dangling pointer if the session proxy can go away.
     return _sessionProxy;
 }

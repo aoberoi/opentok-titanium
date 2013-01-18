@@ -12,6 +12,18 @@
 
 #pragma mark - Helpers
 
+- (void)requireSubscriberInitializationWithLocation:(NSString *)codeLocation andMessage:(NSString *)message {
+    if (_subscriber == nil) {
+        [self throwException:TiExceptionInternalInconsistency
+                   subreason:message
+                    location:codeLocation];
+    }
+}
+
+- (void)requireSubscriberInitializationWithLocation:(NSString *)codeLocation {
+    [self requireSubscriberInitializationWithLocation:codeLocation andMessage:@"This subscriber was not properly initialized"];
+}
+
 // TODO: Localization
 + (NSDictionary *)dictionaryForOTError:(OTError *)error
 {
@@ -71,6 +83,9 @@
 #pragma mark - Deallocation
 
 - (void)dealloc {
+    // TODO: This is unsafe, but it must be done
+    [_sessionProxy removeSubscriber:self];
+    
     [_subscriber release];
     [_videoViewProxy _invalidate];
     [_videoViewProxy release];
@@ -82,18 +97,24 @@
 
 -(id)session
 {
+    [self requireSubscriberInitializationWithLocation:CODELOCATION];
+    
     // TODO: this could return a dangling pointer
     return _sessionProxy;
 }
 
 -(id)stream
 {
+    [self requireSubscriberInitializationWithLocation:CODELOCATION];
+    
     // TODO: this could return a dangling pointer
     return _streamProxy;
 }
 
 -(ComTokboxTiOpentokVideoViewProxy *)view
 {
+    [self requireSubscriberInitializationWithLocation:CODELOCATION];
+    
     // TODO: Probably not the best way to return a view, should somehow indicate that createView should
     //       be called first
     if (_videoViewProxy) return _videoViewProxy;
@@ -102,11 +123,13 @@
 
 -(id)subscribeToAudio
 {
+    [self requireSubscriberInitializationWithLocation:CODELOCATION];
     return NUMBOOL(_subscriber.subscribeToAudio);
 }
 
 -(id)subscribeToVideo
 {
+    [self requireSubscriberInitializationWithLocation:CODELOCATION];
     return NUMBOOL(_subscriber.subscribeToVideo);
 }
 
@@ -114,12 +137,22 @@
 
 -(void)close:(id)args
 {
+    [self requireSubscriberInitializationWithLocation:CODELOCATION];
+    
     [_subscriber close];
+    _subscriber = nil;
+    
     [_sessionProxy removeSubscriber:self];
+    
+    [_videoViewProxy _invalidate];
+    [_videoViewProxy release];
+    _videoViewProxy = nil;
 }
 
 -(ComTokboxTiOpentokVideoViewProxy *)createView:(id)args
 {
+    [self requireSubscriberInitializationWithLocation:CODELOCATION];
+    
     NSLog(@"[DEBUG] creating a video view proxy");
     if (!_videoViewProxy) {
         ENSURE_SINGLE_ARG(args, NSDictionary);
