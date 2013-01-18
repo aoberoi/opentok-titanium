@@ -111,6 +111,7 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)dealloc
 {
+    NSLog(@"[DEBUG] dealloc called on session proxy");
     [_session release];
     [_streamProxies release];
     [_connectionProxy release];
@@ -125,6 +126,7 @@ NSString * const kSessionStatusFailed = @"failed";
 -(void)removeSubscriber:(ComTokboxTiOpentokSubscriberProxy *)subscriber
 {
     [_subscriberProxies removeObject:subscriber];
+    NSLog(@"[DEBUG] session removing subscriber proxy");
 }
 
 #pragma mark - Public Properties
@@ -137,6 +139,8 @@ NSString * const kSessionStatusFailed = @"failed";
         
         // Lazy initialization of backing session
         _session = [[OTSession alloc] initWithSessionId:stringSessionId delegate:self];
+        
+        NSLog(@"[DEBUG] session initialized with id: %@", stringSessionId);
         
         //[[ComTokboxTiOpentokModule sharedModule] setSession:_session];
         
@@ -226,6 +230,8 @@ NSString * const kSessionStatusFailed = @"failed";
     // Call method on backing session
     [_session connectWithApiKey:apiKey token:token];
     
+    NSLog(@"[DEBUG] session connect called");
+    
 }
 
 - (void)disconnect:(id)args
@@ -233,6 +239,7 @@ NSString * const kSessionStatusFailed = @"failed";
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
     [_session disconnect];
+    NSLog(@"[DEBUG] session disconnect called");
 }
 
 // takes one argument which is a dictionary of options
@@ -266,6 +273,7 @@ NSString * const kSessionStatusFailed = @"failed";
         
         // Begin publishing
         [_session publish:[_publisherProxy backingOpentokObject]];
+        NSLog(@"[DEBUG] session publishing");
     }
     return _publisherProxy;
 }
@@ -274,6 +282,7 @@ NSString * const kSessionStatusFailed = @"failed";
 {
     if (_publisherProxy != nil) {
         [_session unpublish:[_publisherProxy backingOpentokObject]];
+        NSLog(@"[DEBUG] session unpublishing");
         [_publisherProxy release];
         _publisherProxy = nil;
     } else {
@@ -314,6 +323,7 @@ NSString * const kSessionStatusFailed = @"failed";
                                                                                                               audio:subscribeToAudio 
                                                                                                               video:subscribeToVideo];
     [_subscriberProxies addObject:subscriber];
+    NSLog(@"[DEBUG] session adding subscriber proxy");
     [subscriber release];
     
     return subscriber;
@@ -323,6 +333,7 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)sessionDidConnect:(OTSession*)session
 {
+    NSLog(@"[DEBUG] session connected");
     if ([self _hasListeners:@"sessionConnected"]) {
         [self fireEvent:@"sessionConnected"];
     }
@@ -331,6 +342,7 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)sessionDidDisconnect:(OTSession*)session
 {
+    NSLog(@"[DEBUG] session disconnected");
     if ([self _hasListeners:@"sessionDisconnected"]) {
         [self fireEvent:@"sessionDisconnected"];
     }
@@ -339,6 +351,7 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)session:(OTSession*)session didFailWithError:(OTError*)error
 {
+    NSLog(@"[DEBUG] session failed with error: %@", [error description]);
     NSDictionary *errorObject = [ComTokboxTiOpentokSessionProxy dictionaryForOTError:error];
     NSDictionary *eventParameters = [NSDictionary dictionaryWithObject:errorObject forKey:@"error"];
     
@@ -350,6 +363,7 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)session:(OTSession*)session didReceiveStream:(OTStream*)stream
 {
+    NSLog(@"[DEBUG] session recieved stream");
     if ([self _hasListeners:@"streamCreated"]) {
         
         // Create a stream proxy object
@@ -372,6 +386,7 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)session:(OTSession*)session didDropStream:(OTStream*)stream
 {
+    NSLog(@"[DEBUG] session dropped stream");
     if ([self _hasListeners:@"streamDestroyed"]) {
         
         // Find and remove the stream proxy in _streamProxies
@@ -380,7 +395,7 @@ NSString * const kSessionStatusFailed = @"failed";
         
         // If the stream proxy is not found, create one for the event properties
         if (deadStreamProxy == nil) {
-            NSLog(@"[DEBUG] Could not find stream proxy during drop, initializing new one here")
+            NSLog(@"[DEBUG] Could not find stream proxy during drop, initializing new one here");
             deadStreamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:stream sessionProxy:self];
         }
         
@@ -398,6 +413,20 @@ NSString * const kSessionStatusFailed = @"failed";
 - (id) backingOpentokObject
 {
     return _session;
+}
+
+#pragma mark - TiProxy
+
+-(void)_listenerAdded:(NSString*)type count:(int)count
+{
+    NSLog(@"[DEBUG] Session Listener of type %@ added", type);
+    [super _listenerAdded:type count:count];
+}
+
+-(void)_listenerRemoved:(NSString*)type count:(int)count
+{
+    NSLog(@"[DEBUG] Session Listener of type %@ removed", type);
+    [super _listenerRemoved:type count:count];
 }
 
 @end
