@@ -75,7 +75,7 @@ Disconnects the Subscriber from the Session. The SubscriberViews associated with
 
 ### view
 
-(VideoView) If [createView(_props_)](#createviewprops) has been called on this Subscriber, this property will return a reference to that same VideoView. Otherwise it returns null.
+(VideoView) If [createView(_props_)](#createview_props_) has been called on this Subscriber, this property will return a reference to that same VideoView. Otherwise it returns null.
 
 ## Events
 
