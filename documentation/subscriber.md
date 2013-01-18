@@ -3,7 +3,7 @@
 You can use a Subscriber object to stream audio and video from a stream in OpenTok to this device. A Subscriber is constructed by calling
 [Session.subscribe(_stream_, _props_)](session.md#subscribestream-props). The Subscriber only represents the control of streaming that data,
 not the UI. In order to present a view of this data, use a [VideoView](videoview.md#videoview) which can
-be constructed using the [createView(_props_)](#createviewprops) method here.
+be constructed using the [createView(_props_)](#createview_props_) method here.
 
 <nav>
   <table>
