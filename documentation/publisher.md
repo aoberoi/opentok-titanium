@@ -3,7 +3,7 @@
 You can use a Publisher object to stream audio and video from a device to Opentok. A Publisher is constructed by calling
 [Session.publish(_props_)](session.md#publishprops). The Publisher only represents the control of streaming that data,
 not the UI. In order to present a view of this data, use a [VideoView](videoview.md#videoview) which can
-be constructed using the [createView(_props_)](#createviewprops) method here.
+be constructed using the [createView(_props_)](#createview_props_) method here.
 
 <nav>
   <table>
@@ -80,7 +80,7 @@ Returns: (VideoView)
 
 ### view
 
-(VideoView) If [createView(_props_)](#createviewprops) has been called on the Publisher, this property will return a reference to that same VideoView. Otherwise it returns null.
+(VideoView) If [createView(_props_)](#createview_props_) has been called on the Publisher, this property will return a reference to that same VideoView. Otherwise it returns null.
 
 ## Events
 
