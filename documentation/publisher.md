@@ -80,7 +80,7 @@ Returns: (PublisherView)
 
 ### view
 
-(PublisherView) If [createView(_props_)](#createviewprops) has been called on the Publisher, this property will return a reference to that same PublisherView. Otherwise it returns null.
+(VideoView) If [createView(_props_)](#createviewprops) has been called on the Publisher, this property will return a reference to that same VideoView. Otherwise it returns null.
 
 ## Events
 
