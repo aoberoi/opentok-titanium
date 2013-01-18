@@ -2,7 +2,8 @@
 
 ## Description
 
-Opentok is an API to stream live video to and from your App on mobile and on the web. [Find out more online](http://www.tokbox.com/opentok/api).
+Opentok is an API to stream live video to and from your App on mobile and on the web.
+[Find out more online](http://www.tokbox.com/opentok/api).
 
 ## Usage
 
@@ -18,7 +19,10 @@ The opentok variable is a reference to the Opentok module object.
 
 ### Connecting to a Session
 
-In order to connect to a session, we must first create a Session object and then use it to connect. In order to configure this we need an [API Key](http://www.tokbox.com/opentok/api/tools/js/apikey), a [Token](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/token_creation.html), and a [Session ID](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/session_creation.html).
+In order to connect to a session, we must first create a Session object and then use it to connect. In order to
+configure this we need an [Account](https://dashboard.tokbox.com/signups/new). Then find your API Key on the
+[Dashboard Projects](https://dashboard.tokbox.com/projects) page. Lastly, generate a ***Session ID*** and a
+corresponding ***Token*** as use them to create and connect to a [Session](session.md#session) as seen below.
 
 ```javascript
 var CONFIG = {
@@ -32,7 +36,10 @@ session.connect(CONFIG.apiKey, CONFIG.token);
 
 ### Publishing video to the Session
 
-To start streaming video and audio to other users/devices in the session we must Publish. To start publishing we first create a Publisher. Then to see the video that we are publishing, we add a PublisherView to the current view. All of this can only be done once the session is connected, so we place it inside the connection handler.
+To start streaming video and audio to other users/devices in the session we must Publish. To start publishing we
+first create a [Publisher](publisher.md#publisher). Then to see the video that we are publishing, we add a
+[VideoView](videoview.md#videoview) to the current view. All of this can only be done once the session is connected,
+so we place it inside the [sessionConnected](session.md#sessionconnected) event handler.
 
 ```javascript
 var publisher, publisherView;
@@ -46,7 +53,11 @@ session.addEventListener("sessionConnected", function(event) {
 
 ### Subscribing to video in a Session
 
-To start playing a video stream from another user/device in the session we must Subscribe. To start subscribing we first create a Subscriber from the Stream. Then to see the video from that Stream, we add a SubscriberView to the current view. All of this can only be done once a Stream is created (and after the session is connected), so we place it inside the stream creation handler.
+To start playing a video stream from another user/device in the session we must Subscribe. To start subscribing
+we first create a [Subscriber](subscriber.md#subscriber) from the [Stream](stream.md#stream). Then to see the video
+from that Stream, we add a [VideoView](videoview.md#videoview) to the current view. All of this can only be done
+once a [Stream](stream.md#stream) is created (and after the session is connected), so we place it inside the
+[streamCreated](session.md#streamcreated) event handler.
 
 ```javascript
 var subscriber, subscriberView;
@@ -61,7 +72,10 @@ session.addEventListener("streamCreated", function(event) {
 
 ### Which Stream belongs to my device? Which Stream is coming from another device?
 
-If you follow the example above, you will first subscribe to your own stream. It would be very useful to know when this Stream is coming from another device or from your own device. To do this, we compare the Connections of each Stream by their connectionId property.
+If you follow the example above, you will first subscribe to your own stream. It would be very useful to know
+whether this [Stream](stream.md#stream) is coming from another device or from your own device. To do this, we
+compare the [Connection](connection.md#connection) of each [Stream](stream.md#stream) by their
+[connectionId](connection.md#connectionid) property.
 
 ```javascript
 var subscriber, subscriberView;
@@ -86,12 +100,12 @@ session.addEventListener("streamCreated", function(event) {
   <tr>
     <td><a href="opentok.md">Opentok</a></td>
     <td><a href="session.md">Session</a></td>
-    <td><a href="publisherview.md">PublisherView</a></td>
+    <td><a href="videoview.md">VideoView</a></td>
   </tr>
   <tr>
     <td></td>
     <td><a href="publisher.md">Publisher</a></td>
-    <td><a href="subscriberview.md">SubscriberView</a></td>
+    <td></td>
   </tr>
   <tr>
     <td></td>
