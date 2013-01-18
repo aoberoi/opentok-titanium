@@ -2,7 +2,7 @@
 
 You can use a Publisher object to stream audio and video from a device to Opentok. A Publisher is constructed by calling
 [Session.publish(_props_)](session.md#publishprops). The Publisher only represents the control of streaming that data,
-not the UI. In order to present a view of this data, use a [PublisherView](publisherview.md#publisherview) which can
+not the UI. In order to present a view of this data, use a [VideoView](videoview.md#videoview) which can
 be constructed using the [createView(_props_)](#createviewprops) method here.
 
 <nav>
@@ -54,7 +54,7 @@ A publisher can stream data without being displayed in the UI. In order to displ
 Parameters:
 *  _props_ (Dictionary) _optional_ - Properties of Ti.UI.View that are inherited by the PublisherView. (See [Appcelerator Docs](http://docs.appcelerator.com/titanium/2.1/index.html#!/api/Titanium.UI.View))
 
-Returns: (PublisherView)
+Returns: (VideoView)
 
 ## Properties
 
