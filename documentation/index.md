@@ -89,7 +89,7 @@ session.addEventListener("streamCreated", function(event) {
 });
 ```
 
-## Reference
+## API Reference
 
 <table>
   <tr>
