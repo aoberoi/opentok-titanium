@@ -84,7 +84,7 @@
 
 - (void)dealloc {
     // TODO: This is unsafe, but it must be done
-    [_sessionProxy removeSubscriber:self];
+    [_sessionProxy _removeSubscriber:self];
     
     [_subscriber release];
     [_videoViewProxy _invalidate];
@@ -142,7 +142,7 @@
     [_subscriber close];
     _subscriber = nil;
     
-    [_sessionProxy removeSubscriber:self];
+    [_sessionProxy _removeSubscriber:self];
     
     [_videoViewProxy _invalidate];
     [_videoViewProxy release];

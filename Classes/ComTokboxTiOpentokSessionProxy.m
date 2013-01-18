@@ -123,7 +123,7 @@ NSString * const kSessionStatusFailed = @"failed";
 
 #pragma mark - Objective-C only Methods
 
--(void)removeSubscriber:(ComTokboxTiOpentokSubscriberProxy *)subscriber
+-(void)_removeSubscriber:(ComTokboxTiOpentokSubscriberProxy *)subscriber
 {
     [_subscriberProxies removeObject:subscriber];
     NSLog(@"[DEBUG] session removing subscriber proxy");
