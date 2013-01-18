@@ -2,7 +2,7 @@
 
 You can use a Subscriber object to stream audio and video from a stream in OpenTok to this device. A Subscriber is constructed by calling
 [Session.subscribe(_stream_, _props_)](session.md#subscribestream-props). The Subscriber only represents the control of streaming that data,
-not the UI. In order to present a view of this data, use a [SubscriberView](subscriberview.md#subscriberview) which can
+not the UI. In order to present a view of this data, use a [VideoView](videoview.md#videoview) which can
 be constructed using the [createView(_props_)](#createviewprops) method here.
 
 <nav>
@@ -47,9 +47,9 @@ be constructed using the [createView(_props_)](#createviewprops) method here.
 A subscriber can subscribe to data without being displayed in the UI. In order to display the video of the subscriber, you must create a view from it. This method creates that view. It is a subtype of Ti.UI.View.
 
 Parameters:
-*  _props_ (Dictionary) _optional_ - Properties of Ti.UI.View that are inherited by the SubscriberView (See [Appcelerator Docs](http://docs.appcelerator.com/titanium/2.1/index.html#!/api/Titanium.UI.View))
+*  _props_ (Dictionary) _optional_ - Properties of Ti.UI.View that are inherited by the VideoView (See [Appcelerator Docs](http://docs.appcelerator.com/titanium/2.1/index.html#!/api/Titanium.UI.View))
 
-Returns: (SubscriberView)
+Returns: (VideoView)
 
 ### close()
 
@@ -75,7 +75,7 @@ Disconnects the Subscriber from the Session. The SubscriberViews associated with
 
 ### view
 
-(SubscriberView) If [createView(_props_)](#createviewprops) has been called on this Subscriber, this property will return a reference to that same SubscriberView. Otherwise it returns null.
+(VideoView) If [createView(_props_)](#createviewprops) has been called on this Subscriber, this property will return a reference to that same VideoView. Otherwise it returns null.
 
 ## Events
 
