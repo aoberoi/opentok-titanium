@@ -120,11 +120,11 @@
 
 -(ComTokboxTiOpentokVideoViewProxy *)createView:(id)args
 {
-    NSLog(@"[INFO] creating a video view proxy");
+    NSLog(@"[DEBUG] creating a video view proxy");
     if (!_videoViewProxy) {
         ENSURE_SINGLE_ARG(args, NSDictionary);
         _videoViewProxy = [[ComTokboxTiOpentokVideoViewProxy alloc] initWithProxy:self andProperties:args];
-        NSLog(@"[INFO] video view proxy instance created: %@", _videoViewProxy.description);
+        NSLog(@"[DEBUG] video view proxy instance created: %@", _videoViewProxy.description);
     }
     // TODO: assign properties to existing videoViewProxy?
     return _videoViewProxy;

@@ -13,13 +13,13 @@
 - (id)initWithProxy:(TiProxy *)proxy
       andProperties:(NSDictionary *)props
 {
-    NSLog(@"[INFO] initializing video view proxy beginning: %@", self.description);
+    NSLog(@"[DEBUG] initializing video view proxy beginning: %@", self.description);
     self = [super init];
     if (self) {
         [self _initWithProperties:props];
         _proxy = proxy;
     }
-    NSLog(@"[INFO] initializing video view proxy complete: %@", self.description);
+    NSLog(@"[DEBUG] initializing video view proxy complete: %@", self.description);
     return self;
 }
 

@@ -41,7 +41,7 @@ static ComTokboxTiOpentokModule *_sharedModule;
     if (_session == nil) {
         _session = [newSession retain];
     } else {
-        NSLog(@"Cannot set session because one already exists");
+        NSLog(@"[ERROR] Cannot set session because one already exists");
     }
 }
 

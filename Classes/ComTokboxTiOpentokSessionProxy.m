@@ -94,7 +94,7 @@ NSString * const kSessionStatusFailed = @"failed";
     self = [super init];
     if (self) {
         // Initializations
-        NSLog(@"init called on session proxy");
+        NSLog(@"[DEBUG] init called on session proxy");
         
         // We would normally alloc/init the backing session here, but since we can't yet access its
         // sessionId we will delay initialization of _session until that property is set.
@@ -242,7 +242,7 @@ NSString * const kSessionStatusFailed = @"failed";
     BOOL publishAudio = YES, publishVideo = YES;
     
     if (_publisherProxy != nil) {
-        NSLog(@"Publisher already exists, cannot create more than one publisher");
+        NSLog(@"[DEBUG] Publisher already exists, cannot create more than one publisher");
         // TODO: not sure if returning the existing publisher proxy is a good idea
         // Maybe we should also verify that not only does it exist, but that it is publishing?
         // unpublish looks like it does the right thing (makes _publisher = nil) but when a publisher fails
@@ -277,7 +277,7 @@ NSString * const kSessionStatusFailed = @"failed";
         [_publisherProxy release];
         _publisherProxy = nil;
     } else {
-        NSLog(@"There is no publisher to unpublish");
+        NSLog(@"[DEBUG] There is no publisher to unpublish");
     }
 }
 
@@ -293,7 +293,7 @@ NSString * const kSessionStatusFailed = @"failed";
     // parse args
     id firstArg = [args objectAtIndex:0];
     if (![firstArg isKindOfClass:[ComTokboxTiOpentokStreamProxy class]]) {
-        NSLog(@"Invalid stream proxy given");
+        NSLog(@"[DEBUG] Invalid stream proxy given");
         return nil;
     }
     ComTokboxTiOpentokStreamProxy *stream = (ComTokboxTiOpentokStreamProxy *)firstArg;
@@ -380,7 +380,7 @@ NSString * const kSessionStatusFailed = @"failed";
         
         // If the stream proxy is not found, create one for the event properties
         if (deadStreamProxy == nil) {
-            NSLog(@"Could not find stream proxy during drop, initializing new one here")
+            NSLog(@"[DEBUG] Could not find stream proxy during drop, initializing new one here")
             deadStreamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:stream sessionProxy:self];
         }
         

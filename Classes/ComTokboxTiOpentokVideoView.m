@@ -25,13 +25,13 @@
 
 - (OTVideoView *)videoView
 {
-    NSLog(@"[INFO] video view being created");
+    NSLog(@"[DEBUG] video view being created");
     if (_videoView == nil) {
         ComTokboxTiOpentokVideoViewProxy *proxy = (ComTokboxTiOpentokVideoViewProxy *)self.proxy;
         // TODO: check if there are any memory management issues here with cycles
         _videoView = [(OTVideoView *)[[(id<OTObjectProxy>)[proxy _proxy] backingOpentokObject] view] retain];
         [self addSubview:_videoView];
-        NSLog(@"[INFO] video view instance created: %@", _videoView.description);
+        NSLog(@"[DEBUG] video view instance created: %@", _videoView.description);
     }
     
     return _videoView;
@@ -42,7 +42,7 @@
     if (_videoView == nil) {
         [self videoView];
     }
-    NSLog(@"[INFO] laying out video view");
+    NSLog(@"[DEBUG] laying out video view");
     [TiUtils setView:_videoView positionRect:bounds];
 }
 
