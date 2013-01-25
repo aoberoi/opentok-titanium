@@ -112,4 +112,10 @@ xcuserdata
 tmp
 bin
 *.zip
+Makefile
+.project
+.settings
+test/OpenTokTiTests/build
+test/OpenTokTiTests/modules
+test/dist
 

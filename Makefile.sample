@@ -1,0 +1,9 @@
+DEV_CERT="Ankur Oberoi"
+ADHOC_PROFILE=1D3FBD02-788D-4662-BC62-F905F63BA967
+
+.PHONY: test
+
+test:
+	./build.py
+	unzip -uo com.tokbox.ti.opentok-\*.zip -d test/OpenTokTiTests/
+	/usr/local/bin/titanium build --platform ios -R $(DEV_CERT) -F universal -P $(ADHOC_PROFILE) -T dist-adhoc -d test/OpenTokTiTests/ -O test/dist
