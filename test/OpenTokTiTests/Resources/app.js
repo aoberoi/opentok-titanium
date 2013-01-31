@@ -17,14 +17,10 @@ if (Titanium.Platform.osname !== 'ipad') {
 	win.add(label);
 	win.open();
 } else {
-	// commonjs module inclusion
+	// mocha testing
 	var mocha = require('aoberoi-ti-mocha').mocha;
-	
 	mocha.addFile('tests/dummy');
-	
 	mocha.run();
-	
-	Titanium.API.info(mocha);
 	
 	// Initialize the application
 	var MainWindow = require('ui/MainWindow');
