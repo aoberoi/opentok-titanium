@@ -2,6 +2,7 @@
 Titanium.UI.setBackgroundColor('#000');
 
 if (Titanium.Platform.osname !== 'ipad') {
+	
 	// This app only works for the iPad
 	var win = Titanium.UI.createWindow({
 		backgroundColor: '#fff'
@@ -16,10 +17,18 @@ if (Titanium.Platform.osname !== 'ipad') {
 	win.add(label);
 	win.open();
 } else {
+	// commonjs module inclusion
+	var mocha = require('aoberoi-ti-mocha').mocha;
+	
+	mocha.addFile('tests/dummy');
+	
+	mocha.run();
+	
+	Titanium.API.info(mocha);
+	
 	// Initialize the application
 	var MainWindow = require('ui/MainWindow');
 	var win = new MainWindow();
-
 	
 	win.open();
 }

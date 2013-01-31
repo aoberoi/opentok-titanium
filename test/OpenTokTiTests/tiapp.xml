@@ -41,6 +41,7 @@
     </mobileweb>
     <modules>
         <module version="0.2.2-alpha">com.tokbox.ti.opentok</module>
+        <module version="1.8.1" platform="commonjs">aoberoi-ti-mocha</module>
     </modules>
     <deployment-targets>
         <target device="blackberry">false</target>

@@ -11,6 +11,7 @@ function MainWindow() {
 		masterView: objectTableWindow
 	});
 	
+	/*
 	// testing
 	// TODO: does not pass any views in yet
 	// TODO: config is hard-coded
@@ -60,6 +61,7 @@ function MainWindow() {
 		Titanium.API.error("  "+numSuccess+" successes");
 		Titanium.API.error("  "+numFailure+" failures");
 	});
+	*/
 	
 	return self;
 }
