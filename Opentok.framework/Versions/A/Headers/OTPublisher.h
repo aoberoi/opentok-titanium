@@ -21,9 +21,9 @@
  * message.
  *
  * The OpenTok iOS SDK supports publishing on all devices, except the iPhone 3GS.
- * (Only subscribing is supported on the iPhone 3GS.) For a list of supported devices,
- * see "Developer and client requirements" in [Using the OpenTok iOS
- * SDK](http://www.tokbox.com/opentok/ios/docs/docs/Using_iOS.html).
+ * see "Developer and client requirements" in the README file for
+ * [the OpenTok iOS SDK](https://github.com/opentok/opentok-ios-sdk) or for
+ * [the OpenTok on WebRTC iOS SDK](https://github.com/opentok/opentok-ios-sdk-webrtc).
  */
 @interface OTPublisher : NSObject 
 
@@ -109,17 +109,6 @@
  */
 @property(atomic) AVCaptureDevicePosition cameraPosition;
 
-/**
- * Scaling behavior for portrait-oriented application views. Full-pixel will be supported in a future version.
- */
-typedef enum {
-    OTPublisherScaleModeFill,
-    OTPublisherScaleModePillarbox,
-    OTPublisherScaleModeFullPixel
-} OTPublisherScaleMode;
-
-@property(atomic) OTPublisherScaleMode scaleMode;
-
 @end
 
 
@@ -138,7 +127,7 @@ typedef enum {
  * @param error The error (an <OTError> object). The `OTPublisherErrorCode` enum (defined in the OTError class)
  * defines values for the `code` property of this object.
  */
-- (void)publisher:(OTPublisher*)publisher didFailWithError:(OTError*) error;
+- (void)publisher:(OTPublisher*)publisher didFailWithError:(OTError*)error;
 
 @optional
 
@@ -155,5 +144,11 @@ typedef enum {
  * @param publisher The publisher that signalled this event.
  */
 -(void)publisherDidStopStreaming:(OTPublisher*)publisher;
+
+/**
+ * Sent when the camera device is changed.
+ * @prarm publisher The publisher that signalled this event.
+ */
+-(void)publisher:(OTPublisher*)publisher didChangeCameraPosition:(AVCaptureDevicePosition)position;
 
 @end

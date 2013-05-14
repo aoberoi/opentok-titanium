@@ -21,11 +21,11 @@
 /**
  * The unique connection ID for this OTConnection object.
  */
-@property(readonly) NSString* connectionId;
+@property(readonly, strong) NSString* connectionId;
 
 /**
  * The time at which the Connection was created on the OpenTok server.
  */
-@property(readonly) NSDate* creationTime;
+@property(readonly, strong) NSDate* creationTime;
 
 @end

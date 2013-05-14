@@ -25,6 +25,14 @@
  * For subscribers, this view renders frames of the stream.
  * For publishers, this view renders frames as they are encoded to a stream.
  */
-@property(readonly, strong) UIView* videoView;
+@property(readonly) UIView* videoView;
+
+/**
+ * Take a snapshot of the current video frame displayed
+ *
+ * @param block - a block that will be invoked upon a successful image capture with a resulting UIImage
+ */
+
+- (void)getImageWithBlock:(void (^)(UIImage* snapshot))block;
 
 @end
