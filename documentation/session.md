@@ -22,7 +22,7 @@ This object is analogous to the [JS API Session](http://www.tokbox.com/opentok/d
       <td><a href="#sessiondisconnected">sessionDisconnected</a></td>
     </tr>
     <tr>
-      <td><a href="#publishprops">publish(props)</a></td>
+      <td><a href="#publish_props_">publish(props)</a></td>
       <td><a href="#sessionconnectionstatus">sessionConnectionStatus</a></td>
       <td><a href="#sessionfailed">sessionFailed</a></td>
     </tr>
