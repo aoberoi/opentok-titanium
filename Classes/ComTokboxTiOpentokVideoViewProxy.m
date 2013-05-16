@@ -23,6 +23,12 @@
     return self;
 }
 
+- (void)dealloc
+{
+    NSLog(@"[DEBUG] video view proxy being deallocated");
+    [super dealloc];
+}
+
 - (TiProxy *)_proxy
 {
     return _proxy;

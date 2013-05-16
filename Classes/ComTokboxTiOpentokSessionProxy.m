@@ -231,6 +231,7 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)disconnect:(id)args
 {
+    ENSURE_UI_THREAD_0_ARGS
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
     [_session disconnect];

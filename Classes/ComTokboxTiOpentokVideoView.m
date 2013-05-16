@@ -19,6 +19,7 @@
 
 - (void)dealloc
 {
+    NSLog(@"[DEBUG] video view being deallocated");
     RELEASE_TO_NIL(_videoView);
     [super dealloc];
 }
