@@ -112,13 +112,18 @@ NSString * const kSessionStatusFailed = @"failed";
 - (void)dealloc
 {
     NSLog(@"[DEBUG] dealloc called on session proxy");
-    [_session release];
-    [_streamProxies release];
-    [_connectionProxy release];
-    [_publisherProxy release];
-    [_subscriberProxies release];
+    [self destroyBackingSession];
     
     [super dealloc];
+}
+
+- (void)destroyBackingSession
+{
+    RELEASE_TO_NIL(_session);
+    RELEASE_TO_NIL(_streamProxies);
+    RELEASE_TO_NIL(_connectionProxy);
+    RELEASE_TO_NIL(_publisherProxy);
+    RELEASE_TO_NIL(_subscriberProxies);
 }
 
 #pragma mark - Objective-C only Methods
@@ -231,11 +236,20 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)disconnect:(id)args
 {
+    // this is a bandaid over some threading issues in the underlying library
+    // when disconnect is called from a background thread, there is a data race inside the sessionDisconnectionCleanup
+    // around the session state
     ENSURE_UI_THREAD_0_ARGS
+    
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
     [_session disconnect];
     NSLog(@"[DEBUG] session disconnect called");
+    
+    // lets the JS treat the session as reusable even though the underlying library doesn't support this
+    NSString *cachedSessionId = _session.sessionId;
+    [self destroyBackingSession];
+    _session = [[OTSession alloc] initWithSessionId:cachedSessionId delegate:self];
 }
 
 // takes one argument which is a dictionary of options
