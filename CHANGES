@@ -1,7 +1,7 @@
 v0.2.2
 ------
 
-*  Upgrades Opentok.framework to Nov 12 2012 release
+*  Upgrades Opentok.framework to v1.4.1 (April 9, 2013)
 
 *  Removes session.environment property. All Opentok sessions are now run in the
    production environment.
@@ -12,6 +12,14 @@ v0.2.2
 *  Resolves initial build linker errors by upgrading the Titanium SDK min version to 2.1.2.GA
 
 *  Fixes memory management related bugs
+
+*  Compatibility with Titanium SDK version 3.1.0.GA
+
+*  Resolves backgrounding issues
+
+*  Fixes crashes on session.disconnect()
+
+*  Allows reconnection to a session
 
 
 v0.2.1
