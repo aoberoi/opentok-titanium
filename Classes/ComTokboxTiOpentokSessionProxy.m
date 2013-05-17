@@ -78,6 +78,42 @@ NSString * const kSessionStatusFailed = @"failed";
             message = @"No messaging server is available for this session";
             break;
         
+        case OTSDKUpdateRequired:
+            message = @"A new version of the OpenTok SDK is available and required to connect to this session";
+            break;
+        
+        case OTConnectionRefused:
+            message = @"A socket could not be opened to the messaging server. Check that outbound ports 5560 or 8080 are accessible";
+            break;
+            
+        case OTSessionStateFailed:
+            message = @"The connection timed out while attempting to get the session's state";
+            break;
+        
+        case OTP2PSessionUnsupported:
+            message = @"iOS does not currently support peer-to-peer OpenTok sessions";
+            break;
+            
+        case OTUnknownServerError:
+            message = @"The client was unable to communicate with the server, possibly due to a version incompatibility";
+            break;
+            
+        case OTP2PSessionRequired:
+            message = @"A peer-to-peer enabled session is required for WebRTC on iOS";
+            break;
+            
+        case OTP2PSessionMaxParticipants:
+            message = @"A peer-to-peer enabled session can only have two participants";
+            break;
+            
+        case OTSessionConnectionTimeout:
+            message = @"The connection timed out while attempting to connect to the session";
+            break;
+            
+        case OTSessionCompatibilityMismatch:
+            message = @"There was a mismatch with the session's capabilities. You're likely trying to connect iOS to a P2P Flash session on the web";
+            break;
+            
         default:
             message = @"An unknown error occurred";
             break;
