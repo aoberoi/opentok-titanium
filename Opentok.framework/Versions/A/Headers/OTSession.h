@@ -38,10 +38,10 @@ typedef enum {
 /**
  * The first step in using the OpenTok iOS SDK is to initialize
  * an OTSession object with a valid
- * [session ID](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/session%5Fcreation.html). 
+ * [session ID](http://www.tokbox.com/opentok/docs/concepts/session%5Fcreation.html). 
  * Use the OTSession object to connect to OpenTok using your developer
- * [API key](https://dashboard-dev.tokbox.com) and a valid
- * [token](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/token%5Fcreation.html).
+ * [API key](https://dashboard.tokbox.com/projects) and a valid
+ * [token](http://www.tokbox.com/opentok/docs/concepts/token%5Fcreation.html).
  */
 @interface OTSession : NSObject
 
@@ -66,7 +66,7 @@ typedef enum {
 @property(readonly) OTSessionConnectionStatus sessionConnectionStatus;
 
 /**
- * The [session ID](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/session%5Fcreation.html)
+ * The [session ID](http://www.tokbox.com/opentok/docs/concepts/session%5Fcreation.html)
  * of this instance. Once initialized, this is an immutable value.
  */
 @property(nonatomic, copy) NSString* sessionId;
@@ -98,7 +98,7 @@ typedef enum {
 /** @name Initializing and connecting to a session */
 
 /**
- * Initialize this session with a given [session ID](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/session%5Fcreation.html)
+ * Initialize this session with a given [session ID](http://www.tokbox.com/opentok/docs/concepts/session%5Fcreation.html)
  * and delegate before connecting to OpenTok. Send the <[OTSession connectWithApiKey:token:]> message
  * to connect to the session.
  *
@@ -113,9 +113,8 @@ typedef enum {
 
 
 /**
- * Once your application has a valid [token](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/token%5Fcreation.html),
- * connect with your API key to begin participating in an OpenTok session. You get an API key when you
- * [sign up](https://dashboard-dev.tokbox.com/users/sign_in) for an OpenTok account.
+ * Once your application has a valid [token](http://www.tokbox.com/opentok/docs/concepts/token%5Fcreation.html),
+ * connect with your [API key](https://dashboard.tokbox.com/projects) to begin participating in an OpenTok session.
  *
  * When the session connects successfully, the <[OTSessionDelegate sessionDidConnect:]> message is sent to
  * the session's delegate.
@@ -134,7 +133,7 @@ typedef enum {
  * with the OpenTok infrastructure.
  *
  * @param apiKey Your OpenTok API key.
- * @param token The [token](http://www.tokbox.com/opentok/api/tools/js/documentation/overview/token%5Fcreation.html) generated for this connection.
+ * @param token The token generated for this connection.
  */
 - (void)connectWithApiKey:(NSString*)apiKey
                     token:(NSString*)token;

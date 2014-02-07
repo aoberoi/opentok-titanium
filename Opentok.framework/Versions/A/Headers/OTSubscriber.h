@@ -148,6 +148,17 @@
  * <subscriberDidConnectToStream> message is sent.
  * @param subscriber The subscriber that generated this event.
  */
- - (void)subscriberVideoDataReceived:(OTSubscriber*)subscriber;
+- (void)subscriberVideoDataReceived:(OTSubscriber*)subscriber;
+
+/**
+ * Sent when the video dimensions of a stream changes. This occurs when a stream published from an iOS device resizes,
+ * based on a change in the device orientation.
+ *
+ * This message is available for WebRTC only.
+ *
+ * @param stream The stream that changed video dimensions.
+ * @param didChangeVideoDimensions The new dimensions of the encoded stream.
+ */
+- (void)stream:(OTStream*)stream didChangeVideoDimensions:(CGSize)dimensions;
 
 @end

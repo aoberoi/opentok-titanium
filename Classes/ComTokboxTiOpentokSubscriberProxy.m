@@ -45,6 +45,14 @@
             message = @"Subscriber failed to initialize.";
             break;
             
+        case OTInvalidStreamType:
+            message = @"The stream type is not currently supported by this version of the SDK";
+            break;
+            
+        case OTSelfSubscribeFailure:
+            message = @"This version of the SDK cannot subscribe to its own streams";
+            break;
+            
         default:
             message = @"An unknown error occurred";
             break;

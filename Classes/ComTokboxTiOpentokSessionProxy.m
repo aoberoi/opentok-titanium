@@ -78,6 +78,42 @@ NSString * const kSessionStatusFailed = @"failed";
             message = @"No messaging server is available for this session";
             break;
         
+        case OTSDKUpdateRequired:
+            message = @"A new version of the OpenTok SDK is available and required to connect to this session";
+            break;
+        
+        case OTConnectionRefused:
+            message = @"A socket could not be opened to the messaging server. Check that outbound ports 5560 or 8080 are accessible";
+            break;
+            
+        case OTSessionStateFailed:
+            message = @"The connection timed out while attempting to get the session's state";
+            break;
+        
+        case OTP2PSessionUnsupported:
+            message = @"iOS does not currently support peer-to-peer OpenTok sessions";
+            break;
+            
+        case OTUnknownServerError:
+            message = @"The client was unable to communicate with the server, possibly due to a version incompatibility";
+            break;
+            
+        case OTP2PSessionRequired:
+            message = @"A peer-to-peer enabled session is required for WebRTC on iOS";
+            break;
+            
+        case OTP2PSessionMaxParticipants:
+            message = @"A peer-to-peer enabled session can only have two participants";
+            break;
+            
+        case OTSessionConnectionTimeout:
+            message = @"The connection timed out while attempting to connect to the session";
+            break;
+            
+        case OTSessionCompatibilityMismatch:
+            message = @"There was a mismatch with the session's capabilities. You're likely trying to connect iOS to a P2P Flash session on the web";
+            break;
+            
         default:
             message = @"An unknown error occurred";
             break;
@@ -112,13 +148,18 @@ NSString * const kSessionStatusFailed = @"failed";
 - (void)dealloc
 {
     NSLog(@"[DEBUG] dealloc called on session proxy");
-    [_session release];
-    [_streamProxies release];
-    [_connectionProxy release];
-    [_publisherProxy release];
-    [_subscriberProxies release];
+    [self destroyBackingSession];
     
     [super dealloc];
+}
+
+- (void)destroyBackingSession
+{
+    RELEASE_TO_NIL(_session);
+    RELEASE_TO_NIL(_streamProxies);
+    RELEASE_TO_NIL(_connectionProxy);
+    RELEASE_TO_NIL(_publisherProxy);
+    RELEASE_TO_NIL(_subscriberProxies);
 }
 
 #pragma mark - Objective-C only Methods
@@ -231,10 +272,20 @@ NSString * const kSessionStatusFailed = @"failed";
 
 - (void)disconnect:(id)args
 {
+    // this is a bandaid over some threading issues in the underlying library
+    // when disconnect is called from a background thread, there is a data race inside the sessionDisconnectionCleanup
+    // around the session state
+    ENSURE_UI_THREAD_0_ARGS
+    
     [self requireSessionInitializationWithLocation:CODELOCATION];
     
     [_session disconnect];
     NSLog(@"[DEBUG] session disconnect called");
+    
+    // lets the JS treat the session as reusable even though the underlying library doesn't support this
+    NSString *cachedSessionId = _session.sessionId;
+    [self destroyBackingSession];
+    _session = [[OTSession alloc] initWithSessionId:cachedSessionId delegate:self];
 }
 
 // takes one argument which is a dictionary of options
