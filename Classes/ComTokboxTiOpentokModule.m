@@ -91,6 +91,7 @@ static ComTokboxTiOpentokModule *_sharedModule;
 
 #pragma mark Listener Notifications
 
+/*
 -(void)_listenerAdded:(NSString *)type count:(int)count
 {
 	if (count == 1 && [type isEqualToString:@"my_event"])
@@ -109,5 +110,6 @@ static ComTokboxTiOpentokModule *_sharedModule;
 		// since no body is listening at this point for that event
 	}
 }
+*/
 
 @end
