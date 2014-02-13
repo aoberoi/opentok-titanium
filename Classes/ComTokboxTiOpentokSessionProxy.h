@@ -33,7 +33,7 @@ extern NSString * const kSessionStatusFailed;
 }
 
 // Obj-C only Methods
--(void)_removeSubscriber:(ComTokboxTiOpentokSubscriberProxy *)subscriber;
+-(void)_removeSubscriber:(ComTokboxTiOpentokSubscriberProxy *)subscriberProxy;
 
 // Properties
 @property (nonatomic, readwrite, assign) NSString *sessionId;
