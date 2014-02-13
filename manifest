@@ -2,7 +2,7 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 0.2.2
+version: 0.3.0-alpha
 apiversion: 2
 description: Opentok is a two-way live video API allowing the use of publishing and subscribing to streams. (www.tokbox.com)
 author: Ankur Oberoi

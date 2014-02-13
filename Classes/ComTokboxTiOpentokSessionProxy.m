@@ -261,6 +261,9 @@ NSString * const kSessionStatusFailed = @"failed";
     NSArray *argumentArray = (NSArray *)args;
     NSString *apiKey = [TiUtils stringValue:[argumentArray objectAtIndex:0]];
     NSString *token = [TiUtils stringValue:[argumentArray objectAtIndex:1]];
+    
+    NSLog(@"[DEBUG] session proxy connect called with arguments apiKey: %@, token: %@", apiKey, token)
+    
     if (apiKey == nil || token == nil) THROW_INVALID_ARG(@"Must call this method with a valid string 'apiKey' and string 'token'.");
     
     // Call method on backing session
