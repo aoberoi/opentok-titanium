@@ -409,7 +409,7 @@ NSString * const kSessionStatusFailed = @"failed";
 }
 
 
-- (void)session:(OTSession*)session didReceiveStream:(OTStream*)stream
+- (void)session:(OTSession*)session streamCreated:(OTStream *)stream
 {
     NSLog(@"[DEBUG] session recieved stream");
     if ([self _hasListeners:@"streamCreated"]) {
@@ -432,7 +432,7 @@ NSString * const kSessionStatusFailed = @"failed";
 }
 
 
-- (void)session:(OTSession*)session didDropStream:(OTStream*)stream
+- (void)session:(OTSession*)session streamDestroyed:(OTStream *)stream
 {
     NSLog(@"[DEBUG] session dropped stream");
     if ([self _hasListeners:@"streamDestroyed"]) {
