@@ -9,7 +9,7 @@
 
 @class ComTokboxTiOpentokSessionProxy, ComTokboxTiOpentokStreamProxy;
 
-@interface ComTokboxTiOpentokSubscriberProxy : TiProxy <OTSubscriberDelegate, OTObjectProxy> {
+@interface ComTokboxTiOpentokSubscriberProxy : TiProxy <OTSubscriberKitDelegate, OTObjectProxy> {
 
 @private
     // Owned

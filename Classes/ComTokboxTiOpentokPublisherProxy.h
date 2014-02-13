@@ -12,7 +12,7 @@ extern NSString * const kPublisherCameraPositionBack;
 
 @class ComTokboxTiOpentokSessionProxy;
 
-@interface ComTokboxTiOpentokPublisherProxy : TiProxy <OTPublisherDelegate, OTObjectProxy> {
+@interface ComTokboxTiOpentokPublisherProxy : TiProxy <OTPublisherDelegate, OTPublisherKitDelegate, OTObjectProxy> {
 
 @private
     // Owned
