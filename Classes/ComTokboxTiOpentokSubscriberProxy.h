@@ -25,6 +25,9 @@
                      audio:(BOOL)subscribeToAudio 
                      video:(BOOL)subscribeToVideo;
 
+// Obj-C only Methods
+-(void)_invalidate;
+
 // Properties
 @property (readonly, assign) ComTokboxTiOpentokSessionProxy *session;
 @property (readonly, assign) ComTokboxTiOpentokStreamProxy *stream;
@@ -33,7 +36,6 @@
 @property (readonly) ComTokboxTiOpentokVideoViewProxy *view;
 
 // Methods
--(void)close:(id)args;
 -(ComTokboxTiOpentokVideoViewProxy *)createView:(id)args;
 
 @end

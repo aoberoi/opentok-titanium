@@ -33,7 +33,13 @@ This object is analogous to the [JS API Session](http://www.tokbox.com/opentok/d
     </tr>
     <tr>
       <td><a href="#subscribestream-props">subscribe(stream, props)</a></td>
+      <td></td>
       <td><a href="#streamdestroyed">streamDestroyed</a></td>
+    </tr>
+    <tr>
+      <td><a href="#unsubscribe_stream_">unsubscribe(stream)</a></td>
+      <td></td>
+      <td></td>
     </tr>
   </table>
 </nav>
@@ -74,21 +80,28 @@ Returns: (Publisher)
 
 ### unpublish()
 
-Stop publishing to the session.
+Stop publishing to the Session.
 
 Returns: (void)
 
 ### subscribe(_stream_, _props_)
 
-Begin receiving video data from another device's camera who is publishing to the Session.
+Begin receiving video and/or audio data from another device's camera who is publishing to the Session.
 
 Parameters:
-*  _stream_ (Stream) _required_ - A Stream object that refers to the video or audio data from a device.
+*  _stream_ (Stream) _required_ - A Stream object that refers to the video and/or audio data from a device.
 *  _props_ (Dictionary) _optional_:
    *  _subscribeToAudio_ (Boolean) _optional_ - Whether or not to subscribe to the audio data. Defaults to true.
    *  _subscribeToVideo_ (Boolean) _optional_ - Whether or not to subscribe to the video data. Defaults to true.
 
 Returns: (Subscriber)
+
+### unsubscribe(_stream_)
+
+Stops subscribing to the Stream.
+
+Parameters:
+*  _steam_ (Stream) _required_ - A Steam object that refers to the video and/or audio data from a device.
 
 ## Properties
 

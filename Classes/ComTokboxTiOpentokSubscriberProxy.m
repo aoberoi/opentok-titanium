@@ -93,6 +93,18 @@
     [super dealloc];
 }
 
+#pragma mark - Obj-C only methods
+
+-(void)_invalidate
+{
+    [_subscriber release];
+    _subscriber = nil;
+    
+    [_videoViewProxy _invalidate];
+    [_videoViewProxy release];
+    _videoViewProxy = nil;
+}
+
 #pragma mark - Properties
 
 -(id)session
@@ -134,20 +146,6 @@
 }
 
 #pragma mark - Methods
-
--(void)close:(id)args
-{
-    [self requireSubscriberInitializationWithLocation:CODELOCATION];
-    
-    [_subscriber close];
-    _subscriber = nil;
-    
-    [_sessionProxy _removeSubscriber:self];
-    
-    [_videoViewProxy _invalidate];
-    [_videoViewProxy release];
-    _videoViewProxy = nil;
-}
 
 -(ComTokboxTiOpentokVideoViewProxy *)createView:(id)args
 {

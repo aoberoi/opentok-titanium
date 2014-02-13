@@ -158,6 +158,18 @@ NSString * const kSessionStatusFailed = @"failed";
     NSLog(@"[DEBUG] session removing subscriber proxy");
 }
 
+-(ComTokboxTiOpentokSubscriberProxy *)_subscriberForStream:(ComTokboxTiOpentokStreamProxy *)streamProxy
+{
+    ComTokboxTiOpentokSubscriberProxy *matchedSubscriberProxy = nil;
+    for (ComTokboxTiOpentokSubscriberProxy *subscriberProxy in _subscriberProxies) {
+        if ([[[subscriberProxy stream] streamId] isEqualToString:[streamProxy streamId]]) {
+            matchedSubscriberProxy = subscriberProxy;
+            break;
+        }
+    }
+    return matchedSubscriberProxy;
+}
+
 #pragma mark - Public Properties
 
 - (void)setSessionId:(id)value
@@ -353,15 +365,33 @@ NSString * const kSessionStatusFailed = @"failed";
     if (_subscriberProxies == nil) {
         _subscriberProxies = [[NSMutableArray alloc] initWithCapacity:4];
     }
-    ComTokboxTiOpentokSubscriberProxy *subscriber = [[ComTokboxTiOpentokSubscriberProxy alloc] initWithSessionProxy:self 
+    ComTokboxTiOpentokSubscriberProxy *subscriberProxy = [[ComTokboxTiOpentokSubscriberProxy alloc] initWithSessionProxy:self
                                                                                                              stream:stream
                                                                                                               audio:subscribeToAudio 
                                                                                                               video:subscribeToVideo];
-    [_subscriberProxies addObject:subscriber];
-    NSLog(@"[DEBUG] session adding subscriber proxy");
-    [subscriber release];
+    [_session subscribe:[subscriberProxy backingOpentokObject]];
+    [_subscriberProxies addObject:subscriberProxy];
     
-    return subscriber;
+    NSLog(@"[DEBUG] session adding subscriber proxy");
+    [subscriberProxy release];
+    return subscriberProxy;
+}
+
+- (void)unsubscribe:(id)args
+{
+    id firstArg = [args objectAtIndex:0];
+    if (![firstArg isKindOfClass:[ComTokboxTiOpentokStreamProxy class]]) {
+        NSLog(@"[DEBUG] invalid stream proxy given");
+    }
+    ComTokboxTiOpentokStreamProxy *streamProxy = (ComTokboxTiOpentokStreamProxy *)firstArg;
+    
+    ComTokboxTiOpentokSubscriberProxy *subscriberProxy = [self _subscriberForStream:streamProxy];
+    [_session unsubscribe:[subscriberProxy backingOpentokObject]];
+    NSLog(@"[DEBUG] session unpublishing");
+    
+    // TODO: invalidation
+    //[subscriberProxy _invalidate];
+    [_subscriberProxies removeObject:subscriberProxy];
 }
 
 #pragma mark - Session Delegate Protocol

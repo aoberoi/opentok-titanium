@@ -18,7 +18,7 @@ be constructed using the [createView(_props_)](#createview_props_) method here.
       <td>["subscriberStarted"](#subscriberstarted)</td>
     </tr>
     <tr>
-      <td>[close()](#close)</td>
+      <td></td>
       <td>[subscribeToAudio](#subscribetoaudio)</td>
       <td>["subscriberConnected"](#subscriberconnected)</td>
     </tr>
@@ -50,10 +50,6 @@ Parameters:
 *  _props_ (Dictionary) _optional_ - Properties of Ti.UI.View that are inherited by the VideoView (See [Appcelerator Docs](http://docs.appcelerator.com/titanium/latest/index.html#!/api/Titanium.UI.View))
 
 Returns: (VideoView)
-
-### close()
-
-Disconnects the Subscriber from the Session. The SubscriberViews associated with this Subscriber will now be invalid and should be removed from the UI.
 
 ## Properties
 
