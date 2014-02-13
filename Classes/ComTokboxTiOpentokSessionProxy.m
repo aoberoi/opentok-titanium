@@ -298,7 +298,7 @@ NSString * const kSessionStatusFailed = @"failed";
         NSLog(@"[DEBUG] Publisher already exists, cannot create more than one publisher");
         // TODO: not sure if returning the existing publisher proxy is a good idea
         // Maybe we should also verify that not only does it exist, but that it is publishing?
-        // unpublish looks like it does the right thing (makes _publisher = nil) but when a publisher fails
+        // unpublish looks like it does the right thing (makes _publisher = nil). But when a publisher fails
         // or if a publisher stops streaming, _publisher probably still points to a valid object
     } else {
         

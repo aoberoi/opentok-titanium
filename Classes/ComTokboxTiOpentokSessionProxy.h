@@ -48,6 +48,8 @@ extern NSString * const kSessionStatusFailed;
 - (id)publish:(id)args;
 - (void)unpublish:(id)args;
 - (id)subscribe:(id)args;
+// TODO add unsubscribe
+// TODO add signaling methods
 
 
 @end

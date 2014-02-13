@@ -17,9 +17,11 @@
 @interface ComTokboxTiOpentokStreamProxy : TiProxy <OTObjectProxy> {
     
 @private
+    // Owned
     OTStream *_stream;
-    ComTokboxTiOpentokSessionProxy *_sessionProxy;
     ComTokboxTiOpentokConnectionProxy *_connectionProxy;
+    // Unsafe unretained
+    ComTokboxTiOpentokSessionProxy *_sessionProxy;
 }
 
 - (id)initWithStream:(OTStream *)existingStream sessionProxy:(ComTokboxTiOpentokSessionProxy *)sessionProxy;
