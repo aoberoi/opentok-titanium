@@ -13,9 +13,13 @@ Building
 ------------
 If you want to build the code on your own, follow these instructions. If you just want to use the module, scroll down to Usage.
 
-1.  Clone or download the repo, run `./build.py` in the directory
+1.  Clone or download the repo.
 
-2.  Copy the zip (`com.tokbox.ti.opentok-iphone-x.x.zip`) to your Titanium installation directory:
+2.  Run `./download-opentok-native-sdk.sh` to download OpenTok.framework into the appropriate place.
+
+3.  Run `./build.py` to build the module.
+
+4.  Copy the zip (`com.tokbox.ti.opentok-iphone-x.x.zip`) to your Titanium installation directory:
     `cp com.tokbox.ti.opentok-iphone-x.x.zip ~/Library/Application\ Support/Titanium/`.
 
 Usage
