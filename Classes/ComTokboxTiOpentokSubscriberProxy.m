@@ -29,28 +29,20 @@
 {
     NSString *message;
     switch ([error code]) {
-        case OTFailedToConnect:
-            message = @"Subscriber failed to connect to stream. Can reattempt connection.";
-            break;
-            
         case OTConnectionTimedOut:
             message = @"Subscriber timed out while attempting to connect to stream. Can reattempt connection.";
             break;
             
-        case OTNoStreamMedia:
-            message = @"The stream has no audio or video to subscribe to.";
+        case OTSubscriberSessionDisconnected:
+            message = @"Subscriber failed because the session was disconnected";
             break;
             
-        case OTInitializationFailure:
-            message = @"Subscriber failed to initialize.";
+        case OTSubscriberWebRTCError:
+            message = @"Subscriber failed in the WebRTC stack";
             break;
             
-        case OTInvalidStreamType:
-            message = @"The stream type is not currently supported by this version of the SDK";
-            break;
-            
-        case OTSelfSubscribeFailure:
-            message = @"This version of the SDK cannot subscribe to its own streams";
+        case OTSubscriberInternalError:
+            message = @"Thread dispatch failure, out of memory, etc.";
             break;
             
         default:

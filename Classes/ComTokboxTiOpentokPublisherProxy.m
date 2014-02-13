@@ -31,12 +31,12 @@ NSString * const kPublisherCameraPositionBack = @"cameraBack";
 {
     NSString *message;
     switch ([error code]) {
-        case OTNoMediaPublished:
-            message = @"Attempting to publish a stream with no audio or video";
+        case OTPublisherInternalError:
+            message = @"Thread dispatch failure, out of memory, etc.";
             break;
             
-        case OTUserDeniedCameraAccess:
-            message = @"The user denied access to the camera during publishing";
+        case OTPublisherWebRTCError:
+            message = @"An error occurred in the WebRTC stack.";
             break;
             
         case OTSessionDisconnected:
