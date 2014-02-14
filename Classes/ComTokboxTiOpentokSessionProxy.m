@@ -181,6 +181,9 @@ NSString * const kSessionStatusFailed = @"failed";
         // Lazy initialization of backing session
         _session = [[OTSession alloc] initWithSessionId:stringSessionId delegate:self];
         
+        // TODO: remove this hack in the next release of the OpenTok iOS SDK 2.2
+        [stringSessionId retain];
+        
         NSLog(@"[DEBUG] session initialized with id: %@", stringSessionId);
         
     } else {
@@ -438,6 +441,8 @@ NSString * const kSessionStatusFailed = @"failed";
         // Create a stream proxy object
         ComTokboxTiOpentokStreamProxy *streamProxy = [[ComTokboxTiOpentokStreamProxy alloc] initWithStream:stream sessionProxy:self];
         
+        NSLog(@"[DEBUG] stream proxy created for streamId %@", streamProxy.streamId);
+        
         // Manage the _streamProxies dictionary
         [_streamProxies setObject:streamProxy forKey:streamProxy.streamId];
         
@@ -449,6 +454,8 @@ NSString * const kSessionStatusFailed = @"failed";
         
         // fire event
         [self fireEvent:@"streamCreated" withObject:eventProperties];
+        
+        NSLog(@"[DEBUG] streamCreated event fired with object %@", eventProperties.description);
     }
 }
 
