@@ -4,10 +4,11 @@ A module for the Titanium Mobile platform that uses the Opentok iOS SDK for vide
 
 Installation
 ------------
-1.  Go to the [Downloads page](opentok-titanium-mobile/downloads) and download the latest version of the module.
+1.  Download the latest release from the [Releases page](./releases).
 
-2.  Move the zip file (`com.tokbox.ti.opentok-iphone-x.x.x.zip`) to your Titanium SDK directory. This is usually either
-    `~/Library/Application Support/Titanium` or `/Library/Application Support/Titanium`.
+2.  Move the zip file (`com.tokbox.ti.opentok-iphone-x.x.x.zip`) to your application directory, and unzip it
+    (e.g. `unzip com.tokbox.ti.opentok-iphone-x.x.x.zip`). The module should now be placed inside the
+    `AppRoot/modules/iphone/com.tokbox.ti.opentok/x.x.x/` directory.
 
 Building
 ------------
@@ -25,10 +26,11 @@ If you want to build the code on your own, follow these instructions. If you jus
 Usage
 -----
 1.  Declare the module and the asset path in in your `tiapp.xml` file:
+    NOTE: the version attribute of the module tag should match the release you downloaded.
 
     ```xml
     <modules>
-      <module version="0.2.1">com.tokbox.ti.opentok</module>
+      <module version="x.x.x">com.tokbox.ti.opentok</module>
     </modules>
     <ios>
       <plist>
@@ -66,7 +68,7 @@ Requirements
 *  Titanium SDK 2.1 or later
 *  iOS SDK 5.0 or later
 *  Opentok API Key. [Get one here](https://dashboard.tokbox.com/signups/new).
-*  Opentok.framework requires projects to be built for only i386 (simulator) and armv7 (device); armv6 and armv7s are not supported.
+*  Opentok.framework requires projects to be built for only armv7 (device); i386 (simulator), armv6, armv7s, and arm64 are not supported.
 
 Getting Help
 ------------
@@ -87,7 +89,7 @@ Notes
 *  Publishing is not supported in the Simulator because it does not have access to your webcam.
 *  The API is currently a mix of the Opentok web API, iOS specifics, and Titanium conventions. These are subject
    to change. Suggestions welcome.
-*  open source contributions welcome :)
+*  Open source contributions welcome :)
 
 License
 -------
