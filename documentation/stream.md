@@ -1,6 +1,6 @@
 # Stream
 
-A Stream represents the audio/video data coming from a publisher on this device or on another device in the same OpenTok [Session](session.md#session).
+A Stream represents the audio/video data coming from a Publisher on this device or on another device in the same OpenTok Session.
 
 <nav>
   <table>
@@ -75,4 +75,4 @@ A Stream represents the audio/video data coming from a publisher on this device 
 
 ### type
 
-(String) A stream can be one of three types: "basic", "multiplexed", and "archive". _Read Only_
+(String) A Stream can be one of two types: "basic" or "archive". _Read Only_
