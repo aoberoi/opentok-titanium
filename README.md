@@ -4,7 +4,7 @@ A module for the Titanium Mobile platform that uses the Opentok iOS SDK for vide
 
 Installation
 ------------
-1.  Download the latest release from the [Releases page](./releases).
+1.  Download the latest release from the [Releases page](opentok-titanium-mobile/releases).
 
 2.  Move the zip file (`com.tokbox.ti.opentok-iphone-x.x.x.zip`) to your application directory, and unzip it
     (e.g. `unzip com.tokbox.ti.opentok-iphone-x.x.x.zip`). The module should now be placed inside the
