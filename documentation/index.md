@@ -57,7 +57,7 @@ To start playing a video stream from another user/device in the session we must 
 we first create a [Subscriber](subscriber.md#subscriber) from the [Stream](stream.md#stream). Then to see the video
 from that Stream, we add a [VideoView](videoview.md#videoview) to the current view. All of this can only be done
 once a [Stream](stream.md#stream) is created (and after the session is connected), so we place it inside the
-[streamCreated](session.md#streamcreated) event handler.
+[streamCreated](session.md#streamcreated) event handler. Note: each Stream can only have one Subscriber.
 
 ```javascript
 var subscriber, subscriberView;
@@ -66,25 +66,6 @@ session.addEventListener("streamCreated", function(event) {
   subscriber = session.subscribe(stream);
   subscriberView = subscriber.createView({ width : 320, height : 240, top : 20 });
   // self is an instance of Ti.UI.View such as ApplicationView
-  self.add(subscriberView);
-});
-```
-
-### Which Stream belongs to my device? Which Stream is coming from another device?
-
-If you follow the example above, you will first subscribe to your own stream. It would be very useful to know
-whether this [Stream](stream.md#stream) is coming from another device or from your own device. To do this, we
-compare the [Connection](connection.md#connection) of each [Stream](stream.md#stream) by their
-[connectionId](connection.md#connectionid) property.
-
-```javascript
-var subscriber, subscriberView;
-session.addEventListener("streamCreated", function(event) {
-  var stream = event.stream;
-  // Filter out any stream that is coming from my own connection. I only want to subscribe to others
-  if (stream.connection.connectionId === session.connection.connectionId) { return; }
-  subscriber = session.subscriber(stream);
-  subscriberView = subscriber.createView({ width : 320, height : 240, top : 20 });
   self.add(subscriberView);
 });
 ```
