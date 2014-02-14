@@ -1,9 +1,9 @@
 # Publisher
 
-You can use a Publisher object to stream audio and video from a device to Opentok. A Publisher is constructed by calling
-[Session.publish(_props_)](session.md#publishprops). The Publisher only represents the control of streaming that data,
+You can use a Publisher object to stream audio and video from a device to an OpenTok Session. A Publisher is constructed
+by calling [Session.publish(_props_)](session.md#publishprops). The Publisher only represents the control of streaming that data,
 not the UI. In order to present a view of this data, use a [VideoView](videoview.md#videoview) which can
-be constructed using the [createView(_props_)](#createview_props_) method here.
+be constructed using the [createView(_props_)](#createviewprops) method of a Publisher.
 
 <nav>
   <table>
@@ -49,52 +49,60 @@ be constructed using the [createView(_props_)](#createview_props_) method here.
 
 ### createView(_props_)
 
-A publisher can stream data without being displayed in the UI. In order to display the video of the publisher, you must create a view from it. This method creates that view. It is a subtype of Ti.UI.View.
+A publisher can stream data without being displayed in the UI. In order to display the video of the Publisher, you must
+create a view from it. This method creates that view. It is a subtype of
+[Titanium.UI.View](http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.UI.View).
 
 Parameters:
-*  _props_ (Dictionary) _optional_ - Properties of Ti.UI.View that are inherited by the PublisherView. (See [Appcelerator Docs](http://docs.appcelerator.com/titanium/2.1/index.html#!/api/Titanium.UI.View))
+*  _props_ (Dictionary) _optional_ - Properties to be set on the view when it is created. You can set any properties you
+   would on any instance of Titanium.UI.View
 
-Returns: (VideoView)
+Returns: ([VideoView](videoview.md#videoview))
 
 ## Properties
 
 ### publishAudio
 
-(Boolean) Whether or not the publisher is publishing audio data to the session. _Read Only_
+(Boolean) Whether or not the Publisher is publishing audio data to the Session. _Read Only_
 
 ### publishVideo
 
-(Boolean) Whether or not the publisher is publishing video data to the session. _Read Only_
+(Boolean) Whether or not the Publisher is publishing video data to the Session. _Read Only_
 
 ### name
 
-(String) The name that was assigned to the publisher when it was created. _Read Only_
+(String) The name that was assigned to the Publisher when it was created. _Read Only_
 
 ### session
 
-(Session) The session that this publisher is streaming data to. _Read Only_
+(Session) The Session that this Publisher is streaming data to. _Read Only_
 
 ### cameraPosition
 
-(String) If the device contains more than one camera, this option lets you set which one the publisher should stream from. Possible values are "cameraFront" or "cameraBack".
+(String) If the device contains more than one camera, this option lets you set which one the Publisher should stream from.
+Possible values are "cameraFront" or "cameraBack".
 
 ### view
 
-(VideoView) If [createView(_props_)](#createview_props_) has been called on the Publisher, this property will return a reference to that same VideoView. Otherwise it returns null.
+(VideoView) If [createView(_props_)](#createviewprops) has been called on the Publisher, this property will return a reference
+to that same VideoView. Otherwise it returns null.
 
 ## Events
 
 ### "publisherStarted"
 
-This event is fired when the publisher begins streaming data to the session. Note that the Session will also fire the "streamCreated" event for the resulting stream.
+This event is fired when the Publisher begins streaming data to the Session. Note that the Session will also fire the
+"streamCreated" event for the resulting Stream.
 
 ### "publisherStopped"
 
-This event is fired when the publisher stops streaming data to the session. Note that the Session will also fire the "streamDestroyed" event for the stream that is being removed from the Session.
+This event is fired when the publisher stops streaming data to the session. Note that the Session will also fire the
+"streamDestroyed" event for the stream that is being removed from the Session.
 
 ### "publisherFailed"
 
 This event is fired when an error is encountered.
 
 Event Properties:
-*   _error_ (Error) - Use _error_.message to see the reason for the publisher failing.
+*  _error_ (Dictionary):
+  *  _message_ (String) - The reason for the Publisher failing.
